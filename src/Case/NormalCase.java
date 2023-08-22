@@ -1,5 +1,5 @@
 
-package Main.Briefcase;
+package Case;
 
 /**
  *

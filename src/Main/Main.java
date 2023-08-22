@@ -3,12 +3,15 @@ package Main;
 
 /**
  *
+ * Main Class will serve as the entry point for the program - contains 
+ * user login, game loop and i/o
+ * 
  * @author Michael
  */
 public class Main {
 
     public static void main(String[] args) {
-        Game g = new Game();
+        GameLoop g = new GameLoop();
         g.start();
     }
 }

@@ -5,7 +5,7 @@ package Main;
  *
  * @author Michael
  */
-public class Game {
+public class GameLoop {
 
     /**
      * start will start the game loop
