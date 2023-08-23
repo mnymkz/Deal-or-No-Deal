@@ -8,7 +8,8 @@ package Banker;
 public class Banker 
 {
     private String name;
-    private double offer;
+    private double offerDeal;
+    private String strategy;
 
     public Banker(String name)
     {
@@ -20,14 +21,14 @@ public class Banker
         return name;
     }
 
-    public double getOffer()
+    public double getOfferDeal()
     {
-        return offer;
+        return offerDeal;
     }
 
-    public void setOffer(double offer)
+    public void setOfferDeal(double offerdeal)
     {
-        this.offer = offer;
+        this.offerDeal = offerDeal;
     }
 
     //make a function to calculate logic of the game
