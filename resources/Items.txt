@@ -1,0 +1,26 @@
+Laptop, 800
+Smartphone, 500
+Camera, 300
+Headphones, 100
+Tablet, 400
+Watch, 200
+Gaming Console, 600
+Jewelry, 1500
+Bicycle, 250
+Fitness Tracker, 120
+Sunglasses, 80
+Coffee Maker, 70
+Backpack, 50
+Shoes, 60
+Guitar, 350
+Speaker, 150
+Book, 10
+Wallet, 30
+Puzzle, 15
+Umbrella, 25
+Water Bottle, 5
+Hat, 20
+Dumbbells, 40
+Board Game, 45
+Candle, 12
+Plant, 18
