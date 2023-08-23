@@ -2,33 +2,58 @@
 package Case;
 
 /**
- *
+ * Abstract class case contains common attributes for normal and special cases
+ * 
  * @author Tabitha
  */
-public class Case 
+public abstract class Case 
 {
-    private int number;
-    private String object;
-
-    public Case(int number, String object)
+    //protected attributes 
+    protected int number;
+    protected Item item;
+    protected boolean opened;
+    
+    //constructor
+    public Case(int number, Item item)
     {
         this.number = number;
-        this.object = object;
+        this.item = item;
+        this.opened = false; //closed by default
     }
 
+    //getters and setters
     public int getNumber()
     {
         return number;
     }
 
-    public String getObject()
-    {
-        return object;
+    public Item getItem() {
+        return item;
     }
 
+    public boolean isOpened() {
+        return opened;
+    }
+
+    public Item getObject()
+    {
+        return item;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+    
     @Override
     public String toString()
     {
-        return number + ": " + object;
+        return number + ": " + item.toString();
     }
+    
+    //abstract method declarations
+    abstract public void openCase();
 }
