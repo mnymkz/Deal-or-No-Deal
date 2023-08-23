@@ -11,9 +11,10 @@ public class Banker
     private double offerDeal;
     private String strategy;
 
-    public Banker(String name)
+    public Banker(String name, String strategy)
     {
         this.name = name;
+        this.strategy = strategy;
     }
 
     public String getName()
@@ -26,9 +27,19 @@ public class Banker
         return offerDeal;
     }
 
-    public void setOfferDeal(double offerdeal)
+    public void setOfferDeal(double offerDeal)
     {
         this.offerDeal = offerDeal;
+    }
+
+    public String getStrategy()
+    {
+        return strategy;
+    }
+
+    public void setStrategy(String strategy)
+    {
+        this.strategy = strategy;
     }
 
     //make a function to calculate logic of the game
