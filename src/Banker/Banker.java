@@ -11,12 +11,14 @@ public class Banker
     private double offerDeal;
     private String strategy;
 
+    //constructors
     public Banker(String name, String strategy)
     {
         this.name = name;
         this.strategy = strategy;
     }
 
+    //get and set methods
     public String getName()
     {
         return name;
@@ -42,6 +44,12 @@ public class Banker
         this.strategy = strategy;
     }
 
-    //make a function to calculate logic of the game
+    //function to calculate logic of the game
+    //will be overriden by classes that are extended
+    public double offerDeal(double roundAverage)
+    {
+        //average the cases left over 
+        return 0;
+    }
     //consult about how we want the rules of the game to be, if we want to alter anything
 }
