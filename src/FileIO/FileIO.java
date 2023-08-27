@@ -11,20 +11,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * FileIO class contains file reading and writing methods
+ * 
  * @author Michael
  */
-//filiIO class contains static methods for filewriting and filereading
 public class FileIO {
 
-    //WriteToFileMethod writes data to file
-    public static void writeToFile(String filename, String data, boolean append) {
+    /**
+     * WriteToFileMethod writes data to file
+     * 
+     * @param filename the name of file to write to
+     * @param data the data to write
+     */
+    public static void writeToFile(String filename, String data) {
         //check if file exists
         if (fileExists(filename)) {
             //write data to file
             BufferedWriter writer;
             try {
-                writer = new BufferedWriter(new FileWriter(filename, append));
+                writer = new BufferedWriter(new FileWriter(filename));
                 writer.write(data);
                 writer.close();
             } catch (IOException ex) {
@@ -33,11 +38,16 @@ public class FileIO {
         } else {
             //create new file and then write data to file
             createFile(filename);
-            writeToFile(filename, data, append);
+            writeToFile(filename, data);
         }
     }
 
-    //readFromFile method returns a string containing data from file
+    /**
+     * readFromFile reads a string of data from file
+     * 
+     * @param filename the file to read from
+     * @return the data from file 
+     */
     public static String readFromFile(String filename) {
         //checks to see if filename.txt exists 
         if (fileExists(filename)) {
@@ -64,13 +74,23 @@ public class FileIO {
         }
     }
 
-    //file exists method checks to see if file exists before createing a new file
+    /**
+     * fileExists method checks if a file exists
+     * 
+     * @param fileName the file to check
+     * @return true if file exists, else return false
+     */
     public static boolean fileExists(String fileName) {
         File file = new File(fileName);
         return file.exists();
     }
 
-    //creats a new file if file doesn't exist
+
+    /**
+     * creates a new file if file doesn't exist
+     * 
+     * @param fileName the name of newFile
+     */
     public static void createFile(String fileName) {
         File file = new File(fileName);
         if (!file.exists()) {
@@ -79,42 +99,6 @@ public class FileIO {
             } catch (IOException ex) {
                 Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-    }
-
-    // updateFile method copies text from existing file to a new file without the line containing 
-    //the identifier. If line contains the identifier, it is not added to the updated file
-    public static void updateFile(String filename, String identifier) {
-        try {
-            File inputFile = new File(filename);
-            File tempFile = new File("./resources/temp.txt");
-
-            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                // check if the line contains the course to be deleted
-                if (line.contains(identifier)) {
-                    continue;
-                }
-                // write the line to the temporary file
-                writer.write(line + System.getProperty("line.separator"));
-            }
-
-            reader.close();
-            writer.close();
-
-            // delete the original file
-            inputFile.delete();
-            // rename the temporary file to the original file name
-            tempFile.renameTo(inputFile);
-
-            System.out.println(identifier + " removed successfully.");
-        } catch (IOException e) {
-            System.out.println("An error occurred while removing" + identifier);
-            e.printStackTrace();
         }
     }
 }
