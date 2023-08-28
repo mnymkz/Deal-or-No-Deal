@@ -8,10 +8,10 @@ package Banker;
 public class Banker 
 {
     private String name;
-    private double offerDeal;
+    private double offer;
     private String strategy;
 
-    //constructors
+    //constructor
     public Banker(String name, String strategy)
     {
         this.name = name;
@@ -24,14 +24,14 @@ public class Banker
         return name;
     }
 
-    public double getOfferDeal()
+    public double getOffer()
     {
-        return offerDeal;
+        return offer;
     }
 
-    public void setOfferDeal(double offerDeal)
+    public void setOffer(double offer)
     {
-        this.offerDeal = offerDeal;
+        this.offer = offer;
     }
 
     public String getStrategy()
@@ -44,12 +44,9 @@ public class Banker
         this.strategy = strategy;
     }
 
-    //function to calculate logic of the game
-    //will be overriden by classes that are extended
-    public double offerDeal(double roundAverage)
+    
+    public double bankerOffer(double average)
     {
-        //average the cases left over 
         return 0;
     }
-    //consult about how we want the rules of the game to be, if we want to alter anything
 }
