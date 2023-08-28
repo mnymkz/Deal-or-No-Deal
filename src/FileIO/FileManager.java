@@ -11,34 +11,33 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * FileIO class contains file reading and writing methods
+ * FileManager class contains file reading and writing methods
  * 
  * @author Michael
  */
-public class FileIO {
+public class FileManager {
 
     /**
      * WriteToFileMethod writes data to file
+     * appends to file 
      * 
      * @param filename the name of file to write to
      * @param data the data to write
      */
     public static void writeToFile(String filename, String data) {
         //check if file exists
-        if (fileExists(filename)) {
-            //write data to file
-            BufferedWriter writer;
-            try {
-                writer = new BufferedWriter(new FileWriter(filename));
-                writer.write(data);
-                writer.close();
-            } catch (IOException ex) {
-                Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            //create new file and then write data to file
+        if (!fileExists(filename)) {
+            //create file if path does not exist
             createFile(filename);
-            writeToFile(filename, data);
+        } 
+        //file exists, write data to file
+        BufferedWriter writer;
+        try {
+            writer = new BufferedWriter(new FileWriter(filename, true));
+            writer.write(data);
+            writer.close();
+        } catch (IOException ex) {
+             Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -61,17 +60,19 @@ public class FileIO {
                     data.append(line + "\n");
                 }
                 reader.close();
+                //return data
+                return data.toString();
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, ex);
             }
-            return data.toString();
         } else {
             //error reading from file, return empty string
             System.out.println("Error reading from file. File does not exist.");
-            return "";
         }
+        //return empty string by default
+        return "";
     }
 
     /**
@@ -97,8 +98,18 @@ public class FileIO {
             try {
                 file.createNewFile();
             } catch (IOException ex) {
-                Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+    
+    public static void clearFile(String fileName) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            writer.write(""); // Write an empty string to clear the content
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

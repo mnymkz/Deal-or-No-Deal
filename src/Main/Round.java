@@ -28,10 +28,11 @@ public class Round
         int remainingCases = 0;
         double totalCasesValue = 0;
 
-        for(int i = 0; casesRemaining > 0; i++)
-        {
-            if()
-        }
+//        for(int i = 0; casesRemaining > 0; i++)
+//        {
+//            if()
+//        }
+        return 0;
     }
 
     public void start()

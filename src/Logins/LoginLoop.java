@@ -23,9 +23,7 @@ public class LoginLoop {
     {
         Scanner scan = new Scanner(System.in);
         
-        //load logins from logins.txt into a hashmap 
-        
-        
+        this.logins.loadLogins();
         
         while (true)
         {
@@ -37,7 +35,7 @@ public class LoginLoop {
             if (checkX(result)) { break; }
             
             if (result.equalsIgnoreCase("Y")) {
-                //if new user, create new player
+                //if new user, create new player          
                 System.out.println("PLEASE ENTER YOUR NEW USERNAME: ");
                 String username = scan.nextLine().trim();
                 if (checkX(username)) { break; }
@@ -45,19 +43,30 @@ public class LoginLoop {
                 System.out.println("PLEASE ENTER YOUR NEW PASSWORD: ");
                 String password = scan.nextLine().trim();
                 if (checkX(password)) { break; }
+                this.logins.getLogins().put(username, password);
+                this.logins.saveLogins();
+                System.out.println("LOGIN CREATED! WELCOME " + username + "!");
             }
-            if (result.equalsIgnoreCase("N")) {
+            else if (result.equalsIgnoreCase("N")) {
                 System.out.println("PLEASE ENTE2R YOUR USERNAME: ");
                 String username = scan.nextLine().trim();
                 if (checkX(username)) { break; }
-                //if username does not exist create login
-                System.out.println("USERNAME DOES NOT EXIST. CREATE A NEW ACCOUNT!");
-
                 System.out.println("PLEASE ENTER YOUR PASSWORD: ");
                 String password = scan.nextLine().trim();
                 if (checkX(password)) { break; }
-            }          
-        } 
+                System.out.println("WELCOME BACK" + username + "!");
+
+                //if username does not exist create login
+                if (!this.logins.getLogins().containsKey(username))
+                {
+                    System.out.println("USERNAME DOES NOT EXIST. CREATE A NEW ACCOUNT!");
+                }
+            }
+            else 
+            {
+                System.out.println("Please press Y or N");
+            }
+        }
     }
     
     /**
