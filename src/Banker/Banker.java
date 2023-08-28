@@ -8,28 +8,48 @@ package Banker;
 public class Banker 
 {
     private String name;
-    private double offer;
+    private double offerDeal;
+    private String strategy;
 
-    public Banker(String name)
+    //constructors
+    public Banker(String name, String strategy)
     {
         this.name = name;
+        this.strategy = strategy;
     }
 
+    //get and set methods
     public String getName()
     {
         return name;
     }
 
-    public double getOffer()
+    public double getOfferDeal()
     {
-        return offer;
+        return offerDeal;
     }
 
-    public void setOffer(double offer)
+    public void setOfferDeal(double offerDeal)
     {
-        this.offer = offer;
+        this.offerDeal = offerDeal;
     }
 
-    //make a function to calculate logic of the game
+    public String getStrategy()
+    {
+        return strategy;
+    }
+
+    public void setStrategy(String strategy)
+    {
+        this.strategy = strategy;
+    }
+
+    //function to calculate logic of the game
+    //will be overriden by classes that are extended
+    public double offerDeal(double roundAverage)
+    {
+        //average the cases left over 
+        return 0;
+    }
     //consult about how we want the rules of the game to be, if we want to alter anything
 }
