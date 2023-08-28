@@ -16,15 +16,17 @@ public class CaseTest {
         b.setDescription("This item is worth a lot");
         
         //Case polymorphism
-        Case normal = new NormalCase(1, a);
-        Case special = new SpecialCase(1.5, 2, b);
-        System.out.println(normal.toString());
-        System.out.println(special.toString());
+        Case normalCase = new NormalCase(1, a);
+        Case specialCase = new SpecialCase(1.5, 2, b);
+        Case doubleCase = new DoubleCase(3, b);
+        System.out.println(normalCase.toString());
+        System.out.println(specialCase.toString());
+        System.out.println("");
         
         //open and closing cases
-        normal.openCase();
-        special.openCase();
-        System.out.println(normal.isOpened());
-        System.out.println(special.isOpened());
+        normalCase.openCase();
+        specialCase.openCase();
+        System.out.println(normalCase.isOpened());
+        System.out.println(specialCase.isOpened());
     }
 }

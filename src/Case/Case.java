@@ -54,6 +54,8 @@ public abstract class Case
         return number + ": " + item.toString();
     }
     
-    //abstract method declarations
-    abstract public void openCase();
+    public void openCase()
+    {
+        this.opened = true;
+    }
 }

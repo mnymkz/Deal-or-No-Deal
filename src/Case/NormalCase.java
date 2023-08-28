@@ -2,7 +2,9 @@
 package Case;
 
 /**
- *
+ * Normal cases contain the standard case behavior. They can be opened and contain 
+ * an item and are numbered. 
+ * 
  * @author Michael
  */
 public class NormalCase extends Case {
