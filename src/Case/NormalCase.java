@@ -9,13 +9,9 @@ package Case;
  */
 public class NormalCase extends Case {
 
+    //case constructor 
     public NormalCase(int number, Item item) {
         super(number, item);
     }
-
-    @Override
-    public void openCase() {
-        this.opened = true;
-    }
-    
+    //all methods declared in abstract class 
 }

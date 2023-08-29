@@ -13,4 +13,16 @@ public class EmptyCase extends Case {
         super(number, null);
     }
 
+    //Override toString methods
+    @Override
+    public String toString()
+    {
+        return number + ": THIS CASE IS EMPTY!";
+    }
+    
+    @Override
+    public String toCSV()
+    {
+       return this.number+","+this.opened+",null";
+    }
 }

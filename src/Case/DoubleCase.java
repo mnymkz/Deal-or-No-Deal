@@ -13,7 +13,19 @@ public class DoubleCase extends Case {
     
     public DoubleCase(int number, Item item) {
         super(number, item);
-        this.item = item;
+        this.item2 = item;
     }
     
+    //override toString
+    @Override
+    public String toString()
+    {
+        return super.toString() + ": " + item2.toString();
+    }
+    
+    //override toCSV method
+    public String toCSV()
+    {
+        return super.toCSV() + "," + item2.toString();
+    }
 }
