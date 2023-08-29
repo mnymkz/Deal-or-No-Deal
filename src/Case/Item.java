@@ -52,4 +52,13 @@ public class Item {
         return this.name + ", $" + this.moneyValue + " - " + this.description;
     }
     
+    /**
+     * toCSV method returns a string of item attributes in csv format for file IO
+     * 
+     * @return name, moneyValue and description in csv format 
+     */
+    public String toCSV()
+    {
+        return this.name+","+this.moneyValue+","+this.description;
+    }
 }

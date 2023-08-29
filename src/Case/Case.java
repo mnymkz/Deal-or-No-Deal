@@ -48,12 +48,33 @@ public abstract class Case
         this.item = item;
     }
     
+    /**
+     * Override toString method to return a string displaying case attributes
+     * 
+     * @return 
+     */
     @Override
     public String toString()
     {
         return number + ": " + item.toString();
     }
     
-    //abstract method declarations
-    abstract public void openCase();
+    /**
+     * openCase method sets opened to true
+     */
+    public void openCase()
+    {
+        this.opened = true;
+    }
+    
+    /**
+     * toCSV method returns the attributes of the case as a String in csv format for 
+     * file reading and file writing 
+     * 
+     * @return the attributes in CSV format 
+     */
+    public String toCSV()
+    {
+        return this.number + "," + this.item.toString() + "," + this.opened;
+    }
 }
