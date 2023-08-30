@@ -1,4 +1,1 @@
-michael,password
-user2,password2
-tabitha,password
-user,password1
+Michael,password

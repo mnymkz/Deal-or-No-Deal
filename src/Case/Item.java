@@ -19,6 +19,14 @@ public class Item {
         this.moneyValue = moneyValue;
         this.description = "";
     }
+    
+    //item constructor 
+    public Item(String name, double moneyValue, String description) {
+        this.name = name;
+        this.moneyValue = moneyValue;
+        this.description = description;
+    }
+    
 
     //getters and setters
     public String getName() {

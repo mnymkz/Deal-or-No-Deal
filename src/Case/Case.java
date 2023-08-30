@@ -68,13 +68,14 @@ public abstract class Case
     }
     
     /**
-     * toCSV method returns the attributes of the case as a String in csv format for 
-     * file reading and file writing 
+     * toCSV method returns the attributes of the case as a String in CSV format for 
+     * file reading and file writing. Instead of using ',' case will use ':' as the
+     * identifier to make loading items easier 
      * 
      * @return the attributes in CSV format 
      */
     public String toCSV()
     {
-        return this.number + "," + this.item.toString() + "," + this.opened;
+        return this.number + ":" + this.opened+ ":" + this.item.toCSV();
     }
 }
