@@ -30,12 +30,21 @@ public class Round
 
         for(int i = 0; casesRemaining > 0; i++)
         {
-            if()
+            
         }
     }
 
-    public void start()
+    public boolean revealCase()
     {
-        
+        return true;
+    }
+
+    //entry point of the round
+    public void startRound()
+    {
+        //Display information about the round such as the number of remaining cases
+        //Player interaction
+        //Case interaction
+
     }
 }
