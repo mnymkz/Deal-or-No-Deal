@@ -23,18 +23,25 @@ public class Round
         this.banker = banker;
     }
 
-    public double averageRemainingCases()
-    {
-        int remainingCases = 0;
-        double totalCasesValue = 0;
+//     public double averageRemainingCases()
+//     {
+//         int remainingCases = 0;
+//         double totalCasesValue = 0;
 
-        //for(int i = 0; casesRemaining > 0; i++)
-        //{
-        //    
-        //}
+// <<<<<<< HEAD
+//         //for(int i = 0; casesRemaining > 0; i++)
+//         //{
+//         //    
+//         //}
 
-        return 0;
-    }
+// =======
+// //        for(int i = 0; casesRemaining > 0; i++)
+// //        {
+// //            if()
+// //        }
+// >>>>>>> master
+//         return 0;
+//     }
 
     public boolean revealCase()
     {
