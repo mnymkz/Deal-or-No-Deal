@@ -51,7 +51,7 @@ public class Banker
     }
 
 
-    public double createOffer(int round, int playerAmount, ArrayList<Case> cases)
+    public double createOffer(ArrayList<Case> cases)
     {
         int totalValueItems = 0;
         int numItems = 0;
@@ -62,9 +62,10 @@ public class Banker
             if(currentCase.isOpened())
             {
                 Item items = currentCase.getItem();
-                //why isnt items working???
-                for (Item item : items) {
-                    totalValueItems += item.getMoneyValue();
+                
+                if(items != null)
+                {
+                    totalValueItems += items.getMoneyValue();
                     numItems++;
                 }
             }
@@ -81,7 +82,10 @@ public class Banker
             valueOfItemAverage = 0;
         }
 
-        //make calculation based on the player on the round, player amount and the average value of the items 
+        //to be used, store it somewhere, display it etc.
+        double finalOffer = bankerOffer(valueOfItemAverage);
+
+        return finalOffer;
     }
     
     //to be overriden by extended classes
