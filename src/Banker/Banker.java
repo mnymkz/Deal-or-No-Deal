@@ -85,7 +85,7 @@ public class Banker
     }
     
     //to be overriden by extended classes
-    public double finalBankerOffer(double average)
+    public double bankerOffer(double average)
     {
         return 0;
     }
