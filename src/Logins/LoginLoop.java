@@ -1,6 +1,7 @@
 
 package Logins;
 
+import FileIO.LoginManager;
 import java.util.Scanner;
 
 /**
@@ -23,7 +24,7 @@ public class LoginLoop {
     {
         Scanner scan = new Scanner(System.in);
         
-        this.logins.loadLogins();
+        this.logins.load();
         
         while (true)
         {
@@ -44,7 +45,7 @@ public class LoginLoop {
                 String password = scan.nextLine().trim();
                 if (checkX(password)) { break; }
                 this.logins.getLogins().put(username, password);
-                this.logins.saveLogins();
+                this.logins.save();
                 System.out.println("LOGIN CREATED! WELCOME " + username + "!");
             }
             else if (result.equalsIgnoreCase("N")) {
@@ -54,7 +55,7 @@ public class LoginLoop {
                 System.out.println("PLEASE ENTER YOUR PASSWORD: ");
                 String password = scan.nextLine().trim();
                 if (checkX(password)) { break; }
-                System.out.println("WELCOME BACK" + username + "!");
+                System.out.println("WELCOME BACK " + username + "!");
 
                 //if username does not exist create login
                 if (!this.logins.getLogins().containsKey(username))

@@ -1,26 +1,26 @@
-Laptop, 800
-Smartphone, 500
-Camera, 300
-Headphones, 100
-Tablet, 400
-Watch, 200
-Gaming Console, 600
-Jewelry, 1500
-Bicycle, 250
-Fitness Tracker, 120
-Sunglasses, 80
-Coffee Maker, 70
-Backpack, 50
-Shoes, 60
-Guitar, 350
-Speaker, 150
-Book, 10
-Wallet, 30
-Puzzle, 15
-Umbrella, 25
-Water Bottle, 5
-Hat, 20
-Dumbbells, 40
-Board Game, 45
-Candle, 12
-Plant, 18
+Water Bottle,5,So Fresh, So Clean.
+Book,10,Who even reads books nowadays?
+Candle,12,Scented... smells like flowers.
+Puzzle,15,Really? A puzzle?
+Plant,18,Exotic...
+Hat,20,No CAP
+Movie Ticket,25,Tickets to Barbie please.
+Wallet,30,Gucci!
+Board Game,45,Chess not Checkers.
+Ball,40,Have you ever played rugby?
+Backpack,50,Feel like Dora.
+Shoes,60,What are those?
+Coffee Maker,70,What the hell is a grande?
+Sunglasses,80,My shades, Dior.
+Headphones,100,Beat by Dre.
+Fitness Tracker,120,Shut up! Count your calories!
+Speaker,150,Nice bass you have there.
+Watch,200,Vintage. Nice!
+Bicycle,250,I don't get weak in the knees!
+Camera,300,Pose!
+Guitar,350,Strings...
+Tablet,400,It even comes with a keyboard!
+Smartphone,500,Smartphone implies the existence of dumbphone...
+Gaming Console,600,No way a ps2!
+Gaming Laptop,800,A gaming laptop! Also known as air fryers.
+Jewelry,1500,Wrist so icy wonder why she like me...

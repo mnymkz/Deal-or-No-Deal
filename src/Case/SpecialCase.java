@@ -13,7 +13,7 @@ public class SpecialCase extends Case {
     double multiplier;
 
     //constructor
-    public SpecialCase(double multiplier, int number, Item item) {
+    public SpecialCase(int number, Item item, double multiplier) {
         super(number, item);
         this.multiplier = multiplier;
     }
