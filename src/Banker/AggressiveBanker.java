@@ -15,6 +15,11 @@ public class AggressiveBanker extends Banker
     @Override
     public double bankerOffer(double average)
     {
-        return average * 0.8;
+        double finalOffer = average * 0.8;
+
+        setOffer(finalOffer);
+        printBankerOffer();
+        
+        return finalOffer;
     }
 }
