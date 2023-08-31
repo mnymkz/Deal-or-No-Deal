@@ -15,6 +15,12 @@ public class RandomBanker extends Banker
     @Override
     public double bankerOffer(double average)
     {
-        return average * Math.random();
+        double randPercentage = Math.random() * 0.9;
+        double finalOffer = average * randPercentage;
+
+        setOffer(finalOffer);
+        printBankerOffer();
+
+        return finalOffer;
     }
 }
