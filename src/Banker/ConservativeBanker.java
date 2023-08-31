@@ -16,8 +16,10 @@ public class ConservativeBanker extends Banker
     public double bankerOffer(double average)
     {
         double finalOffer =  average * 0.6;
+
         setOffer(finalOffer);
         printBankerOffer();
+        
         return finalOffer;
     }
 }
