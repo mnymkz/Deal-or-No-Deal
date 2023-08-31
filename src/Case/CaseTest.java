@@ -12,7 +12,7 @@ public class CaseTest {
     
     public static void main(String[] args) {
         //items
-        Item a = new Item("Garbage", 0.50);
+        Item a = new Item("Garbage", 0.50);      
         Item b = new Item("Gold", 1000);
         Item c = new Item("Silver", 500);
         a.setDescription("This item is worth nothing");
@@ -54,6 +54,11 @@ public class CaseTest {
         for (Case C: cm.getCases())
         {
             System.out.println(C.toString());
+        }
+        
+        for (Case C: cm.getCases())
+        {
+            System.out.println(C.displayCase());
         }
     }
 }

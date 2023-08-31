@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Player;
+package Main;
 
 /**
  *
@@ -10,8 +10,8 @@ package Player;
  */
 public interface PlayerInterface {
     
+    //abstract methods
     abstract boolean dealOrNoDeal();
-    abstract int chooseCase();
-    abstract void switchCase();
+    abstract int chooseCase(String input);
     
 }

@@ -54,9 +54,8 @@ public abstract class Case
      * @return 
      */
     @Override
-    public String toString()
-    {
-        return number + ": " + item.toString();
+    public String toString() {
+        return String.format("%02d: %s", number, item.toString());
     }
     
     /**
@@ -65,6 +64,20 @@ public abstract class Case
     public void openCase()
     {
         this.opened = true;
+    }
+    
+    /**
+     * display case method returns a string to display to user 
+     * shows the user what cases are remaining 
+     * 
+     * @return formatted string displaying case number and case object
+     */
+    public String displayCase() {
+    if (!this.opened) {
+        return String.format("[ %02d ]", this.number);
+    } else {
+        return "[ -- ]";
+    }
     }
     
     /**

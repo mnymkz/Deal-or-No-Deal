@@ -1,6 +1,8 @@
 package Main;
 
+import FileIO.CaseManager;
 import Logins.LoginLoop;
+import java.util.Random;
 
 
 /**
@@ -11,7 +13,7 @@ import Logins.LoginLoop;
  * @author Michael
  */
 public class Main {
-
+    
     public static void main(String[] args) {
         GameLoop g = new GameLoop();
         g.start();

@@ -1,7 +1,6 @@
 
-package Player;
+package Main;
 
-import Player.PlayerInterface;
 
 /**
  *
@@ -11,6 +10,7 @@ public class Player implements PlayerInterface {
     
     //player fields
     private String name;
+    private double currentEarnings;
     private double highestEarnings;
     
     /**
@@ -20,6 +20,7 @@ public class Player implements PlayerInterface {
     public Player(String name)
     {
         this.name = name;
+        this.currentEarnings = 0;
         this.highestEarnings = 0;
     }
 
@@ -29,12 +30,7 @@ public class Player implements PlayerInterface {
     }
 
     @Override
-    public int chooseCase() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void switchCase() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int chooseCase(String input) {
+        return 0;
     }
 }
