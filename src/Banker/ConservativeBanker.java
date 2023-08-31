@@ -15,6 +15,9 @@ public class ConservativeBanker extends Banker
     @Override
     public double bankerOffer(double average)
     {
-        return average * 0.6;
+        double finalOffer =  average * 0.6;
+        setOffer(finalOffer);
+        printBankerOffer();
+        return finalOffer;
     }
 }
