@@ -82,15 +82,19 @@ public class Banker
             valueOfItemAverage = 0;
         }
 
-        //to be used, store it somewhere, display it etc.
-        double finalOffer = bankerOffer(valueOfItemAverage);
+        //setOffer(valueOfItemAverage);
 
-        return finalOffer;
+        return valueOfItemAverage;
     }
     
     //to be overriden by extended classes
     public double bankerOffer(double average)
     {
         return 0;
+    }
+
+    public void printBankerOffer()
+    {
+        System.out.println("Banker's offer: $" + getOffer());
     }
 }
