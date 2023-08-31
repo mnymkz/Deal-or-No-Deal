@@ -93,6 +93,7 @@ public class Banker
         return 0;
     }
 
+    //print banker offer
     public void printBankerOffer()
     {
         System.out.println("Banker's offer: $" + getOffer());
