@@ -7,7 +7,7 @@ import Case.EmptyCase;
 import Case.Item;
 import Case.NormalCase;
 import Case.SpecialCase;
-import static FileIO.FileManager.readFromFile;
+import static FileIO.FileIO.readFromFile;
 import java.util.ArrayList;
 import java.util.HashSet;
 import FileIO.ObjectLoader;
@@ -111,31 +111,21 @@ public class CaseManager implements ObjectLoader {
      * 
      * @return 0 for normal, 1 for special, 2, for double, 3 for empty
      */
-    private int generateRandomCase() 
-    {
-       double randomValue = Math.random();
-       //85% probability of a case to be normal
-       if (randomValue >= 0 && randomValue <= 0.85)
-       {
-           return 0;
-       }
-       //5% probability of a case to be special
-       if (randomValue >= 0.86 && randomValue <= 0.90)
-       {
-           return 1;
-       }
-       //5% probability of a case to be double
-       if (randomValue >= 0.90 && randomValue <= 0.95)
-       {
-           return 2;
-       }
-       //5% probability of a case to be empty
-       if (randomValue >= 0.95 && randomValue <= 1.0)
-       {
-           return 3;
-       }
-       //error 
-       return -1;
+    private int generateRandomCase() {
+        double randomValue = Math.random();
+        //5% probability of a case to be special
+        if (randomValue >= 0.86 && randomValue <= 0.90) {
+            return 1;
+        } //5% probability of a case to be double
+        else if (randomValue >= 0.90 && randomValue <= 0.95) {
+            return 2;
+        } //5% probability of a case to be empty
+        else if (randomValue >= 0.95 && randomValue <= 1.0) {
+            return 3;
+        } //85% probability of a case to be normal
+        else {
+            return 0;
+        }
     }
     
     /**
@@ -196,7 +186,7 @@ public class CaseManager implements ObjectLoader {
 
     @Override
     public void save() {
-        //no file output required (unless save states are implemented)
+        //TODO implememnt save states
     }
     
     //get methods
@@ -206,5 +196,9 @@ public class CaseManager implements ObjectLoader {
 
     public HashSet<Item> getItems() {
         return items;
+    }
+
+    public int getNUM_CASES() {
+        return NUM_CASES;
     }
 }

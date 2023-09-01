@@ -11,11 +11,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * FileManager class contains file reading and writing methods
+ * FileIO class contains file reading and writing methods
+ * Static class allows method access from any class
  * 
  * @author Michael
  */
-public class FileManager {
+public class FileIO {
 
     /**
      * WriteToFileMethod writes data to file
@@ -37,7 +38,7 @@ public class FileManager {
             writer.write(data);
             writer.close();
         } catch (IOException ex) {
-             Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -63,9 +64,9 @@ public class FileManager {
                 //return data
                 return data.toString();
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             //error reading from file, return empty string
@@ -98,7 +99,7 @@ public class FileManager {
             try {
                 file.createNewFile();
             } catch (IOException ex) {
-                Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FileIO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

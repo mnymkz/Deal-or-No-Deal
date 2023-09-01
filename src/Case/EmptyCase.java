@@ -16,7 +16,7 @@ public class EmptyCase extends Case {
     @Override
     public String toString()
     {
-        return number + ": THIS CASE IS EMPTY!";
+        return String.format("%02d: %s", number, "THIS CASE IS EMPTY!");
     }
     
     @Override

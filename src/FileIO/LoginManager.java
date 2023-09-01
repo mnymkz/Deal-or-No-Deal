@@ -1,6 +1,6 @@
 package FileIO;
 
-import FileIO.FileManager;
+import FileIO.FileIO;
 import java.util.HashMap;
 import java.util.Map;
 import FileIO.ObjectLoader;
@@ -24,7 +24,7 @@ public class LoginManager implements ObjectLoader {
      */
     private void loadLogins()
     {
-        String data = FileManager.readFromFile(FILEPATH);
+        String data = FileIO.readFromFile(FILEPATH);
         
         //split data into lines
         String[] logins = data.split("\n");
@@ -63,7 +63,7 @@ public class LoginManager implements ObjectLoader {
     private void saveLogins()
     {
         //clear file 
-        FileManager.clearFile(FILEPATH);
+        FileIO.clearFile(FILEPATH);
         //loop through map
         //for each key value pair
         //write to text file in csv format 
@@ -72,7 +72,7 @@ public class LoginManager implements ObjectLoader {
             String password = entry.getValue();
             String login = username + "," + password + "\n";
             //write logins
-            FileManager.writeToFile(FILEPATH, login);
+            FileIO.writeToFile(FILEPATH, login);
         }
     }
     

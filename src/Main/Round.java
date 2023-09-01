@@ -1,9 +1,7 @@
 package Main;
 
-import java.util.List;
 import Banker.Banker;
 import Case.Case;
-import Player.Player;
 import java.util.ArrayList;
 /**
  *
@@ -43,10 +41,6 @@ public class Round
 //         return 0;
 //     }
 
-    public boolean revealCase()
-    {
-        return true;
-    }
 
     //entry point of the round
     public void startRound()
