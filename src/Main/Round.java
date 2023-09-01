@@ -2,6 +2,7 @@ package Main;
 
 import Banker.Banker;
 import Banker.ConservativeBanker;
+import Case.Item;
 import Case.Case;
 import FileIO.CaseManager;
 import java.util.ArrayList;
@@ -52,8 +53,15 @@ public class Round {
                 this.QUIT = !QUIT;
                 return;
             }
-            //display the value of the chosen case
             
+            //Retrieve the Item from the selected case
+            int caseNo = Integer.parseInt(userInput);
+            int caseIndex = caseNo - 1;
+            Item selectedCase = cm.getCases().get(caseIndex).getItem();
+
+            // Display the value of the current chosen case
+            System.out.println("You selected the case with a " + selectedCase.getName() + " that has a value of $" + selectedCase.getMoneyValue() + 
+            "\n\n" + selectedCase.getDescription() + "\n");
         }
 
         //banker offers
@@ -154,6 +162,7 @@ public class Round {
     protected void revealCase(int caseNo) {
         int caseIndex = caseNo - 1;
         this.cm.getCases().get(caseIndex).openCase();
+        System.out.println();
     }
 
     /**
