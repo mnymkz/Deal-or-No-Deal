@@ -12,7 +12,7 @@ import FileIO.ObjectLoader;
 public class LoginManager implements ObjectLoader {
     
     private HashMap<String, String> logins;
-    private final String FILEPATH = "resources/logins.txt";
+    private final String FILE_PATH = "resources/logins.txt";
 
     public LoginManager()
     {
@@ -24,7 +24,7 @@ public class LoginManager implements ObjectLoader {
      */
     private void loadLogins()
     {
-        String data = FileIO.readFromFile(FILEPATH);
+        String data = FileIO.readFromFile(FILE_PATH);
         
         //split data into lines
         String[] logins = data.split("\n");
@@ -63,7 +63,7 @@ public class LoginManager implements ObjectLoader {
     private void saveLogins()
     {
         //clear file 
-        FileIO.clearFile(FILEPATH);
+        FileIO.clearFile(FILE_PATH);
         //loop through map
         //for each key value pair
         //write to text file in csv format 
@@ -72,7 +72,7 @@ public class LoginManager implements ObjectLoader {
             String password = entry.getValue();
             String login = username + "," + password + "\n";
             //write logins
-            FileIO.writeToFile(FILEPATH, login);
+            FileIO.writeToFile(FILE_PATH, login);
         }
     }
     
@@ -81,8 +81,8 @@ public class LoginManager implements ObjectLoader {
         return logins;
     }
 
-    public String getFILEPATH() {
-        return FILEPATH;
+    public String getFILE_PATH() {
+        return FILE_PATH;
     }
 
     //interface method implementation
