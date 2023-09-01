@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Michael
+ * @author Michael, Tabitha
  */
 public class GameLoop {
 
@@ -35,12 +35,12 @@ public class GameLoop {
             
             //get new player 
             System.out.println("WELCOME TO DEAL OR NO DEAL!");
-            System.out.println("THE RULES ARE SIMPLE:");
+            System.out.println("THE RULES ARE SIMPLE:\n");
             System.out.println("1. A PLAYER CHOOSES A RANDOM CASE IN WHICH THEY THINK HAS THE HIGHEST VALUE");
             System.out.println("2. IN EACH ROUND, A PLAYER GETS TO ELIMINATE CASES WHICH THEY THINK DO NOT HAVE THE HIGHEST VALUE");
             System.out.println("3. THE BANKER CAN MAKE AN OFFER TO THE PLAYER, ALLOWING THEM TO SAY DEAL (ACCEPT THE OFFER)");
             System.out.println("   OR NO DEAL (DECLINE THE OFFER).");
-            System.out.println("4. THE GAME ENDS WHEN THE PLAYER REACHES THE FINAL ROUND OR ACCEPTS THE BANKERS OFFER.");
+            System.out.println("4. THE GAME ENDS WHEN THE PLAYER REACHES THE FINAL ROUND OR ACCEPTS THE BANKERS OFFER.\n");
             System.out.println("PLEASE ENTER YOUR NAME!");
             String name = scan.nextLine().trim();
             //if x is pressed, break
@@ -49,34 +49,23 @@ public class GameLoop {
                 break;
             }
             this.player.setName(name);
-            System.out.println("WELCOME "+name+"!");
-            
-            
-            //round implementation 
-            //choose banker
-            //round n start
-                //if first round allow the player to choose their starting case
-                //if last round allow the player to swap their current case with the last case
+            System.out.println("\nWELCOME "+name+"!");
+
+
+            //if last round allow the player to swap their current case with the last case
             //if round.quit is !quit, break
             Banker banker = new RandomBanker("John");
             Round roundTest = new FirstRound(cm, chosenNumbers, player, banker, 6);
             //roundTest.displayCases();
-            roundTest.startRound();
+            roundTest.startRound(0, 0);
             roundTest = new Round(cm, chosenNumbers, player, banker, 6);
-            
-            roundTest.startRound();
-            // if (roundTest.getQUIT())
-            // {
-            //     break;
-            // }
-            //TODO - implement all 10 rounds 
-            
+            roundTest.startRound(6, 1);
             
             
             //ask if user wants to play again
                 //if yes run loop
                 //else break
-            System.out.println("CONGRATS " + this.player.getName() +"!");
+            System.out.println("\nThank you for playing Deal or No Deal " + this.player.getName() +"!");
             System.out.println("PLAY AGAIN? Y/N");
             String input = scan.nextLine().trim();
             if (!playAgain(input)) {

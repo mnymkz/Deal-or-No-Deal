@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 /**
  *
- * @author Michael
+ * @author Michael, Tabitha
  */
 public class FirstRound extends Round {
 
@@ -17,7 +17,7 @@ public class FirstRound extends Round {
     }
     
     @Override
-    public void startRound()
+    public void startRound(int numChoices, int currentRound)
     {
         displayCases();
         //get player to select their starting case
@@ -27,7 +27,6 @@ public class FirstRound extends Round {
         if (chooseCase(userInput) == -1) {
             return;
         }
-
     }
     
     @Override

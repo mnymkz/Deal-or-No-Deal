@@ -37,15 +37,14 @@ public class Round {
      * Player interaction
      * Case interaction
      */
-    public void startRound() {
+    public void startRound(int numChoices, int currentRound) {
         //Display cases
         displayCases();
-
-        //get player to choose their cases
-        //TODO - choose multiple instead of one
+         
+        System.out.println("ROUND " + currentRound + ": You have " + numChoices + " briefcases to choose from...\n");
 
         String userInput = "";
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < numChoices; i++)
         {
             System.out.println("SELECT A CASE BETWEEN 1 AND 26!");
             userInput = scan.nextLine().trim();
@@ -53,11 +52,11 @@ public class Round {
                 this.QUIT = !QUIT;
                 return;
             }
+            //display the value of the chosen case
+            
         }
 
         //banker offers
-        //I need it to loop until the user refuses to play
-        //I also need it ton decrease by one per round that is played
         Banker banker = new ConservativeBanker(userInput);
         banker.bankerOffer(banker.createOffer(cm.getCases()));
 
@@ -73,13 +72,15 @@ public class Round {
         else if (dealOrNoDeal(userInput) == 0) {
             //TODO implement players
             
-            System.out.println("CONGTRATULATIONS! YOU HAVE WON $" + banker.bankerOffer(numChoices));
+            System.out.println("\nCONGTRATULATIONS! YOU HAVE WON $" + banker.bankerOffer(Math.round(banker.createOffer(cm.getCases()))));
             //TODO save player highscore 
             this.QUIT = !QUIT;
         }
         else if (dealOrNoDeal(userInput) == 1)
         {
-            //new round
+            currentRound++;
+            numChoices--;
+            startRound(numChoices, currentRound);
             return;
         }
     }
