@@ -21,16 +21,33 @@ public class Round
         this.banker = banker;
     }
 
-    public double averageRemainingCases()
-    {
-        int remainingCases = 0;
-        double totalCasesValue = 0;
+//     public double averageRemainingCases()
+//     {
+//         int remainingCases = 0;
+//         double totalCasesValue = 0;
 
-        return 0;
-    }
+// <<<<<<< HEAD
+//         //for(int i = 0; casesRemaining > 0; i++)
+//         //{
+//         //    
+//         //}
 
-    public void start()
+// =======
+// //        for(int i = 0; casesRemaining > 0; i++)
+// //        {
+// //            if()
+// //        }
+// >>>>>>> master
+//         return 0;
+//     }
+
+
+    //entry point of the round
+    public void startRound()
     {
-        
+        //Display information about the round such as the number of remaining cases
+        //Player interaction
+        //Case interaction
+
     }
 }

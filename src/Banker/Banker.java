@@ -1,6 +1,12 @@
 
 package Banker;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Case.Case;
+import Case.Item;
+
 /**
  *
  * @author Tabitha
@@ -8,10 +14,10 @@ package Banker;
 public class Banker 
 {
     private String name;
-    private double offerDeal;
+    private double offer;
     private String strategy;
 
-    //constructors
+    //constructor
     public Banker(String name, String strategy)
     {
         this.name = name;
@@ -24,14 +30,14 @@ public class Banker
         return name;
     }
 
-    public double getOfferDeal()
+    public double getOffer()
     {
-        return offerDeal;
+        return offer;
     }
 
-    public void setOfferDeal(double offerDeal)
+    public void setOffer(double offer)
     {
-        this.offerDeal = offerDeal;
+        this.offer = offer;
     }
 
     public String getStrategy()
@@ -44,12 +50,52 @@ public class Banker
         this.strategy = strategy;
     }
 
-    //function to calculate logic of the game
-    //will be overriden by classes that are extended
-    public double offerDeal(double roundAverage)
+
+    public double createOffer(ArrayList<Case> cases)
     {
-        //average the cases left over 
+        int totalValueItems = 0;
+        int numItems = 0;
+        
+        //iterating through every opened case
+        for(Case currentCase : cases)
+        {
+            if(currentCase.isOpened())
+            {
+                Item items = currentCase.getItem();
+                
+                if(items != null)
+                {
+                    totalValueItems += items.getMoneyValue();
+                    numItems++;
+                }
+            }
+        }
+
+        //calculating the average of the value of the items 
+        double valueOfItemAverage;
+        if(numItems > 0)
+        {
+            valueOfItemAverage = (double) totalValueItems / numItems;
+        }
+        else 
+        {
+            valueOfItemAverage = 0;
+        }
+
+        //setOffer(valueOfItemAverage);
+
+        return valueOfItemAverage;
+    }
+    
+    //to be overriden by extended classes
+    public double bankerOffer(double average)
+    {
         return 0;
     }
-    //consult about how we want the rules of the game to be, if we want to alter anything
+
+    //print banker offer
+    public void printBankerOffer()
+    {
+        System.out.println("Banker's offer: $" + getOffer());
+    }
 }
