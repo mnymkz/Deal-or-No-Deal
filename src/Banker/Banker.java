@@ -59,7 +59,7 @@ public class Banker
         //iterating through every opened case
         for(Case currentCase : cases)
         {
-            if(currentCase.isOpened())
+            if(!currentCase.isOpened())
             {
                 Item items = currentCase.getItem();
                 
@@ -81,8 +81,6 @@ public class Banker
         {
             valueOfItemAverage = 0;
         }
-
-        //setOffer(valueOfItemAverage);
 
         return valueOfItemAverage;
     }

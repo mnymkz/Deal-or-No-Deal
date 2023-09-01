@@ -60,11 +60,15 @@ public class GameLoop {
             //if round.quit is !quit, break
             Banker banker = new RandomBanker("John");
             Round roundTest = new FirstRound(cm, chosenNumbers, player, banker, 6);
+            //roundTest.displayCases();
             roundTest.startRound();
-            if (roundTest.getQUIT())
-            {
-                break;
-            }
+            roundTest = new Round(cm, chosenNumbers, player, banker, 6);
+            
+            roundTest.startRound();
+            // if (roundTest.getQUIT())
+            // {
+            //     break;
+            // }
             //TODO - implement all 10 rounds 
             
             

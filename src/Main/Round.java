@@ -1,6 +1,7 @@
 package Main;
 
 import Banker.Banker;
+import Banker.ConservativeBanker;
 import Case.Case;
 import FileIO.CaseManager;
 import java.util.ArrayList;
@@ -42,15 +43,24 @@ public class Round {
 
         //get player to choose their cases
         //TODO - choose multiple instead of one
-        System.out.println("SELECT A CASE BETWEEN 1 AND 26!");
-        String userInput = scan.nextLine().trim();
-        if (chooseCase(userInput) == -1) {
-            this.QUIT = !QUIT;
-            return;
+
+        String userInput = "";
+        for(int i = 0; i < 6; i++)
+        {
+            System.out.println("SELECT A CASE BETWEEN 1 AND 26!");
+            userInput = scan.nextLine().trim();
+            if (chooseCase(userInput) == -1) {
+                this.QUIT = !QUIT;
+                return;
+            }
         }
 
-        //TODO - banker offers
-        //deal or no deal?
+        //banker offers
+        //I need it to loop until the user refuses to play
+        //I also need it ton decrease by one per round that is played
+        Banker banker = new ConservativeBanker(userInput);
+        banker.bankerOffer(banker.createOffer(cm.getCases()));
+
         System.out.println("DEAL OR NO DEAL...?");
         System.out.println("PLEASE PRESS A TO ACCEPT, R TO REFUSE, X TO QUIT!");
 
@@ -63,7 +73,7 @@ public class Round {
         else if (dealOrNoDeal(userInput) == 0) {
             //TODO implement players
             
-            System.out.println("CONGTRATULATIONS! YOU HAVE WON $___");
+            System.out.println("CONGTRATULATIONS! YOU HAVE WON $" + banker.bankerOffer(numChoices));
             //TODO save player highscore 
             this.QUIT = !QUIT;
         }

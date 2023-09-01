@@ -19,12 +19,15 @@ public class FirstRound extends Round {
     @Override
     public void startRound()
     {
+        displayCases();
         //get player to select their starting case
         System.out.println("SELECT THE CASE WHICH YOU BELIEVE HAS THE HIGHEST AMOUNT");
         String userInput = scan.nextLine().trim();
+        chooseCase(userInput);
         if (chooseCase(userInput) == -1) {
             return;
-        }    
+        }
+
     }
     
     @Override
