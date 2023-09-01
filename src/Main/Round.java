@@ -61,7 +61,7 @@ public class Round {
             return;
         } //if deal, save money and highscore then quit
         else if (dealOrNoDeal(userInput) == 0) {
-            //TODO implement player progress  
+            //TODO implement players
             
             System.out.println("CONGTRATULATIONS! YOU HAVE WON $___");
             //TODO save player highscore 

@@ -46,7 +46,7 @@ public class Player implements PlayerInterface {
 
     @Override
     public void setFirstChosenCase(Case firstCase) {
-        setFirstChosenCase(firstCase);
+        this.firstChoice = firstCase;
     }
     
     //getters and setters

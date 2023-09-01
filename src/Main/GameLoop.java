@@ -59,7 +59,7 @@ public class GameLoop {
                 //if last round allow the player to swap their current case with the last case
             //if round.quit is !quit, break
             Banker banker = new RandomBanker("John");
-            Round roundTest = new Round(cm, chosenNumbers, player, banker, 6);
+            Round roundTest = new FirstRound(cm, chosenNumbers, player, banker, 6);
             roundTest.startRound();
             if (roundTest.getQUIT())
             {
