@@ -1,6 +1,8 @@
 
 package Main;
 
+import Case.Case;
+
 
 /**
  *
@@ -11,7 +13,19 @@ public class Player implements PlayerInterface {
     //player fields
     private String name;
     private double currentEarnings;
-    private double highestEarnings;
+    private Case firstChoice;
+    
+    /**
+     * player constructor 
+     * 
+     */
+    public Player()
+    {
+        this.name = "";
+        this.currentEarnings = 0;
+        this.firstChoice = null;
+    }
+
     
     /**
      * player constructor generates a new player with a blank high score
@@ -21,16 +35,36 @@ public class Player implements PlayerInterface {
     {
         this.name = name;
         this.currentEarnings = 0;
-        this.highestEarnings = 0;
+        this.firstChoice = null;
+    }
+
+    //player interface methods
+    @Override
+    public void updateCurrentEarning(double amount) {
+        setCurrentEarnings(amount);
     }
 
     @Override
-    public boolean dealOrNoDeal() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setFirstChosenCase(Case firstCase) {
+        setFirstChosenCase(firstCase);
+    }
+    
+    //getters and setters
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public int chooseCase(String input) {
-        return 0;
+    public double getCurrentEarnings() {
+        return currentEarnings;
     }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCurrentEarnings(double currentEarnings) {
+        this.currentEarnings = currentEarnings;
+    }
+
 }

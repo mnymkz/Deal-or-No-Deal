@@ -1,8 +1,8 @@
 package Main;
 
-import Case.Case;
+import Banker.Banker;
+import Banker.RandomBanker;
 import FileIO.CaseManager;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -16,150 +16,107 @@ public class GameLoop {
     private Scanner scan = new Scanner(System.in);
     private CaseManager cm;
     private HashSet chosenNumbers;
-    private int NUM_ROUNDS = 26;
+    private Player player;
     
     //constructor
     public GameLoop() {
         this.cm = new CaseManager();
         cm.load();
         this.chosenNumbers = new HashSet();
+        this.player = new Player();
     }
 
     /**
      * start method starts the game loop
      */
     void start() {
-        while (NUM_ROUNDS!=0) {
-//            //open a case
-//            System.out.println("SELECT A CASE BETWEEN 1 AND 26!");
-//            //TODO display cases 
-//            String userInput = scan.nextLine().trim();
-//            if (chooseCase(userInput) == -1) {
-//                break;
-//            }
-//            
-//            //Display cases
-//            displayCases();
-            
-//            //deal or no deal?
-//            System.out.println("DEAL OR NO DEAL...?");
-//            
-//            //TODO implement banker offer
-//            System.out.println("PLEASE PRESS A TO ACCEPT, R TO REFUSE, X TO QUIT!");
-//
-//            userInput = scan.nextLine().trim();
-//            //if user presses x to quit, quit program
-//            if (dealOrNoDeal(userInput) == -1)
-//            {
-//                break;
-//            }
-//            //if deal, save money and highscore then quit
-//            else if (dealOrNoDeal(userInput) == 0)
-//            {
-//                //TODO implement player progress  
-//                System.out.println("CONGTRATULATIONS! YOU HAVE WON $___");
-//                //TODO save player highscore 
-//                break;
-//            }
-//            //if no deal, continue with the game
-            NUM_ROUNDS--;
-        }
-    }
 
-    /**
-     * chooseCase method allows the user to choose a case from the caseList
-     *
-     * @param input the input string from keyboard
-     * @return the choice of the user
-     */
-    private int chooseCase(String input) {
         while (true) {
-            if (input.equalsIgnoreCase("x"))
+            
+            //get new player 
+            System.out.println("WELCOME TO DEAL OR NO DEAL!");
+            System.out.println("THE RULES ARE SIMPLE:");
+            System.out.println("1. A PLAYER CHOOSES A RANDOM CASE IN WHICH THEY THINK HAS THE HIGHEST VALUE");
+            System.out.println("2. IN EACH ROUND, A PLAYER GETS TO ELIMINATE CASES WHICH THEY THINK DO NOT HAVE THE HIGHEST VALUE");
+            System.out.println("3. THE BANKER CAN MAKE AN OFFER TO THE PLAYER, ALLOWING THEM TO SAY DEAL (ACCEPT THE OFFER)");
+            System.out.println("   OR NO DEAL (DECLINE THE OFFER).");
+            System.out.println("4. THE GAME ENDS WHEN THE PLAYER REACHES THE FINAL ROUND OR ACCEPTS THE BANKERS OFFER.");
+            System.out.println("PLEASE ENTER YOUR NAME!");
+            String name = scan.nextLine().trim();
+            //if x is pressed, break
+            if (!checkPlayerName(name))
             {
                 break;
             }
-            try {
-                int choice = Integer.parseInt(input);
-                if (choice >= 1 && choice <= 26) {
-                    //if not chosen already
-                    if (!chosenNumbers.contains(choice)) {
-                        this.chosenNumbers.add(choice);
-                        revealCase(choice);
-                        return 0;
-                    } else { //get user to pick a closed case
-                        System.out.println("ALREADY CHOSEN! PLEASE SELECT A CASE THAT HAS NOT BEEN OPENED!");
-                        input = scan.nextLine().trim();
-                    }
-                } else {
-                    System.out.println("PLEASE SELECT A CASE BETWEEN 1 AND 26!");
-                    input = scan.nextLine().trim();
-                }
-            } catch (NumberFormatException E) {
-                System.out.println("PLEASE ENTER AN INTEGER BETWEEN 1 AND 26!");
-                input = scan.nextLine().trim();
+            this.player.setName(name);
+            System.out.println("WELCOME "+name+"!");
+            
+            
+            //round implementation 
+            //choose banker
+            //round n start
+                //if first round allow the player to choose their starting case
+                //if last round allow the player to swap their current case with the last case
+            //if round.quit is !quit, break
+            Banker banker = new RandomBanker("John");
+            Round roundTest = new Round(cm, chosenNumbers, player, banker, 6);
+            roundTest.startRound();
+            if (roundTest.getQUIT())
+            {
+                break;
+            }
+            //TODO - implement all 10 rounds 
+            
+            
+            
+            //ask if user wants to play again
+                //if yes run loop
+                //else break
+            System.out.println("CONGRATS " + this.player.getName() +"!");
+            System.out.println("PLAY AGAIN? Y/N");
+            String input = scan.nextLine().trim();
+            if (!playAgain(input)) {
+                break;
+            } else {
+                System.out.println("STARTING NEW GAME...");
             }
         }
-        //user pressed x, return -1;
-        return -1;
-    }
-    
-    /**
-     * revealCase takes a case number and reveals it 
-     * the case is then removed from the cases left list 
-     * 
-     * @param caseNo the case to be revealed
-     */
-    private void revealCase(int caseNo)
-    {
-        int caseIndex = caseNo-1;
-        this.cm.getCases().get(caseIndex).openCase();
     }
 
     /**
-     * displayCase method displays cases to choose from to the user
+     * checks if user input is x
+     * 
+     * @return -1 if x, else return 0 
      */
-    private void displayCases() {
-        //loop through cases
-        for (int i = 0; i < cm.getCases().size(); i++) {
-            //if mod == 0, new line 
-            if (i % 5 == 0) {
-                System.out.println("");
+    private boolean checkPlayerName(String name) {
+        while (true) {
+            if (name.equalsIgnoreCase("x")) {
+                //quit
+                return false;
+            } else {
+                return true;
             }
-            //last case, print in the middle  
-            if (i == 25) { 
-                System.out.print("            ");
-            }
-            //display case
-            System.out.print(cm.getCases().get(i).displayCase());
         }
-        //newline
-        System.out.println("\n"); 
     }
     
     /**
-     * dealOrNoDeal method allows the user to accept or refuse the banker's offer
+     * playAgain processes user input and returns an int value
      * 
-     * @param input the input from keyboard
-     * @return -1 if x is pressed, 0 if deal, 1 if no deal
+     * @param input
+     * @return false if user presses x or n, true if user presses y
      */
-    private int dealOrNoDeal(String input)
+    private boolean playAgain(String input)
     {
-        //check if input is invalid, while invalid keep prompting user to press a, r, or x
-        while (true)
-        {
-            if (input.equalsIgnoreCase("x"))
-            {
-                return -1;
-            } if (input.equalsIgnoreCase("a"))
-            {
-                return 0;
-            } if (input.equalsIgnoreCase("r")) {
-                return 1;
+        while (true) {
+            if (input.equalsIgnoreCase("x")) {
+                return false;
+            } else if (input.equalsIgnoreCase("n")) {
+                return false;
+            } else if (input.equalsIgnoreCase("y")) {
+                return true;
             }
-            System.out.println("INVALID INPUT! PLEASE PRESS A TO ACCEPT, R TO REFUSE, X TO QUIT!");
-            input = scan.nextLine().trim();
         }
     }
     
-
+    //TODO generate bankers for rounds
 }

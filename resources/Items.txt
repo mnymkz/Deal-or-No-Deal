@@ -1,26 +1,26 @@
-Water Bottle,5,So Fresh, So Clean.
-Book,10,Who even reads books nowadays?
-Candle,12,Scented... smells like flowers.
-Puzzle,15,Really? A puzzle?
-Plant,18,Exotic...
-Hat,20,No CAP
-Movie Ticket,25,Tickets to Barbie please.
-Wallet,30,Gucci!
-Board Game,45,Chess not Checkers.
-Ball,40,Have you ever played rugby?
-Backpack,50,Feel like Dora.
-Shoes,60,What are those?
-Coffee Maker,70,What the hell is a grande?
-Sunglasses,80,My shades, Dior.
-Headphones,100,Beat by Dre.
-Fitness Tracker,120,Shut up! Count your calories!
-Speaker,150,Nice bass you have there.
-Watch,200,Vintage. Nice!
-Bicycle,250,I don't get weak in the knees!
-Camera,300,Pose!
-Guitar,350,Strings...
-Tablet,400,It even comes with a keyboard!
-Smartphone,500,Smartphone implies the existence of dumbphone...
-Gaming Console,600,No way a ps2!
-Gaming Laptop,800,A gaming laptop! Also known as air fryers.
-Jewelry,1500,Wrist so icy wonder why she like me...
+Water Bottle,0.01,So Fresh, So Clean.
+Book,1,Who even reads books nowadays?
+Candle,5,Scented... smells like flowers.
+Puzzle,10,Really? A puzzle?
+Plant,25,Exotic...
+Hat,50,No CAP
+Movie Ticket,75,Tickets to Barbie please.
+Wallet,100,Gucci!
+Board Game,200,Chess not Checkers.
+Ball,300,Have you ever played rugby?
+Backpack,400,Feel like Dora.
+Shoes,500,What are those?
+Coffee Maker,750,What the hell is a grande?
+Sunglasses,1000,My shades, Dior.
+Headphones,5000,Beat by Dre.
+Fitness Tracker,10000,Shut up! Count your calories!
+Speaker,25000,Nice bass you have there.
+Watch,50000,Vintage. Nice!
+Bicycle,75000,I don't get weak in the knees!
+Camera,100000,Pose!
+Guitar,200000,Strings...
+Tablet,300000,It even comes with a keyboard!
+Smartphone,400000,Smartphone implies the existence of dumbphone...
+Gaming Console,500000,No way a ps2!
+Gaming Laptop,750000,A gaming laptop! Also known as air fryers.
+Jewelry,1000000,Wrist so icy wonder why she like me...

@@ -4,6 +4,8 @@
  */
 package Main;
 
+import Case.Case;
+
 /**
  *
  * @author Michael
@@ -11,7 +13,6 @@ package Main;
 public interface PlayerInterface {
     
     //abstract methods
-    abstract boolean dealOrNoDeal();
-    abstract int chooseCase(String input);
-    
+    abstract void updateCurrentEarning(double amount);
+    abstract void setFirstChosenCase(Case firstCase);
 }
