@@ -4,7 +4,7 @@ package Case;
 /**
  * Abstract class case contains common attributes for normal and special cases
  * 
- * @author Tabitha
+ * @author Michael
  */
 public abstract class Case 
 {

@@ -97,7 +97,7 @@ public class Round {
             //TODO implement players
             System.out.println("\nCONGTRATULATIONS! YOU HAVE WON $" + banker.bankerOffer(Math.round(banker.createOffer(cm.getCases()))));
             //TODO save player highscore 
-            player.setCurrentEarnings(banker.bankerOffer(Math.round(banker.createOffer(cm.getCases()))));
+            player.setEarnings(banker.bankerOffer(Math.round(banker.createOffer(cm.getCases()))));
             this.QUIT = !QUIT;
          }
          else if (dealOrNoDeal(userInput) == 1)

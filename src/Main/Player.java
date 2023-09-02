@@ -45,7 +45,7 @@ public class Player implements PlayerInterface {
      */
     public String toString()
     {
-        return this.name + ": $" + this.earnings;
+        return this.getName() + "'s earnings: " + this.getEarnings();
     }
     
     /**
@@ -87,9 +87,4 @@ public class Player implements PlayerInterface {
         this.earnings = earnings;
     }
 
-@Override
-    public String toString()
-    {
-        return this.getName() + "'s earnings: " + this.getCurrentEarnings();
-    }
 }

@@ -111,6 +111,9 @@ public class GameLoop {
             } else if (input.equalsIgnoreCase("y")) {
                 return true;
             }
+            else {
+                input = scan.nextLine().trim();
+            }
         }
     }
     
