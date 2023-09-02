@@ -59,8 +59,7 @@ public class GameLoop {
             roundTest.startRound(0, 0);
             
             roundTest = new Round(cm, chosenNumbers, player, banker, 6);
-            roundTest.startRound(6, 1);
-            
+            roundTest.startRound(6, 1);            
             
             //ask if user wants to play again
                 //if yes run loop

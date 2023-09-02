@@ -39,14 +39,14 @@ public class Round {
      * Player interaction
      * Case interaction
      */
-    public void startRound(int numChoices, int currentRound) {
+    public void startRound(int numChoices, int currentRound) 
+    {
         //Display cases
         displayCases();
-         
+
         System.out.println("ROUND " + currentRound + ": You have " + numChoices + " briefcases to choose from...\n");
 
         String userInput = "";
-        ArrayList<Double> closedBriefCase = new ArrayList<>();
         for(int i = 0; i < numChoices; i++)
         {
             System.out.println("SELECT A CASE BETWEEN 1 AND 26!");
@@ -55,76 +55,68 @@ public class Round {
                 this.QUIT = !QUIT;
                 return;
             }
-            
             //Retrieve the Item from the selected case
             int caseNo = Integer.parseInt(userInput);
             int caseIndex = caseNo - 1;
-            Case selectedCase = cm.getCases().get(caseIndex);
-            Item caseItem = selectedCase.getItem();
-            //Item selectedCase = cm.getCases().get(caseIndex).getItem();
+            Item selectedCase = cm.getCases().get(caseIndex).getItem();
 
             // Display the value of the current chosen case
-            System.out.println("You selected the case with a " + caseItem.getName() + " that has a value of $" + caseItem.getMoneyValue() + 
-            "\n\n" + caseItem.getDescription() + "\n");
-
-            if (!selectedCase.isOpened() && caseItem != null) 
-            {
-                closedBriefCase.add(caseItem.getMoneyValue());
-            }
+            System.out.println("You selected the case with a " + selectedCase.getName() + " that has a value of $" + selectedCase.getMoneyValue() + 
+            "\n\n" + selectedCase.getDescription() + "\n");
         }
 
         //print all the money value of the cases
-         for(Case briefCase : cm.getCases())
-         {
-            if(!briefCase.isOpened())
-            {
-                Item itemCase = briefCase.getItem();
-                if(itemCase != null)
-                {
-                    double caseValue = itemCase.getMoneyValue();
-                    closedBriefCase.add(caseValue);
-                }
-            }
-         }
+        for(Case briefCase : cm.getCases())
+        {
+           if(!briefCase.isOpened())  
+           {
+               Item itemCase = briefCase.getItem();
+               if(itemCase != null)
+               {
+                   briefCase.displayMoneyValue();
+               }
+           }
+        }
 
-        //  //Sort value of the briefcase
-        //  Collections.sort(closedBriefCase);
-
-        //  //Print value of briefcases
-        // for (double caseValue : closedBriefCase) 
-        // {
-        //     System.out.println("$" + caseValue);
-        // }
-
-        //banker offers
-        //depeding on the values average, it must correlate to a type of banker (Aggressive/Conservative/Random) to get an offer
+        // //banker offers
+        // //depeding on the values average, it must correlate to a type of banker (Aggressive/Conservative/Random) to get an offer
         Banker banker = new ConservativeBanker(userInput);
         banker.bankerOffer(banker.createOffer(cm.getCases()));
 
         System.out.println("DEAL OR NO DEAL...?");
         System.out.println("PLEASE PRESS A TO ACCEPT, R TO REFUSE, X TO QUIT!");
 
-        userInput = scan.nextLine().trim();
-        //if user presses x to quit, quit program
-        if (dealOrNoDeal(userInput) == -1) {
-            this.QUIT = !QUIT;
-            return;
-        } //if deal, save money and highscore then quit
-        else if (dealOrNoDeal(userInput) == 0) {
-            //TODO implement players
-            
+         userInput = scan.nextLine().trim();
+         //if user presses x to quit, quit program
+         if (dealOrNoDeal(userInput) == -1) {
+             this.QUIT = !QUIT;
+             return;
+         } //if deal, save money and highscore then quit
+         else if (dealOrNoDeal(userInput) == 0) 
+         {
+             //TODO implement players
             System.out.println("\nCONGTRATULATIONS! YOU HAVE WON $" + banker.bankerOffer(Math.round(banker.createOffer(cm.getCases()))));
             //TODO save player highscore 
             this.QUIT = !QUIT;
-        }
-        else if (dealOrNoDeal(userInput) == 1)
-        {
+         }
+         else if (dealOrNoDeal(userInput) == 1)
+         {
             currentRound++;
             numChoices--;
-            startRound(numChoices, currentRound);
+
+            if(numChoices == 1)
+            {
+                numChoices = 5;
+                startRound(numChoices, currentRound);
+            }
+            else
+            {
+                startRound(numChoices, currentRound);
+            }
+            
             return;
-        }
-    }
+         }
+    }  
 
     /**
      * dealOrNoDeal method allows the user to accept or refuse the banker's
