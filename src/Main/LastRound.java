@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Michael
+ * @author Tabitha, Michael
  */
 public class LastRound extends Round {
 
@@ -17,9 +17,14 @@ public class LastRound extends Round {
     }
     
     // @Override
-    // public void startRound()
-    // {
-    //     //ask the user if they want to swap cases or keep their current case
-    // }
+    public void startRound(int numChoices, int currentRound)
+    {
+        displayCases();
+        //ask the user if they want to swap cases or keep their current case
+
+        System.out.println("ROUND " + currentRound + "\n\n You have two cases left! Do you want to keep your briefcase or switch it?");
+
+        
+    }
 
 }

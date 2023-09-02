@@ -65,8 +65,6 @@ public class Round {
             "\n\n" + selectedCase.getDescription() + "\n");
         }
 
-
-
         //print all the money value of the cases
         for(Case briefCase : cm.getCases())
         {
@@ -111,6 +109,10 @@ public class Round {
             {
                 numChoices = 1;
                 startRound(numChoices, currentRound);
+            }
+            else if (currentRound == 10)
+            {
+                return;
             }
             else
             {
