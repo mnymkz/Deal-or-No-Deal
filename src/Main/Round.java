@@ -65,6 +65,8 @@ public class Round {
             "\n\n" + selectedCase.getDescription() + "\n");
         }
 
+
+
         //print all the money value of the cases
         for(Case briefCase : cm.getCases())
         {
@@ -94,9 +96,10 @@ public class Round {
          } //if deal, save money and highscore then quit
          else if (dealOrNoDeal(userInput) == 0) 
          {
-             //TODO implement players
+            //TODO implement players
             System.out.println("\nCONGTRATULATIONS! YOU HAVE WON $" + banker.bankerOffer(Math.round(banker.createOffer(cm.getCases()))));
             //TODO save player highscore 
+            player.setCurrentEarnings(banker.bankerOffer(Math.round(banker.createOffer(cm.getCases()))));
             this.QUIT = !QUIT;
          }
          else if (dealOrNoDeal(userInput) == 1)
@@ -104,16 +107,16 @@ public class Round {
             currentRound++;
             numChoices--;
 
-            if(numChoices == 1)
+            if(currentRound >= 7 && currentRound <= 9)
             {
-                numChoices = 5;
+                numChoices = 1;
                 startRound(numChoices, currentRound);
             }
             else
             {
                 startRound(numChoices, currentRound);
             }
-            
+
             return;
          }
     }  

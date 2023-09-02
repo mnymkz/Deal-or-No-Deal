@@ -6,7 +6,7 @@ import Case.Case;
 
 /**
  *
- * @author Michael
+ * @author Michael, Tabitha
  */
 public class Player implements PlayerInterface {
     
@@ -67,4 +67,9 @@ public class Player implements PlayerInterface {
         this.currentEarnings = currentEarnings;
     }
 
+@Override
+    public String toString()
+    {
+        return this.getName() + "'s earnings: " + this.getCurrentEarnings();
+    }
 }

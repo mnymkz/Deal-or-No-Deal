@@ -64,8 +64,9 @@ public class GameLoop {
             //ask if user wants to play again
                 //if yes run loop
                 //else break
-            System.out.println("\nThank you for playing Deal or No Deal " + this.player.getName() +"!");
-            System.out.println("PLAY AGAIN? Y/N");
+            System.out.println("\nThank you for playing Deal or No Deal " + this.player.getName() +"!\n");
+            System.out.println(this.player.toString());
+            System.out.println("\nPLAY AGAIN? Y/N");
             String input = scan.nextLine().trim();
             if (!playAgain(input)) {
                 break;
