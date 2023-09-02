@@ -184,9 +184,10 @@ public class CaseManager implements ObjectLoader {
         generateCases();
     }
 
+    //unused save method
     @Override
     public void save() {
-        //TODO implememnt save states
+         throw new UnsupportedOperationException("Not supported yet.");
     }
     
     //get methods

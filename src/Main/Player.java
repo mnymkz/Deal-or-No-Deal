@@ -12,7 +12,7 @@ public class Player implements PlayerInterface {
     
     //player fields
     private String name;
-    private double currentEarnings;
+    private double earnings;
     private Case firstChoice;
     
     /**
@@ -22,7 +22,7 @@ public class Player implements PlayerInterface {
     public Player()
     {
         this.name = "";
-        this.currentEarnings = 0;
+        this.earnings = 0;
         this.firstChoice = null;
     }
 
@@ -34,14 +34,34 @@ public class Player implements PlayerInterface {
     public Player(String name)
     {
         this.name = name;
-        this.currentEarnings = 0;
+        this.earnings = 0;
         this.firstChoice = null;
     }
 
+    /**
+     * toString returns name and earnings as a string
+     * 
+     * @return name and earnings 
+     */
+    public String toString()
+    {
+        return this.name + ": $" + this.earnings;
+    }
+    
+    /**
+     * toCSV returns name and earnings in csv format for fileIO
+     * 
+     * @return csv formatted name and earnings
+     */
+    public String toCSV()
+    {
+        return this.name+","+this.earnings;
+    }
+    
     //player interface methods
     @Override
     public void updateCurrentEarning(double amount) {
-        setCurrentEarnings(amount);
+        setEarnings(amount);
     }
 
     @Override
@@ -54,8 +74,8 @@ public class Player implements PlayerInterface {
         return name;
     }
 
-    public double getCurrentEarnings() {
-        return currentEarnings;
+    public double getEarnings() {
+        return earnings;
     }
 
 
@@ -63,8 +83,8 @@ public class Player implements PlayerInterface {
         this.name = name;
     }
 
-    public void setCurrentEarnings(double currentEarnings) {
-        this.currentEarnings = currentEarnings;
+    public void setEarnings(double earnings) {
+        this.earnings = earnings;
     }
 
 @Override
