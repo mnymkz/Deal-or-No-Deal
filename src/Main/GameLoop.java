@@ -56,8 +56,8 @@ public class GameLoop {
             //if round.quit is !quit, break
             Banker banker = new RandomBanker("John");
             Round roundTest = new FirstRound(cm, chosenNumbers, player, banker, 6);
-            //roundTest.displayCases();
             roundTest.startRound(0, 0);
+            
             roundTest = new Round(cm, chosenNumbers, player, banker, 6);
             roundTest.startRound(6, 1);
             

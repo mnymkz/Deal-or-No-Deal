@@ -6,6 +6,7 @@ import Case.Item;
 import Case.Case;
 import FileIO.CaseManager;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -45,6 +46,7 @@ public class Round {
         System.out.println("ROUND " + currentRound + ": You have " + numChoices + " briefcases to choose from...\n");
 
         String userInput = "";
+        ArrayList<Double> closedBriefCase = new ArrayList<>();
         for(int i = 0; i < numChoices; i++)
         {
             System.out.println("SELECT A CASE BETWEEN 1 AND 26!");
@@ -57,14 +59,45 @@ public class Round {
             //Retrieve the Item from the selected case
             int caseNo = Integer.parseInt(userInput);
             int caseIndex = caseNo - 1;
-            Item selectedCase = cm.getCases().get(caseIndex).getItem();
+            Case selectedCase = cm.getCases().get(caseIndex);
+            Item caseItem = selectedCase.getItem();
+            //Item selectedCase = cm.getCases().get(caseIndex).getItem();
 
             // Display the value of the current chosen case
-            System.out.println("You selected the case with a " + selectedCase.getName() + " that has a value of $" + selectedCase.getMoneyValue() + 
-            "\n\n" + selectedCase.getDescription() + "\n");
+            System.out.println("You selected the case with a " + caseItem.getName() + " that has a value of $" + caseItem.getMoneyValue() + 
+            "\n\n" + caseItem.getDescription() + "\n");
+
+            if (!selectedCase.isOpened() && caseItem != null) 
+            {
+                closedBriefCase.add(caseItem.getMoneyValue());
+            }
         }
 
+        //print all the money value of the cases
+         for(Case briefCase : cm.getCases())
+         {
+            if(!briefCase.isOpened())
+            {
+                Item itemCase = briefCase.getItem();
+                if(itemCase != null)
+                {
+                    double caseValue = itemCase.getMoneyValue();
+                    closedBriefCase.add(caseValue);
+                }
+            }
+         }
+
+        //  //Sort value of the briefcase
+        //  Collections.sort(closedBriefCase);
+
+        //  //Print value of briefcases
+        // for (double caseValue : closedBriefCase) 
+        // {
+        //     System.out.println("$" + caseValue);
+        // }
+
         //banker offers
+        //depeding on the values average, it must correlate to a type of banker (Aggressive/Conservative/Random) to get an offer
         Banker banker = new ConservativeBanker(userInput);
         banker.bankerOffer(banker.createOffer(cm.getCases()));
 

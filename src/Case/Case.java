@@ -79,6 +79,17 @@ public abstract class Case
         return "[ -- ]";
     }
     }
+
+    // Method to display the money value of the case
+    public void displayMoneyValue() 
+    {
+        if (!isOpened()) {
+            Item caseItem = getItem();
+            double caseValue = caseItem.getMoneyValue();
+                
+            System.out.println("$" + caseValue);       
+        }
+    }
     
     /**
      * toCSV method returns the attributes of the case as a String in CSV format for 
