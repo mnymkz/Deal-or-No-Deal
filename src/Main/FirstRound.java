@@ -23,24 +23,26 @@ public class FirstRound extends Round {
         //get player to select their starting case
         System.out.println("SELECT THE CASE WHICH YOU BELIEVE HAS THE HIGHEST AMOUNT");
         String userInput = scan.nextLine().trim();
-        chooseCase(userInput);
         if (chooseCase(userInput) == -1) {
             return;
         }
+        
+        displayCases();
     }
     
     @Override
-        protected int chooseCase(String input) {
+    protected int chooseCase(String input) {
         while (true) {
             if (input.equalsIgnoreCase("x")) {
                 break;
             }
             try {
-                int choice = Integer.parseInt(input);
+                int choice = Integer.parseInt(input)-1;
                 if (choice >= 1 && choice <= 26) {
                     //FirstRound method implementation
                     this.chosenNumbers.add(choice);
                     //Set players first case to chosen case
+                    cm.getCases().get(choice).openCase();
                     Case firstCase = cm.getCases().get(choice);
                     this.player.setFirstChosenCase(firstCase);
                     return 0;
