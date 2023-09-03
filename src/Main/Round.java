@@ -244,7 +244,7 @@ public class Round {
             {
                 System.out.println("");
             }
-            System.out.print(moneyRemaining.get(i));
+            System.out.print(moneyRemaining.get(i) + "   ");
         }
     }
     
