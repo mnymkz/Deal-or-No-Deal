@@ -2,13 +2,14 @@ package Main;
 
 import Banker.Banker;
 import Banker.ConservativeBanker;
+import Banker.AggressiveBanker;
+import Banker.RandomBanker;
 import Case.Item;
 import Case.Case;
 import FileIO.CaseManager;
 import FileIO.PlayerManager;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -28,17 +29,20 @@ public class Round {
     protected int currentRound;
     protected Boolean QUIT = false;
     protected Scanner scan = new Scanner(System.in);
+    protected ArrayList<Double> moneyRemaining;
 
     //round constructor
 
-    public Round(CaseManager cm, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
-        this.caseManager = cm;
+    public Round(CaseManager caseManager, PlayerManager playerManager, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
+        this.caseManager = caseManager;
+        this.playerManager = playerManager;
         this.chosenNumbers = chosenNumbers;
         this.player = player;
         this.numChoices = numChoices;
         this.currentRound = currentRound;
+        this.moneyRemaining = new ArrayList<>();
+        generateBanker();
     }
-
 
     /**
      * Display information about the round such as the number of remaining cases
@@ -68,7 +72,6 @@ public class Round {
         
         //banker offers
         //depeding on the values average, it must correlate to a type of banker (Aggressive/Conservative/Random) to get an offer
-        Banker banker = new ConservativeBanker(userInput);
         banker.bankerOffer(banker.createOffer(caseManager.getCases()));
 
         //Deal or no deal
@@ -81,32 +84,16 @@ public class Round {
          } //if deal, save money and highscore then quit
          else if (response == 0) 
          {
-            //TODO implement players
             double bankerOffer = banker.bankerOffer(Math.round(banker.createOffer(caseManager.getCases())));
             System.out.println("\nCONGTRATULATIONS! YOU HAVE WON $" + bankerOffer);
-            //TODO save player highscore 
+            this.player.setEarnings(bankerOffer);
             player.setEarnings(banker.bankerOffer(bankerOffer));
+            playerManager.getPlayerScores().put(player.getName(), player.getEarnings());
             this.QUIT = !QUIT;
          }
          else if (response == 1)
          {
-            currentRound++;
-            numChoices--;
-
-            if(currentRound >= 7 && currentRound <= 9)
-            {
-                numChoices = 1;
-                startRound();
-            }
-            else if (currentRound == 10)
-            {
-                return;
-            }
-            else
-            {
-                startRound();
-            }
-
+             //new round in gameloop
             return;
          }
     }  
@@ -137,7 +124,6 @@ public class Round {
             input = scan.nextLine().trim();
         }
     }
-
 
     /**
      * chooseCase method allows the user to choose a case from the caseList
@@ -219,8 +205,8 @@ public class Round {
      */
     protected void printRemainingMoney()
     {
-        //using arraylist
-        ArrayList<Double> moneyRemaining = new ArrayList<>();
+        //clear arrayList
+        moneyRemaining.clear();
         //loop through cases
         for(Case briefCase : caseManager.getCases())
         {
@@ -240,7 +226,7 @@ public class Round {
         
         //Print sorted values 
         for (int i = 0; i < moneyRemaining.size(); i++) {
-            System.out.printf("$%10.2f     ", moneyRemaining.get(i)); // Adjust the width and precision as needed
+            System.out.printf("$%10.2f     ", moneyRemaining.get(i)); 
             if (i % 2 != 0) {
                 System.out.println(""); // Start a new line after every second value
             }
@@ -248,9 +234,47 @@ public class Round {
         System.out.println("");
     }
     
+    /**
+     * generateBanker method generates a banker based on the players progress into the game
+     */
+    protected void generateBanker()
+    {
+        //start of game, normal offers
+        if (currentRound < 5)
+        {
+            //20% chance to be conservative, 20% chance to be aggressive
+            Double earlyGameProbability = Math.random();
+            if (earlyGameProbability >= 0.2 && earlyGameProbability <= 0.4)
+            {
+                this.banker = new ConservativeBanker("Banker");
+            }
+            if (earlyGameProbability < 0.2)
+            {
+                this.banker = new AggressiveBanker("Banker");
+            }
+            else
+            {
+                this.banker = new RandomBanker("Banker");
+            }
+        }
+        //end game, risky offers
+        else if (currentRound >= 5)
+        {
+            //50% chance to be conservative, 50% chance to be aggressive
+            Double bankerProbability = Math.random();
+            if (bankerProbability >= 0.5)
+            {
+                this.banker = new ConservativeBanker("Banker");
+            }
+            if (bankerProbability < 0.5)
+            {
+                this.banker = new AggressiveBanker("Banker");
+            }
+        }
+    }
+
     //get method
     public Boolean getQUIT() {
         return QUIT;
     }
-
 }
