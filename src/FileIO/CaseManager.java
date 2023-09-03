@@ -3,7 +3,6 @@ package FileIO;
 
 import Case.Case;
 import Case.DoubleCase;
-import Case.EmptyCase;
 import Case.Item;
 import Case.NormalCase;
 import Case.SpecialCase;
@@ -91,10 +90,6 @@ public class CaseManager implements ObjectLoader {
                     Case doubleCase = new DoubleCase(caseNo, item);
                     this.cases.add(doubleCase);
                     break;
-                case 3:
-                    Case emptyCase = new EmptyCase(caseNo);
-                    this.cases.add(emptyCase);
-                    break;
                 case -1:
                     System.out.println("Error generating case.");
                     break;
@@ -119,10 +114,7 @@ public class CaseManager implements ObjectLoader {
         } //5% probability of a case to be double
         else if (randomValue >= 0.90 && randomValue <= 0.95) {
             return 2;
-        } //5% probability of a case to be empty
-        else if (randomValue >= 0.95 && randomValue <= 1.0) {
-            return 3;
-        } //85% probability of a case to be normal
+        } //90% probability of a case to be normal
         else {
             return 0;
         }

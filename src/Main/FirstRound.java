@@ -40,8 +40,8 @@ public class FirstRound extends Round {
                     //FirstRound method implementation
                     chosenNumbers.add(choice);
                     //Set players first case to chosen case
-                    Case firstCase = cm.getCases().get(choice);
-                    cm.getCases().get(choice).openCase();
+                    Case firstCase = caseManager.getCases().get(choice);
+                    caseManager.getCases().get(choice).openCase();
                     player.setFirstChoice(firstCase);
                     return 0;
                 } else {

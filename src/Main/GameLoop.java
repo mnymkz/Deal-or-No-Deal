@@ -3,6 +3,7 @@ package Main;
 import Banker.Banker;
 import Banker.RandomBanker;
 import FileIO.CaseManager;
+import FileIO.PlayerManager;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -15,14 +16,15 @@ public class GameLoop {
 
     //scanner field 
     private Scanner scan = new Scanner(System.in);
-    private CaseManager cm;
+    private CaseManager caseManager;
+    private PlayerManager playerManager;
     private HashSet chosenNumbers;
     private Player player;
     
     //constructor
     public GameLoop() {
-        this.cm = new CaseManager();
-        cm.load();
+        this.caseManager = new CaseManager();
+        caseManager.load();
         this.chosenNumbers = new HashSet();
         this.player = new Player();
     }
@@ -42,6 +44,7 @@ public class GameLoop {
             System.out.println("3. THE BANKER CAN MAKE AN OFFER TO THE PLAYER, ALLOWING THEM TO SAY DEAL (ACCEPT THE OFFER)");
             System.out.println("   OR NO DEAL (DECLINE THE OFFER).");
             System.out.println("4. THE GAME ENDS WHEN THE PLAYER REACHES THE FINAL ROUND OR ACCEPTS THE BANKERS OFFER.\n");
+            System.out.println("PRESS X TO QUIT AT ANYTIME");
             System.out.println("PLEASE ENTER YOUR NAME!");
             String name = scan.nextLine().trim();
             //if x is pressed, break
@@ -53,7 +56,7 @@ public class GameLoop {
             System.out.println("\nWELCOME "+name+"!");
 
             //run the first round
-            Round firstRound = new FirstRound(cm, chosenNumbers, player, 0, 0);
+            Round firstRound = new FirstRound(caseManager, chosenNumbers, player, 0, 0);
             firstRound.startRound();
             if (firstRound.getQUIT())
             {
@@ -62,7 +65,7 @@ public class GameLoop {
             }
     
             //TODO use a loop HERE to run the rounds instead of recursive calling 
-            Round r1 = new Round(cm, chosenNumbers, player, 6, 1);
+            Round r1 = new Round(caseManager, chosenNumbers, player, 6, 1);
             r1.startRound();
             if (r1.getQUIT())
             {
