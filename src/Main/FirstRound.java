@@ -4,6 +4,7 @@ package Main;
 import Banker.Banker;
 import Case.Case;
 import FileIO.CaseManager;
+import FileIO.PlayerManager;
 import java.util.HashSet;
 
 /**
@@ -12,10 +13,14 @@ import java.util.HashSet;
  */
 public class FirstRound extends Round {
 
-    public FirstRound(CaseManager cm, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
-        super(cm, chosenNumbers, player, numChoices, currentRound);
+    //constructor
+    public FirstRound(CaseManager caseManager, PlayerManager playerManager, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
+        super(caseManager, playerManager, chosenNumbers, player, numChoices, currentRound);
     }
 
+    /**
+     * for the first round, the user will only pick their briefcase
+     */
     @Override
     public void startRound()
     {
@@ -29,6 +34,14 @@ public class FirstRound extends Round {
         }
     }
     
+    /**
+     * chooseStarting case method gets an input from the user 
+     * checks to see if input valid, if valid
+     * get the starting case
+     * 
+     * @param input the input from keyboard
+     * @return 0 if successful, else return -1
+     */
     protected int chooseFirstCase(String input) {
         while (true) {
             if (input.equalsIgnoreCase("x")) {
@@ -43,6 +56,8 @@ public class FirstRound extends Round {
                     Case firstCase = caseManager.getCases().get(choice);
                     caseManager.getCases().get(choice).openCase();
                     player.setFirstChoice(firstCase);
+                    player.setEarnings(firstCase.getItem().getMoneyValue());
+                    playerManager.getPlayerScores().put(player.getName(), player.getEarnings());
                     return 0;
                 } else {
                     System.out.println("PLEASE SELECT A CASE BETWEEN 1 AND 26!");
