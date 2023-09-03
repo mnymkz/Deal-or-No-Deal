@@ -7,6 +7,7 @@ import Case.Case;
 import FileIO.CaseManager;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -22,24 +23,27 @@ public class Round {
     protected Player player;
     protected Banker banker;
     protected int numChoices;
+    protected int currentRound;
     protected Boolean QUIT = false;
     protected Scanner scan = new Scanner(System.in);
 
     //round constructor
-    public Round(CaseManager cm, HashSet chosenNumbers, Player player, Banker banker, int numChoices) {
+
+    public Round(CaseManager cm, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
         this.cm = cm;
         this.chosenNumbers = chosenNumbers;
         this.player = player;
-        this.banker = banker;
         this.numChoices = numChoices;
+        this.currentRound = currentRound;
     }
+
 
     /**
      * Display information about the round such as the number of remaining cases
      * Player interaction
      * Case interaction
      */
-    public void startRound(int numChoices, int currentRound) 
+    public void startRound() 
     {
         //Display cases
         displayCases();
@@ -51,76 +55,56 @@ public class Round {
         {
             System.out.println("SELECT A CASE BETWEEN 1 AND 26!");
             userInput = scan.nextLine().trim();
-            if (chooseCase(userInput) == -1) {
+            if (chooseCase(userInput) == false) {
                 this.QUIT = !QUIT;
                 return;
             }
-            //Retrieve the Item from the selected case
-            int caseNo = Integer.parseInt(userInput);
-            int caseIndex = caseNo - 1;
-            Item selectedCase = cm.getCases().get(caseIndex).getItem();
-
-            // Display the value of the current chosen case
-            System.out.println("You selected the case with a " + selectedCase.getName() + " that has a value of $" + selectedCase.getMoneyValue() + 
-            "\n\n" + selectedCase.getDescription() + "\n");
-        }
-
-        //print all the money value of the cases
-        for(Case briefCase : cm.getCases())
-        {
-           if(!briefCase.isOpened())  
-           {
-               Item itemCase = briefCase.getItem();
-               if(itemCase != null)
-               {
-                   briefCase.displayMoneyValue();
-               }
-           }
-        }
-
-        // //banker offers
-        // //depeding on the values average, it must correlate to a type of banker (Aggressive/Conservative/Random) to get an offer
-        Banker banker = new ConservativeBanker(userInput);
-        banker.bankerOffer(banker.createOffer(cm.getCases()));
-
-        System.out.println("DEAL OR NO DEAL...?");
-        System.out.println("PLEASE PRESS A TO ACCEPT, R TO REFUSE, X TO QUIT!");
-
-         userInput = scan.nextLine().trim();
-         //if user presses x to quit, quit program
-         if (dealOrNoDeal(userInput) == -1) {
-             this.QUIT = !QUIT;
-             return;
-         } //if deal, save money and highscore then quit
-         else if (dealOrNoDeal(userInput) == 0) 
-         {
-            //TODO implement players
-            System.out.println("\nCONGTRATULATIONS! YOU HAVE WON $" + banker.bankerOffer(Math.round(banker.createOffer(cm.getCases()))));
-            //TODO save player highscore 
-            player.setEarnings(banker.bankerOffer(Math.round(banker.createOffer(cm.getCases()))));
-            this.QUIT = !QUIT;
-         }
-         else if (dealOrNoDeal(userInput) == 1)
-         {
-            currentRound++;
-            numChoices--;
-
-            if(currentRound >= 7 && currentRound <= 9)
-            {
-                numChoices = 1;
-                startRound(numChoices, currentRound);
-            }
-            else if (currentRound == 10)
-            {
-                return;
-            }
-            else
-            {
-                startRound(numChoices, currentRound);
-            }
-
-            return;
-         }
+            displayCases();
+        }        
+        
+//        // //banker offers
+//        // //depeding on the values average, it must correlate to a type of banker (Aggressive/Conservative/Random) to get an offer
+//        Banker banker = new ConservativeBanker(userInput);
+//        banker.bankerOffer(banker.createOffer(cm.getCases()));
+//
+//        System.out.println("DEAL OR NO DEAL...?");
+//        System.out.println("PLEASE PRESS A TO ACCEPT, R TO REFUSE, X TO QUIT!");
+//
+//         userInput = scan.nextLine().trim();
+//         //if user presses x to quit, quit program
+//         if (dealOrNoDeal(userInput) == -1) {
+//             this.QUIT = !QUIT;
+//             return;
+//         } //if deal, save money and highscore then quit
+//         else if (dealOrNoDeal(userInput) == 0) 
+//         {
+//            //TODO implement players
+//            System.out.println("\nCONGTRATULATIONS! YOU HAVE WON $" + banker.bankerOffer(Math.round(banker.createOffer(cm.getCases()))));
+//            //TODO save player highscore 
+//            player.setEarnings(banker.bankerOffer(Math.round(banker.createOffer(cm.getCases()))));
+//            this.QUIT = !QUIT;
+//         }
+//         else if (dealOrNoDeal(userInput) == 1)
+//         {
+//            currentRound++;
+//            numChoices--;
+//
+//            if(currentRound >= 7 && currentRound <= 9)
+//            {
+//                numChoices = 1;
+//                startRound();
+//            }
+//            else if (currentRound == 10)
+//            {
+//                return;
+//            }
+//            else
+//            {
+//                startRound();
+//            }
+//
+//            return;
+//         }
     }  
 
     /**
@@ -153,19 +137,25 @@ public class Round {
      * @param input the input string from keyboard
      * @return the choice of the user
      */
-    protected int chooseCase(String input) {
+    protected boolean chooseCase(String input) {
         while (true) {
             if (input.equalsIgnoreCase("x")) {
                 break;
             }
             try {
-                int choice = Integer.parseInt(input);
-                if (choice >= 1 && choice <= 26) {
-                    //if not chosen already
-                    if (!chosenNumbers.contains(choice)) {
+                int choice = Integer.parseInt(input)-1;
+                if (choice >= 0 && choice <= 25) {
+                    //if not chosen already and case is not opened 
+                    if (!chosenNumbers.contains(choice) && !cm.getCases().get(choice).isOpened()) {
                         this.chosenNumbers.add(choice);
                         revealCase(choice);
-                        return 0;
+                        //Retrieve the Item from the selected case
+                        Item selectedCase = cm.getCases().get(choice).getItem();
+                        // Display the value of the current chosen case
+                        System.out.println("You selected the case with a " + selectedCase.getName() + " that has a value of $" + selectedCase.getMoneyValue()
+                                + "\n\n" + selectedCase.getDescription() + "\n");
+                        //return 
+                        return true;
                     } else { //get user to pick a closed case
                         System.out.println("ALREADY CHOSEN! PLEASE SELECT A CASE THAT HAS NOT BEEN OPENED!");
                         input = scan.nextLine().trim();
@@ -180,7 +170,7 @@ public class Round {
             }
         }
         //user pressed x, return -1;
-        return -1;
+        return false;
     }
 
     /**
@@ -190,8 +180,7 @@ public class Round {
      * @param caseNo the case to be revealed
      */
     protected void revealCase(int caseNo) {
-        int caseIndex = caseNo - 1;
-        this.cm.getCases().get(caseIndex).openCase();
+        this.cm.getCases().get(caseNo).openCase();
         System.out.println();
     }
 
@@ -216,6 +205,40 @@ public class Round {
         System.out.println("\n");
     }
 
+    /**
+     * print money gets the money value of items from case manager and sorts them
+     * by ascending order before printing values to the screen
+     */
+    public void printMoney()
+    {
+        //using arraylist
+        ArrayList<Double> moneyRemaining = new ArrayList<>();
+        //loop through cases
+        for(Case briefCase : cm.getCases())
+        {
+           //if not opened
+           if(!briefCase.isOpened())  
+           {
+               //if case is not empty
+               if (briefCase.getItem()!=null)
+               {
+                   //add money value to money remaining
+                   moneyRemaining.add(briefCase.getItem().getMoneyValue());
+               }
+           }
+        }
+        //collections.sort
+        Comparator<Double> comparator = Comparator.naturalOrder();
+        moneyRemaining.sort(comparator);
+        
+        //print sorted values
+        for (Double value: moneyRemaining)
+        {
+            System.out.println(value);
+        }
+    }
+    
+    
     //get method
     public Boolean getQUIT() {
         return QUIT;

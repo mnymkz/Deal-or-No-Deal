@@ -4,6 +4,7 @@ import Banker.Banker;
 import Banker.RandomBanker;
 import FileIO.CaseManager;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -51,26 +52,29 @@ public class GameLoop {
             this.player.setName(name);
             System.out.println("\nWELCOME "+name+"!");
 
-
-            //if last round allow the player to swap their current case with the last case
-            //if round.quit is !quit, break
-            Banker banker = new RandomBanker("John");
-            Round roundTest = new FirstRound(cm, chosenNumbers, player, banker, 6);
-            roundTest.startRound(0, 0);
-            
-//            roundTest = new Round(cm, chosenNumbers, player, banker, 6);
-//            roundTest.startRound(6, 1); 
-//            
-//            roundTest = new LastRound(cm, chosenNumbers, player, banker, 1);
-//            roundTest.startRound(1, 10);
+            //run the first round
+            Round firstRound = new FirstRound(cm, chosenNumbers, player, 0, 0);
+            firstRound.startRound();
+            if (firstRound.getQUIT())
+            {
+                //break
+                break;
+            }
+    
+            //TODO use a loop HERE to run the rounds instead of recursive calling 
+            Round r1 = new Round(cm, chosenNumbers, player, 6, 1);
+            r1.startRound();
+            if (r1.getQUIT())
+            {
+                break;
+            }
             
             //ask if user wants to play again
-                //if yes run loop
-                //else break
-            System.out.println("\nThank you for playing Deal or No Deal " + this.player.getName() +"!\n");
+            System.out.println("\nThank you for playing Deal or No Deal " + this.player.getName() + "!\n");
             System.out.println(this.player.toString());
             System.out.println("\nPLAY AGAIN? Y/N");
             String input = scan.nextLine().trim();
+            //if yes run loop, else break
             if (!playAgain(input)) {
                 break;
             } else {
@@ -112,10 +116,9 @@ public class GameLoop {
                 return true;
             }
             else {
+                System.out.println("PLAY AGAIN? Y/N");
                 input = scan.nextLine().trim();
             }
         }
     }
-    
-    //TODO generate bankers for rounds
 }

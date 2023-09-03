@@ -8,7 +8,7 @@ import Case.Case;
  *
  * @author Michael, Tabitha
  */
-public class Player implements PlayerInterface {
+public class Player {
     
     //player fields
     private String name;
@@ -58,17 +58,6 @@ public class Player implements PlayerInterface {
         return this.name+","+this.earnings;
     }
     
-    //player interface methods
-    @Override
-    public void updateCurrentEarning(double amount) {
-        setEarnings(amount);
-    }
-
-    @Override
-    public void setFirstChosenCase(Case firstCase) {
-        this.firstChoice = firstCase;
-    }
-    
     //getters and setters
     public String getName() {
         return name;
@@ -78,13 +67,21 @@ public class Player implements PlayerInterface {
         return earnings;
     }
 
+    public Case getFirstChoice() {
+        return firstChoice;
+    }
 
+    
     public void setName(String name) {
         this.name = name;
     }
 
     public void setEarnings(double earnings) {
         this.earnings = earnings;
+    }
+
+    public void setFirstChoice(Case firstChoice) {
+        this.firstChoice = firstChoice;
     }
 
 }

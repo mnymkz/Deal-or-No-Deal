@@ -12,9 +12,10 @@ import java.util.Scanner;
  */
 public class LastRound extends Round {
 
-    public LastRound(CaseManager cm, HashSet chosenNumbers, Player player, Banker banker, int numChoices) {
-        super(cm, chosenNumbers, player, banker, numChoices);
+    public LastRound(CaseManager cm, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
+        super(cm, chosenNumbers, player, numChoices, currentRound);
     }
+
     
     // @Override
     public void startRound(int numChoices, int currentRound)
