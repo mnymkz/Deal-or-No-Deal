@@ -63,7 +63,7 @@ public class Round {
             }
             displayCases();
             System.out.println("Remaining prizes:");
-            printMoney();
+            printRemainingMoney();
         }        
         
         //banker offers
@@ -217,7 +217,7 @@ public class Round {
      * print money gets the money value of items from case manager and sorts them
      * by ascending order before printing values to the screen
      */
-    protected void printMoney()
+    protected void printRemainingMoney()
     {
         //using arraylist
         ArrayList<Double> moneyRemaining = new ArrayList<>();
@@ -240,12 +240,12 @@ public class Round {
         
         //Print sorted values 
         for (int i = 0; i < moneyRemaining.size(); i++) {
-            if (i % 2 == 0)
-            {
-                System.out.println("");
+            System.out.printf("$%10.2f     ", moneyRemaining.get(i)); // Adjust the width and precision as needed
+            if (i % 2 != 0) {
+                System.out.println(""); // Start a new line after every second value
             }
-            System.out.print(moneyRemaining.get(i) + "   ");
         }
+        System.out.println("");
     }
     
     //get method
