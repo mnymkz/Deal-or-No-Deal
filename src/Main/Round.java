@@ -62,6 +62,7 @@ public class Round {
                 return;
             }
             displayCases();
+            System.out.println("Remaining prizes:");
             printMoney();
         }        
         
@@ -238,8 +239,11 @@ public class Round {
         Collections.sort(moneyRemaining);
         
         //Print sorted values 
-        System.out.println("Remaining prizes:");
-        for (int i = 0; i < moneyRemaining.size()/2; i++) {
+        for (int i = 0; i < moneyRemaining.size(); i++) {
+            if (i % 2 == 0)
+            {
+                System.out.println("");
+            }
             System.out.print(moneyRemaining.get(i));
         }
     }
