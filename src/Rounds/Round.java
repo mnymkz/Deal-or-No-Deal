@@ -1,5 +1,6 @@
-package Main;
+package Rounds;
 
+import Logins.Player;
 import Banker.Banker;
 import Banker.ConservativeBanker;
 import Banker.AggressiveBanker;
@@ -14,8 +15,9 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 /**
- *
- * @author Tabitha
+ * Round class holds methods for user input and methods for output to the user
+ * 
+ * @author Tabitha, Michael
  */
 public class Round {
 
@@ -32,7 +34,6 @@ public class Round {
     protected ArrayList<Double> moneyRemaining;
 
     //round constructor
-
     public Round(CaseManager caseManager, PlayerManager playerManager, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
         this.caseManager = caseManager;
         this.playerManager = playerManager;
@@ -71,8 +72,7 @@ public class Round {
         }        
         
         //banker offers
-        //depeding on the values average, it must correlate to a type of banker (Aggressive/Conservative/Random) to get an offer
-        banker.bankerOffer(banker.createOffer(caseManager.getCases()));
+        double offer = banker.bankerOffer(banker.createOffer(caseManager.getCases()));
 
         //Deal or no deal
         int response = dealOrNoDeal();
@@ -84,11 +84,11 @@ public class Round {
          } //if deal, save money and highscore then quit
          else if (response == 0) 
          {
-            double bankerOffer = banker.bankerOffer(Math.round(banker.createOffer(caseManager.getCases())));
-            System.out.println("\nCONGTRATULATIONS! YOU HAVE WON $" + bankerOffer);
-            this.player.setEarnings(bankerOffer);
-            player.setEarnings(banker.bankerOffer(bankerOffer));
+            //double bankerOffer = banker.bankerOffer(Math.round(banker.createOffer(caseManager.getCases())));
+            System.out.println("\nCONGTRATULATIONS! YOU HAVE WON $" + Math.round(offer));
+            this.player.setEarnings(offer);
             playerManager.getPlayerScores().put(player.getName(), player.getEarnings());
+            playerManager.save();
             this.QUIT = !QUIT;
          }
          else if (response == 1)
@@ -106,7 +106,7 @@ public class Round {
      */
     protected int dealOrNoDeal() {
         
-        System.out.println("DEAL OR NO DEAL...?");
+        System.out.println("\nDEAL OR NO DEAL...?");
         System.out.println("PLEASE PRESS A TO ACCEPT, R TO REFUSE, X TO QUIT!");
         String input = scan.nextLine().trim();
         

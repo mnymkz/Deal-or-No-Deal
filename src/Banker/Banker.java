@@ -2,17 +2,17 @@
 package Banker;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import Case.Case;
 import Case.Item;
 
 /**
- *
+ * Banker abstract class defines common attributes and behaviors for bankers 
+ * 
  * @author Tabitha
  */
 public class Banker 
 {
+    //fields
     private String name;
     private double offer;
     private String strategy;
@@ -50,7 +50,12 @@ public class Banker
         this.strategy = strategy;
     }
 
-
+    /**
+    * Calculate banker's offer based on the total value of unopened cases
+    *
+    * @param cases list of briefcases in the game
+    * @return average of item values
+    */ 
     public double createOffer(ArrayList<Case> cases)
     {
         int totalValueItems = 0;
@@ -94,6 +99,6 @@ public class Banker
     //print banker offer
     public void printBankerOffer()
     {
-        System.out.println("\nBanker's offer: $" +  Math.round(getOffer()));
+        System.out.println("\n***BANKER'S OFFER** $" +  Math.round(getOffer()));
     }
 }

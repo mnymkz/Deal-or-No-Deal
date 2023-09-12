@@ -1,15 +1,17 @@
-package Main;
+package Rounds;
 
-import Banker.Banker;
-import Banker.RandomBanker;
+import Rounds.LastRound;
+import Rounds.Round;
+import Rounds.FirstRound;
+import Logins.Player;
 import FileIO.CaseManager;
 import FileIO.PlayerManager;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
- *
+ * GameLoop class handles the flow of the game 
+ * 
  * @author Michael, Tabitha
  */
 public class GameLoop {
@@ -25,6 +27,8 @@ public class GameLoop {
     public GameLoop() {
         this.caseManager = new CaseManager();
         caseManager.load();
+        this.playerManager = new PlayerManager();
+        playerManager.load();
         this.chosenNumbers = new HashSet();
         this.player = new Player();
     }
@@ -32,13 +36,13 @@ public class GameLoop {
     /**
      * start method starts the game loop
      */
-    void start() {
+    public void start() {
 
         while (true) {
             
             //get new player 
-            System.out.println("WELCOME TO DEAL OR NO DEAL!");
-            System.out.println("THE RULES ARE SIMPLE:\n");
+            System.out.println("\nWELCOME TO DEAL OR NO DEAL!");
+            System.out.println("\nTHE RULES ARE SIMPLE:\n");
             System.out.println("1. A PLAYER CHOOSES A RANDOM CASE IN WHICH THEY THINK HAS THE HIGHEST VALUE");
             System.out.println("2. IN EACH ROUND, A PLAYER GETS TO ELIMINATE CASES WHICH THEY THINK DO NOT HAVE THE HIGHEST VALUE");
             System.out.println("3. THE BANKER CAN MAKE AN OFFER TO THE PLAYER, ALLOWING THEM TO SAY DEAL (ACCEPT THE OFFER)");
@@ -53,25 +57,40 @@ public class GameLoop {
                 break;
             }
             this.player.setName(name);
-            System.out.println("\nWELCOME "+name+"!");
+            System.out.println("\n\nWELCOME "+name+"!");
 
             //run the first round
-            Round firstRound = new FirstRound(caseManager, chosenNumbers, player, 0, 0);
+            Round firstRound = new FirstRound(caseManager, playerManager, chosenNumbers, player, 0, 0);
             firstRound.startRound();
             if (firstRound.getQUIT())
-            {
-                //break
-                break;
-            }
-    
-            //TODO use a loop HERE to run the rounds instead of recursive calling 
-            Round r1 = new Round(caseManager, chosenNumbers, player, 6, 1);
-            r1.startRound();
-            if (r1.getQUIT())
             {
                 break;
             }
             
+            //run the remaining rounds
+            int numChoices = 6;
+            int currentRound;
+            for (currentRound = 1; currentRound < 10; currentRound++)
+            {
+                Round round = new Round(caseManager, playerManager, chosenNumbers, player, numChoices, currentRound);
+                round.startRound();
+                if (round.getQUIT())
+                {
+                    break;
+                }
+                if (currentRound<6)
+                {
+                    numChoices--;
+                }
+            }
+            
+            //if user reaches round 10, run last round
+            if(currentRound == 10)
+            {
+                Round lastRound = new LastRound(caseManager, playerManager, chosenNumbers, player, 0, 10);
+                lastRound.startRound();
+            }
+
             //ask if user wants to play again
             System.out.println("\nThank you for playing Deal or No Deal " + this.player.getName() + "!\n");
             System.out.println(this.player.toString());
@@ -79,6 +98,9 @@ public class GameLoop {
             String input = scan.nextLine().trim();
             //if yes run loop, else break
             if (!playAgain(input)) {
+                playerManager.save();
+                player.setEarnings(0);
+                this.caseManager = new CaseManager();
                 break;
             } else {
                 System.out.println("STARTING NEW GAME...");
@@ -116,6 +138,9 @@ public class GameLoop {
             } else if (input.equalsIgnoreCase("n")) {
                 return false;
             } else if (input.equalsIgnoreCase("y")) {
+                this.caseManager = new CaseManager();
+                caseManager.load();
+                this.chosenNumbers = new HashSet();
                 return true;
             }
             else {

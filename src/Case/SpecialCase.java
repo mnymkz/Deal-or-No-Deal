@@ -22,7 +22,7 @@ public class SpecialCase extends Case {
     @Override
     public String toString()
     {
-        return super.toString() + "[MULTIPLIER: " +this.multiplier+"]";
+        return super.toString() + " [MULTIPLIER: " +this.multiplier+"]";
     }
     
     @Override

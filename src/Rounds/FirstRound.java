@@ -1,6 +1,7 @@
 
-package Main;
+package Rounds;
 
+import Logins.Player;
 import Banker.Banker;
 import Case.Case;
 import FileIO.CaseManager;
@@ -8,8 +9,10 @@ import FileIO.PlayerManager;
 import java.util.HashSet;
 
 /**
- *
- * @author Michael, Tabitha
+ * FirstRound class extends round 
+ * Overrides the startRound method
+ * 
+ * @author Tabitha, Michael
  */
 public class FirstRound extends Round {
 

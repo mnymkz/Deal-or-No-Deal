@@ -1,21 +1,27 @@
 package Main;
 
-import FileIO.CaseManager;
+import Rounds.GameLoop;
 import Logins.LoginLoop;
-import java.util.Random;
 
 
 /**
- *
  * Main Class will serve as the entry point for the program - contains 
- * user login, game loop and i/o
+ * user login and game loop
  * 
- * @author Michael
+ * @author Michael, Tab
  */
 public class Main {
     
     public static void main(String[] args) {
-        GameLoop g = new GameLoop();
-        g.start();
+        //login
+        LoginLoop l = new LoginLoop();
+        l.start();
+        //if user did not quit
+        if (!l.isQUIT())
+        {
+            //run game
+            GameLoop g = new GameLoop();
+            g.start();
+        }
     }
 }

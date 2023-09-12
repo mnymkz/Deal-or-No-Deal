@@ -2,7 +2,6 @@
 package FileIO;
 
 import Case.Case;
-import Case.DoubleCase;
 import Case.Item;
 import Case.NormalCase;
 import Case.SpecialCase;
@@ -14,8 +13,10 @@ import java.util.Iterator;
 import java.util.Random;
 
 /**
- *
- * @author Michael
+ * CaseManager class implements object loader
+ * used to manage cases in the game loop + fileIO operations for cases
+ * 
+ * @author Michael, Tabitha
  */
 public class CaseManager implements ObjectLoader {
 
@@ -86,10 +87,6 @@ public class CaseManager implements ObjectLoader {
                     Case specialCase = new SpecialCase(caseNo, item, multiplier);
                     this.cases.add(specialCase);
                     break;
-                case 2:
-                    Case doubleCase = new DoubleCase(caseNo, item);
-                    this.cases.add(doubleCase);
-                    break;
                 case -1:
                     System.out.println("Error generating case.");
                     break;
@@ -104,17 +101,14 @@ public class CaseManager implements ObjectLoader {
      * generateRandomCase rolls a random number generator to choose what type of case
      * is generated. Normal = 85% chance, special/double/empty = 5% chance
      * 
-     * @return 0 for normal, 1 for special, 2, for double, 3 for empty
+     * @return 0 for normal, 1 for special
      */
     private int generateRandomCase() {
         double randomValue = Math.random();
         //5% probability of a case to be special
-        if (randomValue >= 0.86 && randomValue <= 0.90) {
+        if (randomValue >= 0.90) {
             return 1;
-        } //5% probability of a case to be double
-        else if (randomValue >= 0.90 && randomValue <= 0.95) {
-            return 2;
-        } //90% probability of a case to be normal
+        }  //90% probability of a case to be normal
         else {
             return 0;
         }
@@ -167,6 +161,25 @@ public class CaseManager implements ObjectLoader {
     private double generateRandomMultiplier() {
         Random random = new Random();
         return random.nextDouble() * 2.0;
+    }
+
+    /**
+     * getLastUnopenedCase gets the last remaining briefcase by iteration
+     * 
+     * @return a random multiplier
+     */
+    public Case getLastUnopenedCase() {
+        //iterate through the cases list in reverse order to get the last unopened case
+        for (int i = cases.size() - 1; i >= 0; i--) 
+        {
+            Case currentCase = cases.get(i);
+            if (!currentCase.isOpened()) 
+            {
+                return currentCase;
+            }
+        }
+        //if all cases are opened, return null or throw an exception
+        return null;
     }
     
     //Override ObjectLoader interface methods

@@ -6,7 +6,9 @@ import java.util.Map;
 import FileIO.ObjectLoader;
 
 /**
- *
+ * LoginManager class extends objectLoader interface
+ * manages user logins in game loop + fileIO operations for logins
+ * 
  * @author Michael
  */
 public class LoginManager implements ObjectLoader {

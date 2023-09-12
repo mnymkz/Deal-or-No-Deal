@@ -1,11 +1,12 @@
 
-package Main;
+package Logins;
 
 import Case.Case;
 
 
 /**
- *
+ * Player class holds details and methods for the player 
+ * 
  * @author Michael, Tabitha
  */
 public class Player {
@@ -45,7 +46,11 @@ public class Player {
      */
     public String toString()
     {
-        return this.getName() + "'s earnings: " + this.getEarnings();
+        if(this.getEarnings() == 0.01)
+        {
+            return this.getName() + "'s earnings: $" + this.getEarnings();
+        }
+        return this.getName() + "'s earnings: $" + Math.round(this.getEarnings());
     }
     
     /**
@@ -83,5 +88,4 @@ public class Player {
     public void setFirstChoice(Case firstChoice) {
         this.firstChoice = firstChoice;
     }
-
 }

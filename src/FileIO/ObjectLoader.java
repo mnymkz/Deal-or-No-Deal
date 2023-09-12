@@ -5,7 +5,8 @@
 package FileIO;
 
 /**
- *
+ * ObjectLoader interface declares abstract methods for fileIO classes to implement
+ * 
  * @author Michael
  */
 public interface ObjectLoader {

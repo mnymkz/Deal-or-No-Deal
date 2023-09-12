@@ -7,21 +7,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * PlayerManager class implements objectLoader interface 
+ * manages players in game loop + fileIO operations for player
+ * 
  * @author Michael
  */
 public class PlayerManager implements ObjectLoader{
 
     //playerManager fields
     private HashMap<String, Double> playerScores;
-    private final String FILE_PATH = "resources/highscores.txt";
+    private final String FILE_PATH = "resources/earnings.txt";
 
     public PlayerManager() {
         this.playerScores = new HashMap<>();
     }
     
     /**
-     * loadPlayers loads players from the highscores.txt file into the playerScores hashmap
+     * loadPlayers loads players from the earnings.txt file into the playerScores hashmap
      */
     private void loadPlayers()
     {
