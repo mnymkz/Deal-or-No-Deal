@@ -56,7 +56,7 @@ public class GameLoop {
             System.out.println("\nWELCOME "+name+"!");
 
             //run the first round
-            Round firstRound = new FirstRound(caseManager, chosenNumbers, player, 0, 0);
+            Round firstRound = new FirstRound(caseManager, playerManager, chosenNumbers, player, 0, 0);
             firstRound.startRound();
             if (firstRound.getQUIT())
             {
@@ -65,7 +65,7 @@ public class GameLoop {
             }
     
             //TODO use a loop HERE to run the rounds instead of recursive calling 
-            Round r1 = new Round(caseManager, chosenNumbers, player, 6, 1);
+            Round r1 = new Round(caseManager, playerManager, chosenNumbers, player, 6, 1);
             r1.startRound();
             if (r1.getQUIT())
             {
