@@ -8,45 +8,59 @@ import java.sql.Statement;
 
 /**
  * DBManager manages database connections 
+ * 
  * @author Michael
  */
 public class DBManager {
 
-    private static final String DB_URL = "jdbc:derby:mydb;create=true;user=pdc;password=pdc";
-    Connection conn;
+    private static final String DB_URL = "jdbc:derby:DealOrNoDealDB;create=true;user=pdc;password=pdc"; //DB URL
+    Connection conn; //connection 
     
+    //constructor
     public DBManager()
     {
-        establishConnection();
+        connectDb();
     }
 
     public Connection getConn() {
         return conn;
     }
     
-    public void establishConnection()
+    //connect to db 
+    public void connectDb()
     {
         try {
-            Class.forName(DB_URL);
+            //init derby driver
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
             conn = DriverManager.getConnection(DB_URL);
             System.out.println("Connection Successful");
         } catch (SQLException | ClassNotFoundException e)
         {
+            System.out.println("Error connecting to db");
             System.out.println(e.getMessage());
         }
     }
     
+    //close db
     public void closeConnections() {
         if (conn != null) {
             try {
                 conn.close();
+                System.out.println("Connection closed");
             } catch (SQLException ex) {
+                System.out.println("Error closing db");
                 System.out.println(ex.getMessage());
             }
         }
     }
     
-    public ResultSet queryDB(String sql) {
+    /**
+     * Get query from db 
+     * 
+     * @param query SQL query to database
+     * @return resultSet containing matching query 
+     */
+    public ResultSet queryDB(String query) {
 
         Connection connection = this.conn;
         Statement statement = null;
@@ -54,15 +68,19 @@ public class DBManager {
 
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-
+            resultSet = statement.executeQuery(query);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return resultSet;
     }
 
-    public void updateDB(String sql) {
+    /**
+     * update the db 
+     * 
+     * @param sqlStatement statement to update/delete/add to db
+     */
+    public void updateStatementDB(String sqlStatement) {
 
         Connection connection = this.conn;
         Statement statement = null;
@@ -70,10 +88,11 @@ public class DBManager {
 
         try {
             statement = connection.createStatement();
-            statement.executeUpdate(sql);
+            statement.executeUpdate(sqlStatement);
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
+   
 }
