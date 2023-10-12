@@ -74,25 +74,4 @@ public class DBManager {
         }
         return resultSet;
     }
-
-    /**
-     * update the db 
-     * 
-     * @param sqlStatement statement to update/delete/add to db
-     */
-    public void updateStatementDB(String sqlStatement) {
-
-        Connection connection = this.conn;
-        Statement statement = null;
-        ResultSet resultSet = null;
-
-        try {
-            statement = connection.createStatement();
-            statement.executeUpdate(sqlStatement);
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-   
 }
