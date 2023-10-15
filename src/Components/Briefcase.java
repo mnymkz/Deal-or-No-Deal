@@ -12,6 +12,11 @@ public class Briefcase extends JButton
 {
     private Case briefCase;
 
+    /**
+     * Set appearance and properties of selected case button
+     * 
+     * @param selectedCase
+     */
     public Briefcase(Case selectedCase)
     {
         this.briefCase = selectedCase;
