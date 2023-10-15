@@ -4,6 +4,11 @@ import javax.swing.JLabel;
 import java.awt.font;
 import java.awt.color;
 
+/**
+ * 
+ * @author Tabitha
+ */
+
 public class Label extends JLabel
 {
     public Label(String text)
@@ -16,5 +21,6 @@ public class Label extends JLabel
         super(text);
         setFont(font);
     }
+
     
 }

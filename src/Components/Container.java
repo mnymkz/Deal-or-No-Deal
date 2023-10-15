@@ -6,6 +6,11 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Color;
 
+/**
+ * 
+ * @author Tabitha
+ */
+
 public class Container 
 {
     /**
