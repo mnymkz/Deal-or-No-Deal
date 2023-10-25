@@ -15,6 +15,13 @@ public class Button extends JButton
 		super(name);
 		this.setBackground(Color.decode(color));
 		this.setBorderPainted(false);
+		this.addActionListener(e -> 
+		{
+			if(caseListner != null)
+			{
+				caseListner.onCaseClicked(getText());
+			}
+		});
 	}
 
 	public Button(String name, String color, int width, int height) {
