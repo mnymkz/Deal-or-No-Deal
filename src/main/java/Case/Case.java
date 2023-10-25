@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 /**
  * Abstract class case contains common attributes for normal and special cases
  * 
- * @author Michael
+ * @author Michael, Tabitha
  */
 public abstract class Case 
 {
@@ -16,7 +16,7 @@ public abstract class Case
     protected boolean opened;
     
     //constructor
-    public Case(int number, Item item)
+    public Case(int number, Item item, String buttonText)
     {
         this.number = number;
         this.item = item;
