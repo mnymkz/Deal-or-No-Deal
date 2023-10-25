@@ -1,6 +1,8 @@
 
 package Case;
 
+import javafx.scene.control.Button;
+
 /**
  * Abstract class case contains common attributes for normal and special cases
  * 
@@ -101,5 +103,25 @@ public abstract class Case
     public String toCSV()
     {
         return this.number + ":" + this.opened+ ":" + this.item.toCSV();
+    }
+
+    public interface CaseListner
+    {
+        void onCaseClicked(String caseNumber);
+    }
+
+    private CaseListner caseListner;
+
+    public void setCaseListener(CaseListner caseListner)
+    {
+        this.caseListner = caseListner;
+    }
+
+    protected void handleCaseClick(String caseNumber)
+    {
+        if(caseListner != null)
+        {
+            caseListner.onCaseClicked(caseNumber);
+        }
     }
 }
