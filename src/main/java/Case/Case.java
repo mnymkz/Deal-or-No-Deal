@@ -16,7 +16,7 @@ public abstract class Case
     protected boolean opened;
     
     //constructor
-    public Case(int number, Item item, String buttonText)
+    public Case(int number, Item item)
     {
         this.number = number;
         this.item = item;
