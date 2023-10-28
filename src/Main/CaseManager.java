@@ -1,15 +1,15 @@
 
-package FileIO;
+package Main;
 
 import Case.Case;
 import Case.DoubleCase;
 import Case.Item;
 import Case.NormalCase;
 import Case.SpecialCase;
-import static FileIO.FileIO.readFromFile;
+import static Main.FileIO.readFromFile;
 import java.util.ArrayList;
 import java.util.HashSet;
-import FileIO.ObjectLoader;
+import Main.ObjectLoader;
 import java.util.Iterator;
 import java.util.Random;
 

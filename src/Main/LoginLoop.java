@@ -1,7 +1,7 @@
 
-package Logins;
+package Main;
 
-import FileIO.LoginManager;
+import Main.LoginManager;
 import java.util.Scanner;
 
 /**

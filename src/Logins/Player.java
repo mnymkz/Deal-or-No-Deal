@@ -1,5 +1,5 @@
 
-package Main;
+package Logins;
 
 import Case.Case;
 

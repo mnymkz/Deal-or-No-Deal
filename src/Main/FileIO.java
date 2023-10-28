@@ -1,4 +1,4 @@
-package FileIO;
+package Main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -1,8 +1,7 @@
 
-package FileIO;
+package Main;
 
-import static FileIO.FileIO.readFromFile;
-import FileIO.ObjectLoader;
+import static Main.FileIO.readFromFile;
 import java.util.HashMap;
 import java.util.Map;
 

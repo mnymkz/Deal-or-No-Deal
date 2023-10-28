@@ -1,13 +1,12 @@
 package Main;
 
+import Logins.Player;
 import Banker.Banker;
 import Banker.ConservativeBanker;
 import Banker.AggressiveBanker;
 import Banker.RandomBanker;
 import Case.Item;
 import Case.Case;
-import FileIO.CaseManager;
-import FileIO.PlayerManager;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;

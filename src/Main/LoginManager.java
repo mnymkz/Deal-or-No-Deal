@@ -1,9 +1,7 @@
-package FileIO;
+package Main;
 
-import FileIO.FileIO;
 import java.util.HashMap;
 import java.util.Map;
-import FileIO.ObjectLoader;
 
 /**
  *

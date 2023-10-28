@@ -1,9 +1,8 @@
 
 package Main;
 
+import Logins.Player;
 import Banker.Banker;
-import FileIO.CaseManager;
-import FileIO.PlayerManager;
 
 import java.util.HashSet;
 import java.util.Scanner;
