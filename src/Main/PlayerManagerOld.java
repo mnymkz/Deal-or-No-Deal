@@ -9,13 +9,13 @@ import java.util.Map;
  *
  * @author Michael
  */
-public class PlayerManager implements ObjectLoader{
+public class PlayerManagerOld implements ObjectLoader{
 
     //playerManager fields
     private HashMap<String, Double> playerScores;
     private final String FILE_PATH = "resources/highscores.txt";
 
-    public PlayerManager() {
+    public PlayerManagerOld() {
         this.playerScores = new HashMap<>();
     }
     

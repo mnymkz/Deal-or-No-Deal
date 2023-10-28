@@ -96,4 +96,10 @@ public class Banker
     {
         System.out.println("\nBanker's offer: $" +  Math.round(getOffer()));
     }
+    
+    public double calculateOffer()
+    {
+        System.out.println("TODO");
+        return 0;
+    }
 }

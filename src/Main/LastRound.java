@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class LastRound extends Round {
 
-    public LastRound(CaseManager cm, PlayerManager playerManager,HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
+    public LastRound(CaseManager cm, PlayerManagerOld playerManager,HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
         super(cm, playerManager, chosenNumbers, player, numChoices, currentRound);
     }
 

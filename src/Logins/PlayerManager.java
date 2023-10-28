@@ -77,5 +77,4 @@ public class PlayerManager {
         // Close the database connection when done
         dbManager.closeConnections();
     }
-    
 }

@@ -7,12 +7,12 @@ import java.util.Map;
  *
  * @author Michael
  */
-public class LoginManager implements ObjectLoader {
+public class LoginManagerOld implements ObjectLoader {
     
     private HashMap<String, String> logins;
     private final String FILE_PATH = "resources/logins.txt";
 
-    public LoginManager()
+    public LoginManagerOld()
     {
         this.logins = new HashMap<>();
     }

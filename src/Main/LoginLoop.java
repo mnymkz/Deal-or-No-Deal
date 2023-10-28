@@ -1,7 +1,7 @@
 
 package Main;
 
-import Main.LoginManager;
+import Main.LoginManagerOld;
 import java.util.Scanner;
 
 /**
@@ -11,12 +11,12 @@ import java.util.Scanner;
 public class LoginLoop {    
     
     //LoginLoop fields
-    private LoginManager logins;
+    private LoginManagerOld logins;
     
     //constructor
     public LoginLoop()
     {
-        this.logins = new LoginManager();
+        this.logins = new LoginManagerOld();
     }
     
     //run loop

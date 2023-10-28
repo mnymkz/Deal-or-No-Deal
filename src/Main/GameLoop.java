@@ -16,7 +16,7 @@ public class GameLoop {
     //scanner field 
     private Scanner scan = new Scanner(System.in);
     private CaseManager caseManager;
-    private PlayerManager playerManager;
+    private PlayerManagerOld playerManager;
     private HashSet chosenNumbers;
     private Player player;
     

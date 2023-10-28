@@ -76,4 +76,9 @@ public class ItemGenerator {
         Item item = ig.getRandomItem();
         System.out.println(item.toString());
     }
+
+    //get method
+    public HashSet<Item> getItems() {
+        return items;
+    }
 }

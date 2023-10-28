@@ -13,7 +13,7 @@ import java.util.HashSet;
 public class FirstRound extends Round {
 
     //constructor
-    public FirstRound(CaseManager caseManager, PlayerManager playerManager, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
+    public FirstRound(CaseManager caseManager, PlayerManagerOld playerManager, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
         super(caseManager, playerManager, chosenNumbers, player, numChoices, currentRound);
     }
 

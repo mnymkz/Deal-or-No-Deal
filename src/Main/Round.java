@@ -20,7 +20,7 @@ public class Round {
 
     //round fields 
     protected CaseManager caseManager;
-    protected PlayerManager playerManager;
+    protected PlayerManagerOld playerManager;
     protected HashSet chosenNumbers;
     protected Player player;
     protected Banker banker;
@@ -32,7 +32,7 @@ public class Round {
 
     //round constructor
 
-    public Round(CaseManager caseManager, PlayerManager playerManager, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
+    public Round(CaseManager caseManager, PlayerManagerOld playerManager, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
         this.caseManager = caseManager;
         this.playerManager = playerManager;
         this.chosenNumbers = chosenNumbers;
