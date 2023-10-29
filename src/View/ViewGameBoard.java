@@ -2,7 +2,7 @@ package View;
 
 import javax.swing.*;
 import Case.Case;
-import Logins.Player;
+import Main.PlayerOld;
 import components.Briefcase;
 import components.Container;
 import components.GameButton;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 public class ViewGameBoard extends JPanel
 {
     private ArrayList<Briefcase> briefcases;
-    private Player player;
+    private PlayerOld player;
     
-    public ViewGameBoard(ArrayList<Case> cases, Player player)
+    public ViewGameBoard(ArrayList<Case> cases, PlayerOld player)
     {
         this.player = player;//setPlayer
         

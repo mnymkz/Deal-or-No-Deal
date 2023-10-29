@@ -1,6 +1,5 @@
 package Main;
 
-import Logins.Player;
 import Banker.Banker;
 import Banker.RandomBanker;
 import java.util.HashSet;
@@ -18,14 +17,14 @@ public class GameLoop {
     private CaseManager caseManager;
     private PlayerManagerOld playerManager;
     private HashSet chosenNumbers;
-    private Player player;
+    private PlayerOld player;
     
     //constructor
     public GameLoop() {
         this.caseManager = new CaseManager();
         caseManager.load();
         this.chosenNumbers = new HashSet();
-        this.player = new Player();
+        this.player = new PlayerOld();
     }
 
     /**

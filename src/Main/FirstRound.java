@@ -1,7 +1,6 @@
 
 package Main;
 
-import Logins.Player;
 import Banker.Banker;
 import Case.Case;
 import java.util.HashSet;
@@ -13,7 +12,7 @@ import java.util.HashSet;
 public class FirstRound extends Round {
 
     //constructor
-    public FirstRound(CaseManager caseManager, PlayerManagerOld playerManager, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
+    public FirstRound(CaseManager caseManager, PlayerManagerOld playerManager, HashSet chosenNumbers, PlayerOld player, int numChoices, int currentRound) {
         super(caseManager, playerManager, chosenNumbers, player, numChoices, currentRound);
     }
 

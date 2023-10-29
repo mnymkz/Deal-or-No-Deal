@@ -8,28 +8,21 @@ package Database;
 public class initSQL {
 
     //SQL statements used to create sql tables
-    static final String CREATE_LOGIN_TABLE = "CREATE TABLE LOGIN ("
-            + "loginID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, "
-            + "username VARCHAR(255) UNIQUE, "
-            + "password VARCHAR(255) NOT NULL"
-            + ")";
-
-
     static final String CREATE_PLAYER_TABLE = "CREATE TABLE PLAYER ("
             + "playerID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, "
-            + "playerName VARCHAR(255) UNIQUE, "
-            + "highestEarnings DOUBLE NOT NULL, "
-            + "loginID INT, "
-            + "FOREIGN KEY (loginID) REFERENCES LOGIN(loginID) ON DELETE CASCADE"
+            + "username VARCHAR(255) UNIQUE, "
+            + "password VARCHAR(255) NOT NULL, "
+            + "highestEarnings DOUBLE NOT NULL"
             + ")";
 
     static final String CREATE_GAME_TABLE = "CREATE TABLE GAME ("
             + "gameID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, "
-            + "currentRound INT NOT NULL, " 
-            + "currentEarnings DOUBLE NOT NULL, " 
+            + "currentRound INT NOT NULL, "
+            + "currentEarnings DOUBLE NOT NULL, "
             + "playerID INT, "
-            + "FOREIGN KEY (playerID) REFERENCES PLAYER(playerID) ON DELETE CASCADE "
+            + "FOREIGN KEY (playerID) REFERENCES PLAYER(playerID) ON DELETE CASCADE"
             + ")";
+
         
     static final String CREATE_ITEM_TABLE = "CREATE TABLE ITEM ("
             + "itemID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,"

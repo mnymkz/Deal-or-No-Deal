@@ -1,5 +1,5 @@
 
-package Logins;
+package Main;
 
 /**
  * Login class holds login details

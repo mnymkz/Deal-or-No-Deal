@@ -25,8 +25,8 @@ public class GameDB {
     public GameDB(DBManager dbConnect) {
         this.dbConnect = dbConnect;
         this.connection = dbConnect.getConnection();
-        this.tableNames = Arrays.asList("LOGIN", "PLAYER", "GAME", "ITEM");
-        this.createTableStatements = Arrays.asList(CREATE_LOGIN_TABLE, CREATE_PLAYER_TABLE, CREATE_GAME_TABLE, CREATE_ITEM_TABLE);
+        this.tableNames = Arrays.asList("PLAYER", "GAME", "ITEM");
+        this.createTableStatements = Arrays.asList(CREATE_PLAYER_TABLE, CREATE_GAME_TABLE, CREATE_ITEM_TABLE);
     }
 
     /**

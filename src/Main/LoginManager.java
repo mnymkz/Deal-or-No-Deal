@@ -1,6 +1,7 @@
 
-package Logins;
+package Main;
 
+import Main.Login;
 import Database.DBManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

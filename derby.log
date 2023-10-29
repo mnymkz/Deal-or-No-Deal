@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sun Oct 29 13:28:51 NZDT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-018b-78d5-5edd-00000e623880 
+Sun Oct 29 14:57:53 NZDT 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-018b-7926-e0bd-00000e6165d8 
 on database directory D:\Uni files\Comp603 - program design\Deal-Or-No-Deal-GUI\DealOrNoDeal_Edb with class loader sun.misc.Launcher$AppClassLoader@45ee12a7 
 Loaded from file:/D:/NetBeans-17/netbeans%20projects/PDC_Tutorials/lib/derby.jar
 java.vendor=Oracle Corporation

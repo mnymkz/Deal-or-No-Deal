@@ -1,6 +1,5 @@
 package Main;
 
-import Logins.Player;
 import Banker.Banker;
 import Banker.ConservativeBanker;
 import Banker.AggressiveBanker;
@@ -22,7 +21,7 @@ public class Round {
     protected CaseManager caseManager;
     protected PlayerManagerOld playerManager;
     protected HashSet chosenNumbers;
-    protected Player player;
+    protected PlayerOld player;
     protected Banker banker;
     protected int numChoices;
     protected int currentRound;
@@ -32,7 +31,7 @@ public class Round {
 
     //round constructor
 
-    public Round(CaseManager caseManager, PlayerManagerOld playerManager, HashSet chosenNumbers, Player player, int numChoices, int currentRound) {
+    public Round(CaseManager caseManager, PlayerManagerOld playerManager, HashSet chosenNumbers, PlayerOld player, int numChoices, int currentRound) {
         this.caseManager = caseManager;
         this.playerManager = playerManager;
         this.chosenNumbers = chosenNumbers;
@@ -45,8 +44,8 @@ public class Round {
 
     /**
      * Display information about the round such as the number of remaining cases
-     * Player interaction
-     * Case interaction
+ PlayerOld interaction
+ Case interaction
      */
     public void startRound() 
     {

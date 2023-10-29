@@ -1,5 +1,5 @@
 
-package Logins;
+package Main;
 
 import Case.Case;
 
@@ -8,7 +8,7 @@ import Case.Case;
  *
  * @author Michael, Tabitha
  */
-public class Player {
+public class PlayerOld {
     
     //player fields
     private String name;
@@ -19,7 +19,7 @@ public class Player {
      * player constructor 
      * 
      */
-    public Player()
+    public PlayerOld()
     {
         this.name = "";
         this.earnings = 0;
@@ -31,7 +31,7 @@ public class Player {
      * player constructor generates a new player with a blank high score
      * @param name the name of the new player
      */
-    public Player(String name)
+    public PlayerOld(String name)
     {
         this.name = name;
         this.earnings = 0;

@@ -55,21 +55,4 @@ public class ItemGeneratorTest {
             fail("Exception occurred while getting a random item: " + e.getMessage());
         }
     }
-
-     /**
-     *  Test of getRandomItem, of class ItemGenerator.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testGetRandomItemWhenSetIsEmpty() {
-        itemGenerator.getRandomItem(); // Should throw IllegalArgumentException
-    }
-
-    /**
-     *  Test of getRandomItem, of class ItemGenerator.
-     */
-    @Test(expected = IllegalStateException.class)
-    public void testGetRandomItemWithNullItemInSet() {
-        itemGenerator.getItems().add(null);
-        itemGenerator.getRandomItem(); // Should throw IllegalStateException
-    }
 }

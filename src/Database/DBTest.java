@@ -1,7 +1,6 @@
 
 package Database;
 
-import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -32,5 +31,6 @@ public class DBTest {
         } finally {
             dbManager.closeConnections();
         }
+        dbManager.closeConnections();
     }
 }
