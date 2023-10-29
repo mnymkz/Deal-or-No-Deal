@@ -20,7 +20,7 @@ public class initSQL {
             + "playerName VARCHAR(255) UNIQUE, "
             + "highestEarnings DOUBLE NOT NULL, "
             + "loginID INT, "
-            + "FOREIGN KEY (loginID) REFERENCES LOGIN(loginID)"
+            + "FOREIGN KEY (loginID) REFERENCES LOGIN(loginID) ON DELETE CASCADE"
             + ")";
 
     static final String CREATE_GAME_TABLE = "CREATE TABLE GAME ("
@@ -28,7 +28,7 @@ public class initSQL {
             + "currentRound INT NOT NULL, " 
             + "currentEarnings DOUBLE NOT NULL, " 
             + "playerID INT, "
-            + "FOREIGN KEY (playerID) REFERENCES PLAYER(playerID) "
+            + "FOREIGN KEY (playerID) REFERENCES PLAYER(playerID) ON DELETE CASCADE "
             + ")";
         
     static final String CREATE_ITEM_TABLE = "CREATE TABLE ITEM ("

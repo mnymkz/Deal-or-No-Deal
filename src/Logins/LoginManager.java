@@ -81,35 +81,32 @@ public class LoginManager {
         }
     }
     
-    
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // Create a DBManager instance (you should configure it with your actual database details)
         DBManager dbManager = DBManager.getInstance();
-
-        // Create a LoginManager instance
         LoginManager loginManager = new LoginManager(dbManager);
-
-        // Create a new Login object for testing
-        Login testLogin = new Login("test_user", "test_password");
-
-        // Register a new login
-        loginManager.registerLogin(testLogin);
-
-        // Authenticate the user
-        if (loginManager.Auth(testLogin)) {
-            System.out.println("Authentication successful.");
-        } else {
-            System.out.println("Authentication failed.");
+        Login login = new Login("test", "password");
+        loginManager.registerLogin(login);
+        System.out.println("Test auth: " + loginManager.Auth(login));
+        System.out.println("User exists: " + loginManager.userExists(login));
+        
+        
+        String deleteLoginSQL = "DELETE FROM LOGIN WHERE username = 'test'";
+        dbManager.update(deleteLoginSQL);
+        ResultSet resultSet = dbManager.queryDB("SELECT * FROM LOGIN");
+        try {
+            while (resultSet.next()) {
+                int id = resultSet.getInt("loginID"); 
+                String name = resultSet.getString("username"); 
+                
+                System.out.println("itemID: " + id + ", itemName: " + name); // Print the values
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            dbManager.closeConnections();
         }
-
-        // Check if the user exists
-        if (loginManager.userExists(testLogin)) {
-            System.out.println("User exists in the database.");
-        } else {
-            System.out.println("User does not exist in the database.");
-        }
-
-        // Close the database connection when done
+        
         dbManager.closeConnections();
     }
 }

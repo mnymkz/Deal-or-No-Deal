@@ -62,20 +62,6 @@ public class ItemGenerator {
             throw new IllegalStateException("Unable to choose random item.");
         }
     }
-    
-    
-    public static void main(String[] args) throws SQLException {
-        DBManager dbManager = DBManager.getInstance();
-        dbManager.establishConnection();
-        System.out.println(dbManager.getConnection());
-        
-        ItemGenerator ig = new ItemGenerator(dbManager);
-        ig.loadItems();
-        System.out.println(ig.items.size());
-        
-        Item item = ig.getRandomItem();
-        System.out.println(item.toString());
-    }
 
     //get method
     public HashSet<Item> getItems() {

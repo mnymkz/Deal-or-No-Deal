@@ -10,8 +10,7 @@ import javax.swing.JButton;
  * @author Tabitha
  */
 
-public class GameButton extends JButton
-{
+public class GameButton extends JButton {
     public GameButton(String name, Color color) {
 		super(name);
 		this.setBackground(color);
