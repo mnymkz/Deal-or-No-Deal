@@ -22,7 +22,7 @@ public class initSQL {
             + "playerID INT, "
             + "FOREIGN KEY (playerID) REFERENCES PLAYER(playerID) ON DELETE CASCADE"
             + ")";
-
+        
         
     static final String CREATE_ITEM_TABLE = "CREATE TABLE ITEM ("
             + "itemID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,"

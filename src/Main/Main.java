@@ -1,19 +1,17 @@
+
 package Main;
 
-import java.util.Random;
-
+import View.View;
 
 /**
  *
- * Main Class will serve as the entry point for the program - contains 
- * user login, game loop and i/o
- * 
  * @author Michael
  */
 public class Main {
-    
+
     public static void main(String[] args) {
-        GameLoop g = new GameLoop();
-        g.start();
+        View view = new View();
+        Model model = new Model();
+        Controller controller = new Controller(view, model);
     }
 }
