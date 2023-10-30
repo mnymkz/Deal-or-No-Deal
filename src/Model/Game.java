@@ -1,23 +1,16 @@
 
 package Model;
 
-import Case.Case;
-import Case.CaseLoader;
-import Case.ItemGenerator;
-import Login.UserManager;
-
 /**
- *
+ * model class contains all the game objects 
+ * 
  * @author Michael
  */
 public class Game {
     
-    double currentEarnings; //current earnings
-    Case firstCase; //case selected at the first round 
-    UserManager userManager; 
-    GameManager gameManager;
-    CaseLoader caseManager;
-    ItemGenerator itemManager;
-    
+    //game needs a banker
+    //game needs cases
+    //game needs a user 
+    //game needs to get the user's first case 
     
 }
