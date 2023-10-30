@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- *
+ * used to generate cases into array list
+ * 
  * @author Michael
  */
 public class CaseLoader {

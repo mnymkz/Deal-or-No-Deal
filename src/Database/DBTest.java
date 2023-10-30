@@ -31,5 +31,6 @@ public class DBTest {
         } finally {
             dbManager.closeConnections();
         }
+        dbManager.closeConnections();
     }
 }

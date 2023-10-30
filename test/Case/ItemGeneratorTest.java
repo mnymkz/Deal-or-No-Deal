@@ -5,60 +5,54 @@
 package Case;
 
 import Database.DBManager;
-import org.junit.After;
-import org.junit.AfterClass;
+import java.sql.SQLException;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import org.junit.BeforeClass;
 
-/**
- *
- * @author Michael
- */
 public class ItemGeneratorTest {
-    
-    public DBManager dbManager;
-    public ItemGenerator it;
-    
-    public ItemGeneratorTest() {
-    }
-    
-    @Before
-    public void setUp() {
+
+    private static DBManager dbManager;
+    private ItemGenerator itemGenerator;
+
+    @BeforeClass
+    public static void setUpClass() {
         dbManager = DBManager.getInstance();
         dbManager.establishConnection();
-        it = new ItemGenerator(dbManager);
     }
-    
-    @After
-    public void tearDown() {
-        dbManager.closeConnections();
+
+    @Before
+    public void setUp() {
+        itemGenerator = new ItemGenerator(dbManager);
     }
 
     /**
-     * Test of loadItems method, of class ItemGenerator.
+     *  Test of loadItems, of class ItemGenerator.
      */
     @Test
-    public void testLoadItems() throws Exception {
-        System.out.println("loadItems");
-        assertDoesNotThrow(() -> it.loadItems());
-        assertFalse(it.getItems().isEmpty());
+    public void testLoadItems() {
+        try {
+            itemGenerator.loadItems(); //load items
+            assertTrue(itemGenerator.getItems().size() != 0); //getItems is not empty
+        } catch (SQLException e) {
+            fail("Exception occurred while loading items: " + e.getMessage());
+        }
     }
 
     /**
-     * Test of getRandomItem method, of class ItemGenerator.
+     *  Test of getRandomItem, of class ItemGenerator.
      */
     @Test
     public void testGetRandomItem() {
-        System.out.println("getRandomItem");
-        ItemGenerator instance = null;
-        Item expResult = null;
-        Item result = instance.getRandomItem();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try {
+            itemGenerator.loadItems(); //load items
+            int initialSize = itemGenerator.getItems().size();
+            Item randomItem = itemGenerator.getRandomItem(); //get random item
+            assertNotNull(randomItem); //check null
+            assertEquals(initialSize - 1, itemGenerator.getItems().size()); //check if item removed
+        } catch (SQLException e) {
+            fail("Exception occurred while getting a random item: " + e.getMessage());
+        }
     }
-    
 }
