@@ -19,7 +19,7 @@ public class GameManager {
         this.dBManager = dBManager;
     }
 
-    //create a new game 
+    //create a new game method
     public void createNewGame()
     {
         String username = player.getUsername();
