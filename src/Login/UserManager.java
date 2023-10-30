@@ -143,4 +143,31 @@ public class UserManager {
         }
     }
     
+    /**
+     * getUser retrieves a user object from the user table
+     * 
+     * @param username the name of the user
+     * @return a user if found, null if not found
+     * @throws SQLException 
+     */
+    public User getUserDB(String username) throws SQLException {
+        String query = "SELECT * FROM PLAYER WHERE username = ?";
+        try (PreparedStatement preparedStatement = dbManager.getConnection().prepareStatement(query)) {
+            preparedStatement.setString(1, username); //get query
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (rs.next()) {
+                    String name = rs.getString("username");
+                    String password = rs.getString("password");
+                    Double highestEarnings = rs.getDouble("highestEarnings");
+                    User newUser = new User(name, password);
+                    newUser.setHighestEarnings(highestEarnings);
+                }
+            }
+        } catch (SQLException ex) {
+            //error loading user
+            System.out.println("Error loading user from database: " + ex.getMessage());
+        }   
+       return null; //not found - return null
+    }
 }
+

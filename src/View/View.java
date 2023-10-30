@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Controller;
 import Controller.LoginController;
 import Controller.SignUpController;
 import java.awt.*;
@@ -18,10 +19,6 @@ public class View extends JFrame {
     public View() {
         initViewFrame();
         addPanels();
-        // Instantiate HomeController and associate it with the HomePanel
-        Controller.HomeController homeController = new Controller.HomeController(homePanel, this);
-        Controller.LoginController loginController = new LoginController(loginPanel, this);
-        Controller.SignUpController signUpController = new SignUpController(signUpPanel, this);
     }
 
     /**
@@ -64,12 +61,17 @@ public class View extends JFrame {
         cardLayout.show(mainPanel, panelName);
     }
 
-    //entry 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new View().setVisible(true);
-            }
-        });
+    //getters
+    public HomePanel getHomePanel() {
+        return homePanel;
     }
+
+    public LoginPanel getLoginPanel() {
+        return loginPanel;
+    }
+
+    public SignUpPanel getSignUpPanel() {
+        return signUpPanel;
+    }
+    
 }
