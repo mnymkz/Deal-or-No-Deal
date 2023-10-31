@@ -1,6 +1,7 @@
 
 package Controller;
 
+import Model.Model;
 import View.LoginPanel;
 import View.View;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,7 @@ public class LoginController {
 
     private LoginPanel loginPanel;
     private View mainFrame;
+    private Model model;
 
     /**
      * LoginController constructor
@@ -21,9 +23,10 @@ public class LoginController {
      * @param homePanel the home panel
      * @param mainFrame the View JFrame
      */
-    public LoginController(LoginPanel homePanel, View mainFrame) {
+    public LoginController(LoginPanel homePanel, View mainFrame, Model model) {
         this.loginPanel = homePanel;
         this.mainFrame = mainFrame;
+        this.model = model;
         this.loginPanel.addLoginButtonActionListener(new LoginButtonListener());
         this.loginPanel.addReturnButtonActionListener(new ReturnButtonListener());
     }

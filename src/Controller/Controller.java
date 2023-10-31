@@ -1,7 +1,7 @@
 
 package Controller;
 
-import Main.Model;
+import Model.Model;
 import View.View;
 
 /**
@@ -12,7 +12,7 @@ import View.View;
 public class Controller {
 
     private View view;
-    private Model model; //TODO implement model 
+    private Model model;
     private HomeController homeController;
     private SignUpController signUpController;
     private LoginController loginController;
@@ -22,10 +22,10 @@ public class Controller {
     public Controller(View view, Model model) {
         this.view = view;
         this.model = model;
-        this.homeController = new HomeController(view.getHomePanel(), view);
-        this.signUpController = new SignUpController(view.getSignUpPanel(), view);
-        this.loginController = new LoginController(view.getLoginPanel(), view);
-        this.bankerController = new BankerController(view.getBankerPanel(), view);
-        this.gameOverController = new GameOverController(view.getGameOverPanel(), view);
+        this.homeController = new HomeController(view.getHomePanel(), view, model);
+        this.signUpController = new SignUpController(view.getSignUpPanel(), view, model);
+        this.loginController = new LoginController(view.getLoginPanel(), view, model);
+        this.bankerController = new BankerController(view.getBankerPanel(), view, model);
+        this.gameOverController = new GameOverController(view.getGameOverPanel(), view, model);
     }
 }

@@ -1,5 +1,5 @@
 
-package Main;
+package Model;
 
 import Login.User;
 import Model.Game;
@@ -14,6 +14,7 @@ import Case.Case;
  */
 public class Model {
 
+    
     private User user;
     private Game game;
     
