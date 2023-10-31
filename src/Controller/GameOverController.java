@@ -1,6 +1,7 @@
 
 package Controller;
 
+import Model.Model;
 import View.GameOverPanel;
 import View.View;
 import java.awt.event.ActionEvent;
@@ -14,10 +15,12 @@ public class GameOverController {
     
     private GameOverPanel gameOverPanel;
     private View mainFrame;
+    private Model model;
 
-    public GameOverController(GameOverPanel gameOverPanel, View mainFrame) {
+    public GameOverController(GameOverPanel gameOverPanel, View mainFrame, Model model) {
         this.gameOverPanel = gameOverPanel;
         this.mainFrame = mainFrame;
+        this.model = model;
         this.gameOverPanel.addExitGameButtonActionListener(new ExitGameButtonActionListener());
         this.gameOverPanel.addPlayAgainButtonActionListener(new PlayAgainButtonActionListener());
     }

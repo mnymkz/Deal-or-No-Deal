@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Model;
 import View.BankerPanel;
 import View.View;
 import java.awt.event.ActionEvent;
@@ -13,11 +14,13 @@ public class BankerController {
 
     private BankerPanel bankerPanel;
     private View mainFrame;
+    private Model model;
 
     //constructor
-    public BankerController(BankerPanel bankerPanel, View mainFrame) {
+    public BankerController(BankerPanel bankerPanel, View mainFrame, Model model) {
         this.mainFrame = mainFrame;
         this.bankerPanel = bankerPanel;
+        this.model = model;
         this.bankerPanel.addDealButtonActionListener(new DealButtonActionListener());
         this.bankerPanel.addNoDealButtonActionListener(new NoDealActionListener());
     }

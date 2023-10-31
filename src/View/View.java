@@ -63,6 +63,7 @@ public class View extends JFrame {
         mainPanel.add(homePanel, "HomePanel");
         mainPanel.add(loginPanel, "LoginPanel");
         mainPanel.add(signUpPanel, "SignUpPanel");
+        //TODO add game panel
         mainPanel.add(bankerPanel, "BankerPanel");
         mainPanel.add(gameOverPanel, "GameOverPanel");
     }

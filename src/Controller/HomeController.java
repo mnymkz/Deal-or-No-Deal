@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Model;
 import View.HomePanel;
 import View.View;
 
@@ -16,11 +17,13 @@ public class HomeController {
     //gui instances
     private HomePanel homePanel;
     private View mainFrame;
+    private Model model;
 
     //constructor
-    public HomeController(HomePanel homePanel, View mainFrame) {
+    public HomeController(HomePanel homePanel, View mainFrame, Model model) {
         this.homePanel = homePanel;
         this.mainFrame = mainFrame;
+        this.model = model;
         this.homePanel.addSignInButtonActionListener(new SignInButtonListener()); //add action listner
         this.homePanel.addSignUpButtonActionListener(new SignUpButtonListener()); //add action listener 
     }

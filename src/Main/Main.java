@@ -1,6 +1,7 @@
 
 package Main;
 
+import Model.Model;
 import Controller.Controller;
 import Database.DBManager;
 import Database.GameDB;

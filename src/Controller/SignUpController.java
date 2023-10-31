@@ -1,6 +1,7 @@
 
 package Controller;
 
+import Model.Model;
 import View.SignUpPanel;
 import View.View;
 import java.awt.event.ActionEvent;
@@ -14,10 +15,12 @@ public class SignUpController {
    
     private SignUpPanel signUpPanel;
     private View mainFrame;
+    private Model model;
 
-    public SignUpController(SignUpPanel signUpPanel, View mainFrame) {
+    public SignUpController(SignUpPanel signUpPanel, View mainFrame, Model model) {
         this.signUpPanel = signUpPanel;
         this.mainFrame = mainFrame;
+        this.model = model;
         this.signUpPanel.addSignUpButtonActionListener(new SignUpButtonListener());
         this.signUpPanel.addReturnButtonActionListener(new ReturnButtonListener());
     }
