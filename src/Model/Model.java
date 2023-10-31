@@ -40,6 +40,11 @@ public class Model {
         return this.user;
     }
     
+    public void removeCase(int caseNumber)
+    {
+        game.removeCase(caseNumber);
+    }
+    
     //Get the current game object
     public Game geCurrentGame()
     {

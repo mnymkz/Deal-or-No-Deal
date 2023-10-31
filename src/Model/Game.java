@@ -104,4 +104,10 @@ public class Game {
     {
         System.out.println("The value of your intial briefcase is: $" + firstCase.getItem().getMoneyValue());
     }
+    
+    //To remove briefcase when user clicks on specific briefcase
+    public void removeCase(int caseNumber)
+    {
+        cases.remove(caseNumber - 1);
+    }
 }
