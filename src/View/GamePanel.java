@@ -82,6 +82,10 @@ public class GamePanel extends JPanel implements viewInterface {
             caseButton.addActionListener(listener);
         }
     }
+    
+    public void removeBriefcase(int caseNumber) {
+        briefCaseButtons.get(caseNumber-1).setVisible(false);
+    }
  
     public void updateStatusLabel(String text) {
         label.setText(text);
