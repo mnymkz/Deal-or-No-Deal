@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class SignUpPanel extends JPanel {
+public class SignUpPanel extends JPanel implements viewInterface {
 
     //panel components
     private JLabel signUpLabel;
@@ -26,7 +26,8 @@ public class SignUpPanel extends JPanel {
     /**
      * init components
      */
-    private void initComponents() {
+    @Override
+    public void initComponents() {
         signUpLabel = new JLabel("Sign Up to Play Deal or No Deal");
         signUpLabel.setFont(new Font("Roboto", Font.BOLD, 24));
         signUpLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -50,7 +51,9 @@ public class SignUpPanel extends JPanel {
         returnButton.setFont(new Font("Roboto", Font.BOLD, 20));
     }
 
-    private void setLayout() {
+    //set layout
+    @Override
+    public void setLayout() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 

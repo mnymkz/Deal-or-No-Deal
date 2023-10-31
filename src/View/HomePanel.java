@@ -8,7 +8,7 @@ import javax.swing.*; //import swing libraries
  *
  * @author Michael
  */
-public class HomePanel extends JPanel {
+public class HomePanel extends JPanel implements viewInterface {
 
     private JButton signInButton;
     private JButton signUpButton;
@@ -23,7 +23,8 @@ public class HomePanel extends JPanel {
     /**
      * init components
      */
-    private void initComponents() {
+    @Override
+    public void initComponents() {
         signInButton = new JButton("Sign In");
         signInButton.setFont(new Font("Roboto", Font.BOLD, 20));
         signUpButton = new JButton("Sign up");
@@ -35,7 +36,8 @@ public class HomePanel extends JPanel {
     }
     
     //GPT assisted layout 
-    private void setLayout() {
+    @Override
+    public void setLayout() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 

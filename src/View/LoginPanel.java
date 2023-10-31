@@ -10,7 +10,7 @@ import javax.swing.*;
  *
  * @author Michael
  */
-public class LoginPanel extends JPanel {
+public class LoginPanel extends JPanel implements viewInterface {
  private JLabel signUpLabel;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
@@ -29,7 +29,8 @@ public class LoginPanel extends JPanel {
     /**
      * init components
      */
-    private void initComponents() {
+    @Override
+    public void initComponents() {
         signUpLabel = new JLabel("Log in to Play Deal or No Deal");
         signUpLabel.setFont(new Font("Roboto", Font.BOLD, 24));
         signUpLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -53,7 +54,9 @@ public class LoginPanel extends JPanel {
         returnButton.setFont(new Font("Roboto", Font.BOLD, 20));
     }
 
-    private void setLayout() {
+    //set layout
+    @Override
+    public void setLayout() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 

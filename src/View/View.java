@@ -38,15 +38,18 @@ public class View extends JFrame {
         cardLayout = new CardLayout(); //card layout
         mainPanel = new JPanel(cardLayout); //new mainPanel parent container
 
-        //init Panels 
-        homePanel = new HomePanel(); 
-        loginPanel = new LoginPanel(); 
-        signUpPanel = new SignUpPanel();
+//        //init Panels 
+//        homePanel = new HomePanel(); 
+//        loginPanel = new LoginPanel(); 
+//        signUpPanel = new SignUpPanel();
+//
+//        //add panels to parent container
+//        mainPanel.add(homePanel, "HomePanel");
+//        mainPanel.add(loginPanel, "LoginPanel");
+//        mainPanel.add(signUpPanel, "SignUpPanel");
 
-        //add panels to parent container
-        mainPanel.add(homePanel, "HomePanel");
-        mainPanel.add(loginPanel, "LoginPanel");
-        mainPanel.add(signUpPanel, "SignUpPanel");
+        BankerPanel bankerPanel = new BankerPanel();
+        mainPanel.add(bankerPanel);
 
         //add parent container to the frame
         this.add(mainPanel);
