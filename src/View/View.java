@@ -1,9 +1,8 @@
 package View;
 
-import Controller.Controller;
-import Controller.LoginController;
-import Controller.SignUpController;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 public class View extends JFrame {
@@ -28,9 +27,15 @@ public class View extends JFrame {
      */
     private void initViewFrame() {
         this.setTitle("Deal or No Deal");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 400);
         this.setLocationRelativeTo(null);
+        //add window listener to implement on close operations
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                handleExit();
+            }
+        });        
     }
     
     /**
@@ -55,13 +60,23 @@ public class View extends JFrame {
     }
     
     private void addViewPanels() {
-//        mainPanel.add(homePanel, "HomePanel");
-//        mainPanel.add(loginPanel, "LoginPanel");
-//        mainPanel.add(signUpPanel, "SignUpPanel");
-//        mainPanel.add(bankerPanel, "BankerPanel");
+        mainPanel.add(homePanel, "HomePanel");
+        mainPanel.add(loginPanel, "LoginPanel");
+        mainPanel.add(signUpPanel, "SignUpPanel");
+        mainPanel.add(bankerPanel, "BankerPanel");
         mainPanel.add(gameOverPanel, "GameOverPanel");
     }
     
+    /**
+     * handleExit handles exit window behavior
+     */
+    public void handleExit() {
+        System.out.println("Exit button clicked, exiting game");
+        // TODO: handle event
+        // save current earnings
+        // disconnect db
+        this.dispose();
+    }
     
     /**
      * switchPanel switches between panels
