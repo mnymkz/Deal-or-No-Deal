@@ -2,7 +2,7 @@ package Model;
 
 import Database.DBManager;
 import Login.User;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * Game manager class contains database operations for game
@@ -23,10 +23,13 @@ public class GameManager {
     public void createNewGame()
     {
         String username = player.getUsername();
-        try
+        String query = "INSERT INTO Games (currentRound, currentEarnings, playerID) "
+                    + "VALUES (1, 0, (SELECT playerID FROM PLAYER WHERE username=?))";
+        
+        try (PreparedStatement prepStmt = dBManager.getConnection().prepareStatement(query))
         {
-            String query = "INSERT INTO Games (username, earnings, round) VALUES ('"+ username +"' 0, 1)";
-            dBManager.update(query);
+           prepStmt.setString(1, username);
+           prepStmt.executeUpdate();
         }
         catch (SQLException e)
         {
@@ -35,12 +38,15 @@ public class GameManager {
     }
     
     //update current earnings 
-    public void updateCurrentEarnings(String username, double newEarnings)
+    public void updateCurrentEarnings(double newEarnings, int gameID)
     {
-        try
+        String query = "UPDATE GAME SET currentEarnings=? WHERE gameID=?";
+        
+        try(PreparedStatement prepStmt = dBManager.getConnection().prepareStatement(query))
         {
-            String query = "UPDATE Games SET earnings=" + newEarnings + " WHERE username='" + username + "'";
-            dBManager.update(query);
+            prepStmt.setDouble(1, newEarnings);
+            //prepStmt.setInt(2, gameID);
+            prepStmt.executeUpdate();
         }
         catch (SQLException e)
         {
@@ -49,16 +55,44 @@ public class GameManager {
     }
     
     //update current round
-    public void updateCurrentRound(String username, int round)
+    public void updateCurrentRound(int round, int gameID)
     {
-        try
+        String query = "UPDATE GAME SET currentRound=? WHERE gameID=?";
+        
+        try(PreparedStatement prepStmt = dBManager.getConnection().prepareStatement(query))
         {
-            String query = "UPDATE Games SET round=" + round + " WHERE username='" + username + "'";
-            dBManager.update(query);
+            prepStmt.setInt(1, round);
+            prepStmt.setInt(2, gameID);
+            prepStmt.executeQuery();
         }
         catch (SQLException e)
         {
             e.printStackTrace();
         }
     }
+    
+    //get current round, to store round in 
+    public int getCurrentRound(int gameID)
+    {
+        String query = "SELECT currentRound FROM GAME WHERE gameID=?";
+        int round = 0;
+        
+        try(PreparedStatement prepStmt = dBManager.getConnection().prepareStatement(query))
+        {
+            prepStmt.setInt(1, gameID);
+            ResultSet resultSet = prepStmt.executeQuery();
+            
+            if(resultSet.next())
+            {
+                round = resultSet.getInt("currentRound");
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return round;
+    }
+    
+    //get numChoices
 }
