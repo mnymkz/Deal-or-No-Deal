@@ -88,4 +88,8 @@ public class View extends JFrame {
     public BankerPanel getBankerPanel() {
         return bankerPanel;
     }
+
+    public GameOverPanel getGameOverPanel() {
+        return gameOverPanel;
+    }
 }

@@ -3,6 +3,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -62,5 +63,15 @@ public class GameOverPanel extends JPanel implements viewInterface {
         gbc.gridx++;
         gbc.insets = new Insets(10, 10, 20, 20);
         add(exitButton, gbc);
+    }
+    
+    //add action listener for play again button
+    public void addPlayAgainButtonActionListener(ActionListener listener) {
+        this.playAgainButton.addActionListener(listener);
+    }
+    
+    //add action listener for exit game button
+    public void addExitGameButtonActionListener(ActionListener listener) {
+        this.exitButton.addActionListener(listener);
     }
 }
