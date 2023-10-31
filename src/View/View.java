@@ -14,7 +14,9 @@ public class View extends JFrame {
     private HomePanel homePanel;
     private LoginPanel loginPanel; 
     private SignUpPanel signUpPanel;
-
+    private BankerPanel bankerPanel;
+    private GameOverPanel gameOverPanel;
+    
     //JFrame constructor 
     public View() {
         initViewFrame();
@@ -38,22 +40,28 @@ public class View extends JFrame {
         cardLayout = new CardLayout(); //card layout
         mainPanel = new JPanel(cardLayout); //new mainPanel parent container
 
-//        //init Panels 
-//        homePanel = new HomePanel(); 
-//        loginPanel = new LoginPanel(); 
-//        signUpPanel = new SignUpPanel();
-//
-//        //add panels to parent container
+        initPanels(); //init panel components
+        addViewPanels(); //add panel components to mainPanel
+        
+        this.add(mainPanel); //add mainPanel to the JFrame
+    }
+    
+    private void initPanels() {
+        this.homePanel = new HomePanel();
+        this.loginPanel = new LoginPanel();
+        this.signUpPanel = new SignUpPanel();
+        this.bankerPanel = new BankerPanel();
+        this.gameOverPanel = new GameOverPanel();
+    }
+    
+    private void addViewPanels() {
 //        mainPanel.add(homePanel, "HomePanel");
 //        mainPanel.add(loginPanel, "LoginPanel");
 //        mainPanel.add(signUpPanel, "SignUpPanel");
-
-        BankerPanel bankerPanel = new BankerPanel();
-        mainPanel.add(bankerPanel);
-
-        //add parent container to the frame
-        this.add(mainPanel);
+//        mainPanel.add(bankerPanel, "BankerPanel");
+        mainPanel.add(gameOverPanel, "GameOverPanel");
     }
+    
     
     /**
      * switchPanel switches between panels
@@ -76,5 +84,8 @@ public class View extends JFrame {
     public SignUpPanel getSignUpPanel() {
         return signUpPanel;
     }
-    
+
+    public BankerPanel getBankerPanel() {
+        return bankerPanel;
+    }
 }

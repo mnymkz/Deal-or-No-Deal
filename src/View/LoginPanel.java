@@ -104,6 +104,7 @@ public class LoginPanel extends JPanel implements viewInterface {
         signUpButton.addActionListener(listener);
     }
     
+    //actionListener for the return button
     public void addReturnButtonActionListener(ActionListener listener) {
         returnButton.addActionListener(listener);
     }

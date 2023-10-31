@@ -2,6 +2,7 @@
 package View;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -30,6 +31,7 @@ public class BankerPanel extends JPanel implements viewInterface {
         this.noDealButton.setFont(new Font("Roboto", Font.BOLD, 20));
     }
 
+    //GPT assisted layout
     @Override
     public void setLayout() {
         setLayout(new GridBagLayout());
@@ -41,8 +43,11 @@ public class BankerPanel extends JPanel implements viewInterface {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.anchor = GridBagConstraints.CENTER;
         add(offerLabel, gbc);
-
+        
         gbc.gridy = 1;
+        add(textLabel, gbc); // Adding textLabel to the layout
+        
+        gbc.gridy = 2;
         gbc.gridwidth = 1;
         gbc.insets = new Insets(0, 10, 10, 5);
         gbc.anchor = GridBagConstraints.EAST;
@@ -52,5 +57,15 @@ public class BankerPanel extends JPanel implements viewInterface {
         gbc.insets = new Insets(0, 5, 10, 10);
         gbc.anchor = GridBagConstraints.WEST;
         add(noDealButton, gbc);
+    }
+    
+    //actionListener for the deal button
+    public void addDealButtonActionListener(ActionListener listener) {
+        dealButton.addActionListener(listener);
+    }
+    
+    //actionListener for the no deal button
+    public void addNoDealButtonActionListener(ActionListener listener) {
+        noDealButton.addActionListener(listener);
     }
 }

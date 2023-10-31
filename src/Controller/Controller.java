@@ -16,6 +16,7 @@ public class Controller {
     private HomeController homeController;
     private SignUpController signUpController;
     private LoginController loginController;
+    private BankerController bankerController;
 
     public Controller(View view, Model model) {
         this.view = view;
@@ -23,5 +24,6 @@ public class Controller {
         this.homeController = new HomeController(view.getHomePanel(), view);
         this.signUpController = new SignUpController(view.getSignUpPanel(), view);
         this.loginController = new LoginController(view.getLoginPanel(), view);
+        this.bankerController = new BankerController(view.getBankerPanel(), view);
     }
 }
