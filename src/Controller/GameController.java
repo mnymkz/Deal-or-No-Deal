@@ -25,7 +25,7 @@ public class GameController implements ActionListener{
         String command = e.getActionCommand();
         int caseNumber = Integer.parseInt(command);
         
-        model.geCurrentGame().removeCase(caseNumber); // method to remove a case in your Game class
+        model.removeCase(caseNumber); // method to remove a case in your Game class
         view.removeBriefcase(caseNumber);
     }
 }
