@@ -7,7 +7,7 @@ import javax.swing.*;
 
 /**
  * 
- * @author Michael
+ * @author Michael, Tabitha
  */
 public class BankerPanel extends JPanel implements viewInterface {
     private JLabel textLabel;
@@ -67,5 +67,17 @@ public class BankerPanel extends JPanel implements viewInterface {
     //actionListener for the no deal button
     public void addNoDealButtonActionListener(ActionListener listener) {
         noDealButton.addActionListener(listener);
+    }
+    
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Banker Panel");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 200);
+        frame.setLocationRelativeTo(null); // Center the frame
+        
+        BankerPanel bankerPanel = new BankerPanel();
+        frame.add(bankerPanel);
+        
+        frame.setVisible(true);
     }
 }
