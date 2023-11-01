@@ -76,6 +76,7 @@ public class GamePanel extends JPanel implements viewInterface {
         // Adding the prizePanel to the east side of the main GamePanel
         this.add(moneyPanel, BorderLayout.EAST); 
         moneyPanel.setBorder(new EmptyBorder(0, 10, 0, 10)); 
+        label.setBorder(new EmptyBorder(10, 0, 10, 0));
     }
     
     public void addCaseButtonListener(ActionListener listener) {
