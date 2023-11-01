@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  */
 public class GameController implements ActionListener{
     private GamePanel view;
-    private Model model;
+    private Model model; 
 
     public GameController(GamePanel view, Model model) {
         this.view = view;
@@ -25,7 +25,12 @@ public class GameController implements ActionListener{
         String command = e.getActionCommand();
         int caseNumber = Integer.parseInt(command);
         
-        model.removeCase(caseNumber); // method to remove a case in your Game class
+        model.removeCase(caseNumber); 
         view.removeBriefcase(caseNumber);
+        
+        //When user reaches its final briefcase of the current round
+        //From GamePanel to BankerPanel
+        
+        
     }
 }
