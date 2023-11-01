@@ -1,8 +1,7 @@
 
 package Model;
 
-import Login.User;
-import Model.Game;
+import Login.Player;
 import Banker.Banker;
 import java.util.ArrayList;
 import Case.Case;
@@ -13,9 +12,8 @@ import Case.Case;
  * @author Tabitha
  */
 public class Model {
-
     
-    private User user;
+    private Player user;
     private Game game;
     
     public Model()
@@ -32,11 +30,11 @@ public class Model {
     }
     
     //get user from the login page
-    public User getUserFromLogin(String username, String password)
+    public Player getUserFromLogin(String username, String password)
     {
         //Validate user credentials?
-        // -> If validation successful, create and return a new User object
-        this.user = new User(username, password);
+        // -> If validation successful, create and return a new Player object
+        this.user = new Player(username, password);
         return this.user;
     }
     

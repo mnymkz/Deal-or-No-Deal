@@ -17,7 +17,7 @@ public class DBTest {
         GameDB gameDb = new GameDB(dbManager);
         gameDb.initTables();
         
-        ResultSet resultSet = dbManager.queryDB("SELECT * FROM ITEM");
+        ResultSet resultSet = dbManager.queryItems("SELECT * FROM ITEM");
         try {
             while (resultSet.next()) {
                 int id = resultSet.getInt("itemID"); // Replace "ID" with the actual column name

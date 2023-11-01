@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 public class UserManagerTest {
     
     private static DBManager dbManager;
-    private UserManager userManager;
+    private LoginManager userManager;
     
     public UserManagerTest() {
     }
@@ -39,7 +39,7 @@ public class UserManagerTest {
     
     @Before
     public void setUp() {
-        userManager = new UserManager(dbManager);
+        userManager = new LoginManager(dbManager);
     }
     
     @After
@@ -47,13 +47,13 @@ public class UserManagerTest {
     }
 
     /**
-     * Test of playerExists method, of class UserManager.
+     * Test of playerExists method, of class LoginManager.
      * @throws java.sql.SQLException error deleting test
      */
     @Test
     public void testPlayerExists() throws SQLException {
         System.out.println("Testing if playerExists when player is not in database");
-        User userTest = new User("userTest", "password"); //new user
+        Player userTest = new Player("userTest", "password"); //new user
         boolean result = userManager.playerExists(userTest); //get result
         assertFalse(result); //unregistered player should not be in database
         
@@ -67,14 +67,14 @@ public class UserManagerTest {
     }
     
     /**
-     * Test of registerLogin method, of class UserManager.
+     * Test of registerLogin method, of class LoginManager.
      * @throws java.sql.SQLException error deleting test
      */
     @Test
     public void testRegisterLogin() throws SQLException {
         System.out.println("registerLogin");
         //register user
-        User userTest = new User("userTest", "password"); //new user
+        Player userTest = new Player("userTest", "password"); //new user
         userManager.registerLogin(userTest); //register user
         
         assertTrue(userManager.playerExists(userTest)); //check user exists
@@ -84,7 +84,7 @@ public class UserManagerTest {
     }
 
     /**
-     * Test of updateHighestEarnings method, of class UserManager.
+     * Test of updateHighestEarnings method, of class LoginManager.
      * @throws java.sql.SQLException error getting query/deleting test
      */
     @Test
@@ -92,7 +92,7 @@ public class UserManagerTest {
         System.out.println("updateHighestEarnings");
         
         //check user in database
-        User userTest = new User("userTest", "password"); //new user
+        Player userTest = new Player("userTest", "password"); //new user
         userManager.registerLogin(userTest); //register user
         assertTrue(userManager.playerExists(userTest)); //check user exists
         
@@ -102,7 +102,7 @@ public class UserManagerTest {
         
         //assert getEarnings = newEarnings
         double actualEarnings = 0.0; 
-        ResultSet rs = dbManager.queryDB("SELECT highestEarnings FROM PLAYER WHERE username = 'userTest'"); //get actual earnings
+        ResultSet rs = dbManager.queryItems("SELECT highestEarnings FROM PLAYER WHERE username = 'userTest'"); //get actual earnings
         if (rs.next()) {
             actualEarnings = rs.getDouble("highestEarnings");
         }
@@ -114,14 +114,14 @@ public class UserManagerTest {
     }
 
     /**
-     * Test of getHighestEarnings method, of class UserManager.
+     * Test of getHighestEarnings method, of class LoginManager.
      * @throws java.sql.SQLException error deleting test
      */
     @Test
     public void testGetHighestEarnings() throws SQLException {
         System.out.println("getHighestEarnings");
         //new user
-        User userTest = new User("userTest", "password"); //new user
+        Player userTest = new Player("userTest", "password"); //new user
         userManager.registerLogin(userTest); //register user
         assertTrue(userManager.playerExists(userTest)); //check user exists
         
@@ -140,7 +140,7 @@ public class UserManagerTest {
     }
 
     /**
-     * Test of Auth method, of class UserManager.
+     * Test of Auth method, of class LoginManager.
      * 
      * @throws java.sql.SQLException
      */
@@ -148,7 +148,7 @@ public class UserManagerTest {
     public void testAuth() throws SQLException {
         System.out.println("Auth");
         //create user 
-        User userTest = new User("userTest", "password"); //new user
+        Player userTest = new Player("userTest", "password"); //new user
         userManager.registerLogin(userTest); //register user
         assertTrue(userManager.playerExists(userTest)); //check user exists
         

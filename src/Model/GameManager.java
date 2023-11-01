@@ -1,7 +1,8 @@
 package Model;
 
 import Database.DBManager;
-import Login.User;
+import Database.Result;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -12,53 +13,71 @@ import java.sql.SQLException;
 public class GameManager {
 
     private final DBManager dBManager;
-    private final User player;
-    
-    public GameManager(DBManager dBManager, User player) {
-        this.player = player;
-        this.dBManager = dBManager;
-    }
+    private final Game game;
 
-    //create a new game method
-    public void createNewGame()
+    public GameManager(DBManager dBManager, Game game) {
+        this.dBManager = dBManager;
+        this.game = game;
+    }
+    
+    /**
+     * createNew Game creates a new game row 
+     * @throws java.sql.SQLException
+     */
+    public void createNewGame() throws SQLException
     {
-        String username = player.getUsername();
-        try
-        {
-            String query = "INSERT INTO Games (username, earnings, round) VALUES ('"+ username +"' 0, 1)";
-            dBManager.update(query);
+        String sql = "INSERT INTO GAME (currentRound, currentEarnings, numChoices, playerID) VALUES (?, ?, ?, ?)";
+        //create a prepared statement
+        int playerId = getPlayerID();
+        dBManager.insert(sql, 1, 0.0, 6, playerId);
+    }
+    
+    /**
+     * getPlayerID method retrieves playerID from database
+     * 
+     * @return the player id, returns -1 if error
+     * @throws SQLException 
+     */
+    public int getPlayerID() throws SQLException {
+        int playerID = -1; // Default to -1 (or another suitable default value)
+        String username = this.game.getUser().getUsername();
+        //query db
+        String query = "SELECT playerID FROM PLAYER WHERE username = ?";
+        Result result = dBManager.queryDB(query, username);
+        ResultSet resultSet = result.getResultSet();
+        
+        if (resultSet.next()) { // Check if there's a result
+            playerID = resultSet.getInt("playerID"); // Assign the playerID from the result
         }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
+        
+        return playerID;
+    }
+    
+    /**
+     * update current earnings updates the earnings of the player 
+     * 
+     * @param newEarnings the new earnings
+     */
+    public void updateCurrentEarnings(double newEarnings)
+    {
+        String query = "UPDATE PLAYER SET highestEarnings = ? WHERE username = ?";
+        String username = this.game.getUser().getUsername();
+        try {
+            dBManager.update(query, username, newEarnings);
+        } catch (SQLException ex) {
+            System.out.println("Error updating earnings for " + username + ": " + ex.getMessage());
         }
     }
     
-    //update current earnings 
-    public void updateCurrentEarnings(String username, double newEarnings)
+    /**
+     * update the current round 
+     * @param round
+     * @throws SQLException 
+     */
+    public void updateCurrentRound(int round) throws SQLException
     {
-        try
-        {
-            String query = "UPDATE Games SET earnings=" + newEarnings + " WHERE username='" + username + "'";
-            dBManager.update(query);
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    
-    //update current round
-    public void updateCurrentRound(String username, int round)
-    {
-        try
-        {
-            String query = "UPDATE Games SET round=" + round + " WHERE username='" + username + "'";
-            dBManager.update(query);
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
+        int playerID = getPlayerID(); //get playerID
+        String query = "UPDATE GAME SET currentRound = ? WHERE playerID = ?";
+        dBManager.update(query, round, playerID);
     }
 }

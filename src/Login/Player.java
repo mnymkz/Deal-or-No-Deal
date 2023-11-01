@@ -6,7 +6,7 @@ package Login;
  * 
  * @author Michael
  */
-public class User {
+public class Player {
 
     //user fields
     private String username;
@@ -14,7 +14,7 @@ public class User {
     private double highestEarnings;
 
     //constructor
-    public User(String username, String password) {
+    public Player(String username, String password) {
         this.username = username;
         this.password = password;
         this.highestEarnings = 0;
