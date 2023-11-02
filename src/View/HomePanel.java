@@ -2,7 +2,7 @@ package View;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
-import javax.swing.*; //import swing libraries
+import javax.swing.*; 
 
 /**
  *
@@ -12,6 +12,7 @@ public class HomePanel extends JPanel implements viewInterface {
 
     private JButton signInButton;
     private JButton signUpButton;
+    private JButton rulesButton;
     private JLabel welcomeLabel;
 
     public HomePanel() {
@@ -29,6 +30,8 @@ public class HomePanel extends JPanel implements viewInterface {
         signInButton.setFont(new Font("Roboto", Font.BOLD, 20));
         signUpButton = new JButton("Sign up");
         signUpButton.setFont(new Font("Roboto", Font.BOLD, 20));
+        rulesButton = new JButton("Rules"); 
+        rulesButton.setFont(new Font("Roboto", Font.BOLD, 20)); 
         welcomeLabel = new JLabel("Welcome to Deal or No Deal");
         welcomeLabel.setFont(new Font("Roboto", Font.BOLD, 24)); // Applying custom font
         welcomeLabel.setHorizontalAlignment(JLabel.CENTER); // Center aligning the text
@@ -56,6 +59,12 @@ public class HomePanel extends JPanel implements viewInterface {
         gbc.gridx = 1; // Moving to the next column
         gbc.anchor = GridBagConstraints.EAST; // Right aligning the sign-up button
         add(signUpButton, gbc); // Adding the sign-up button
+        
+        gbc.gridy++; // Move to the next row
+        gbc.gridx = 0; // Reset to the first column
+        gbc.gridwidth = 2; // Span the button across two columns
+        gbc.fill = GridBagConstraints.HORIZONTAL; // Make the button stretch to fill the space
+        add(rulesButton, gbc); // Add the rules button to the panel
     }
     
     //actionListeners for the buttons
@@ -65,5 +74,9 @@ public class HomePanel extends JPanel implements viewInterface {
 
     public void addSignUpButtonActionListener(ActionListener listener) {
         signUpButton.addActionListener(listener);
+    }
+    
+    public void addRulesButtonActionListener(ActionListener listener) {
+        rulesButton.addActionListener(listener);
     }
 }
