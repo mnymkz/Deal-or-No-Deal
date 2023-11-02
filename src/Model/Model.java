@@ -40,7 +40,7 @@ public class Model {
         this.gameManager = new GameManager(dBManager);
         this.caseLoader = new CaseLoader(dBManager);
         this.currentPlayer = null;
-        this.game = new Game(caseLoader);
+        this.game = new Game(dBManager);
     }
     
     /**
