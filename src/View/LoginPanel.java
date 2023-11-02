@@ -8,10 +8,10 @@ import javax.swing.*;
 
 /**
  *
- * @author Michael
+ * @author Michael, Tabitha
  */
 public class LoginPanel extends JPanel implements viewInterface {
- private JLabel signUpLabel;
+    private JLabel signUpLabel;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
     private JLabel passwordLabel2; 
@@ -45,12 +45,11 @@ public class LoginPanel extends JPanel implements viewInterface {
         usernameField = new JTextField(15);
 
         passwordField = new JPasswordField(15);
-        passwordField = new JPasswordField(15);
 
-        signUpButton = new JButton("Log In");
+        signUpButton = new JButton("Sign Up");
         signUpButton.setFont(new Font("Roboto", Font.BOLD, 20));
 
-        returnButton = new JButton("Go Back");
+        returnButton = new JButton("Return");
         returnButton.setFont(new Font("Roboto", Font.BOLD, 20));
     }
 
@@ -99,6 +98,22 @@ public class LoginPanel extends JPanel implements viewInterface {
         add(returnButton, gbc);
     }
 
+    public JTextField getUsernameField() {
+        return usernameField;
+    }
+    
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+    
+    public JButton getSignUpButton() {
+        return signUpButton;
+    }
+    
+    public JButton getReturnButton() {
+        return returnButton;
+    }
+    
     //actionListener for the login button
     public void addLoginButtonActionListener(ActionListener listener) {
         signUpButton.addActionListener(listener);
@@ -107,5 +122,17 @@ public class LoginPanel extends JPanel implements viewInterface {
     //actionListener for the return button
     public void addReturnButtonActionListener(ActionListener listener) {
         returnButton.addActionListener(listener);
+    }
+    
+    public void signUpButtonClick(){
+        for (ActionListener e : signUpButton.getActionListeners()){
+            e.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
+        }
+    }
+    
+    public void returnButtonClick(){
+        for (ActionListener e : signUpButton.getActionListeners()){
+            e.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
+        }
     }
 }
