@@ -3,9 +3,9 @@ package Model;
 
 import Banker.Banker;
 import Case.Case;
+import Case.CaseLoader;
 import Login.Player;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * model class contains all the game objects 
@@ -13,24 +13,19 @@ import java.util.Collections;
  * @author Tabitha 
  */
 public class Game {
-    //game needs a banker
-    //game needs cases
-    //game needs a user 
-    //game needs to get the user's first case 
-    
+
+    //game objects
+    private CaseLoader caseLoader;
     private ArrayList<Case> cases;
     private Banker banker;
     private Player user;
     private Case firstCase;
-    
-    
-    public Game(Player user, Banker banker, ArrayList<Case> cases)
-    {
-        this.user = user;
-        this.banker = banker; 
-        this.cases = cases;
+
+    public Game(CaseLoader caseLoader) {
+        this.caseLoader = caseLoader;
+        cases = caseLoader.getCases();
     }
-    
+   
     public void chooseFirstCase(int caseNumber)
     {
         for (Case briefCase : cases)
@@ -38,6 +33,7 @@ public class Game {
             if(briefCase.getNumber() == caseNumber)
             {
                 firstCase = briefCase;
+                cases.remove(briefCase);
                 break;
             }
         }

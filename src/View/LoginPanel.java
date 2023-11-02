@@ -46,7 +46,7 @@ public class LoginPanel extends JPanel implements viewInterface {
 
         passwordField = new JPasswordField(15);
 
-        signUpButton = new JButton("Sign Up");
+        signUpButton = new JButton("Log in");
         signUpButton.setFont(new Font("Roboto", Font.BOLD, 20));
 
         returnButton = new JButton("Return");

@@ -15,11 +15,6 @@ import java.sql.SQLException;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        DBManager dBManager = DBManager.getInstance();
-        dBManager.establishConnection();
-        GameDB gameDB = new GameDB(dBManager);
-        gameDB.initTables();
-        
         View view = new View();
         Model model = new Model();
         Controller controller = new Controller(view, model);

@@ -5,7 +5,7 @@ import Model.Model;
 import View.View;
 
 /**
- * main controller class
+ * parent controller class
  * 
  * @author Michael
  */
@@ -16,6 +16,7 @@ public class Controller {
     private HomeController homeController;
     private SignUpController signUpController;
     private LoginController loginController;
+    private GameController gameController;
     private BankerController bankerController;
     private GameOverController gameOverController;
 
@@ -25,6 +26,7 @@ public class Controller {
         this.homeController = new HomeController(view.getHomePanel(), view, model);
         this.signUpController = new SignUpController(view.getSignUpPanel(), view, model);
         this.loginController = new LoginController(view.getLoginPanel(), view, model);
+        this.bankerController = new BankerController(view.getBankerPanel(), view, model);
         this.bankerController = new BankerController(view.getBankerPanel(), view, model);
         this.gameOverController = new GameOverController(view.getGameOverPanel(), view, model);
     }

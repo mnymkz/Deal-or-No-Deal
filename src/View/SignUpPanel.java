@@ -10,7 +10,8 @@ public class SignUpPanel extends JPanel implements viewInterface {
     private JLabel signUpLabel;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
-    private JLabel passwordLabel2; 
+    private JLabel passwordLabel2;
+    private JLabel errorLabel; 
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JPasswordField passwordField2; 
@@ -39,6 +40,10 @@ public class SignUpPanel extends JPanel implements viewInterface {
         passwordLabel.setFont(new Font("Roboto", Font.PLAIN, 18));
         passwordLabel2 = new JLabel("Re-enter password:");
         passwordLabel2.setFont(new Font("Roboto", Font.PLAIN, 18));
+
+        errorLabel = new JLabel("");
+        errorLabel.setFont(new Font("Roboto", Font.PLAIN, 18));
+        errorLabel.setForeground(Color.RED);
         
         usernameField = new JTextField(15);
         passwordField = new JPasswordField(15);
@@ -103,8 +108,37 @@ public class SignUpPanel extends JPanel implements viewInterface {
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         add(returnButton, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy++;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        add(errorLabel, gbc);
     }
 
+    /**
+     * gets username from textfield
+     * @return username
+     */
+    public String getUsername() {
+        return usernameField.getText();
+    }
+    
+    /**
+     * get password from password box
+     * @return char[] containing password
+     */
+    public char[] getPassword() {
+        return passwordField.getPassword();
+    }
+    
+    /**
+     * get password confirmation
+     * @return 
+     */
+    public char[] getPasswordConfirmation() {
+        return passwordField2.getPassword();
+    }
+    
     //actionListener for the sign-up button
     public void addSignUpButtonActionListener(ActionListener listener) {
         signUpButton.addActionListener(listener);
@@ -112,5 +146,10 @@ public class SignUpPanel extends JPanel implements viewInterface {
     
     public void addReturnButtonActionListener(ActionListener listener) {
         returnButton.addActionListener(listener);
+    }
+    
+    //set error message for error label 
+    public void setErrorMessage(String errorMessage) {
+        errorLabel.setText(errorMessage);
     }
 }

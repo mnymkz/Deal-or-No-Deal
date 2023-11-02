@@ -25,8 +25,11 @@ public class GameController implements ActionListener{
         String command = e.getActionCommand();
         int caseNumber = Integer.parseInt(command);
         
-        model.removeCase(caseNumber); 
-        view.removeBriefcase(caseNumber);
+        
+        //remove case
+        //hide button
+//        model.removeCase(caseNumber); 
+//        view.removeBriefcase(caseNumber);
         
         //When user reaches its final briefcase of the current round
         //From GamePanel to BankerPanel
