@@ -52,12 +52,6 @@ public class GameController {
             } catch(SQLException ex) {
                 System.out.println("Error updating round: " + ex.getMessage());
             }
-
-    //        if(currentRound == 10) {
-    //            ArrayList<Case> lastCases = game.lastRound();
-    //            view.showLastRoundChoices("Your First Case: " + lastCases.get(0).getNumber(), "The Last Case: " + lastCases.get(1).getNumber());
-    //            view.addLastRoundButtonListener(this);
-    //        }
         }
     }
 }
