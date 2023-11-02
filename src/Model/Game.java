@@ -3,7 +3,7 @@ package Model;
 
 import Banker.Banker;
 import Case.Case;
-import Login.User;
+import Login.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -20,11 +20,11 @@ public class Game {
     
     private ArrayList<Case> cases;
     private Banker banker;
-    private User user;
+    private Player user;
     private Case firstCase;
     
     
-    public Game(User user, Banker banker, ArrayList<Case> cases)
+    public Game(Player user, Banker banker, ArrayList<Case> cases)
     {
         this.user = user;
         this.banker = banker; 
@@ -87,7 +87,7 @@ public class Game {
         return banker;
     }
     
-    public User getUser() {
+    public Player getUser() {
         return user;
     }
     

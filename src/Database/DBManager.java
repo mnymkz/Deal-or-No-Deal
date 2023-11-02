@@ -3,6 +3,7 @@ package Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -71,12 +72,13 @@ public class DBManager {
     
     /**
      * queries the db and returns a result set
+     * used to load items using statement in init SQL
      * 
      * @param query
      * @return the result set from the database
      * @throws java.sql.SQLException
      */
-    public ResultSet queryDB(String query) throws SQLException {
+    public ResultSet queryItems(String query) throws SQLException {
 
         Connection connection = this.conn;
         Statement statement = null;
@@ -89,12 +91,49 @@ public class DBManager {
         } catch (SQLException e) {
             conn.rollback();//rollback transaction
             System.out.println(e.getMessage());
+            throw e;
         }
         return resultSet;
     }
     
     /**
-	 * Execute update command on database.
+     * queries the db and returns a result set
+     * used for queries that require params e.g WHERE NAME = ?
+     * 
+     * @param query the sql query statement 
+     * @param parameters the query params
+     * @return a result set from the query
+     * @throws SQLException 
+     */
+    public Result queryDB(String query, Object... parameters) throws SQLException {
+        Connection connection = this.conn;
+        ResultSet resultSet = null;
+        PreparedStatement ps = null;
+
+        try {
+            ps = connection.prepareStatement(query);
+            for (int i = 0; i < parameters.length; i++) {
+                if (parameters[i] instanceof String) {
+                    ps.setString(i + 1, (String) parameters[i]);
+                } else if (parameters[i] instanceof Integer) {
+                    ps.setInt(i + 1, (Integer) parameters[i]);
+                } else if (parameters[i] instanceof Double) {
+                    ps.setDouble(i + 1, (Double) parameters[i]);
+                }
+                // You can continue with other data types as necessary
+            }
+
+            resultSet = ps.executeQuery();
+        } catch (SQLException e) {
+            conn.rollback(); //rollback transaction if necessary
+            System.out.println(e.getMessage());
+            throw e;
+        }
+        return new Result(resultSet, ps); //return result object containing prepared statement and result set
+    }
+    
+    /**
+	 * Execute update command on database. 
 	 * 
 	 * @param updateStatement statements to execute as array.
      * @throws java.sql.SQLException
@@ -104,7 +143,65 @@ public class DBManager {
             statement.execute(updateStatement); //execute statement
         } catch (SQLException e) {
             conn.rollback(); //rollback transaction
-            System.out.println("Error executing: " + e.getMessage() + e.getCause());
+            System.out.println("Error executing: " + e.getMessage());
+            throw e;
         }
     }
+    
+    /**
+     * execute update command with params
+     * 
+     * @param sql
+     * @param parameters
+     * @throws SQLException 
+     */
+    public void update(String sql, Object... parameters) throws SQLException {
+        try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            for (int i = 0; i < parameters.length; i++) {
+                preparedStatement.setObject(i + 1, parameters[i]);
+            }
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) { //check if any rows were updated
+                System.out.println("The row was updated successfully!");
+            } else {
+                System.out.println("No rows were updated.");
+            }
+        } catch (SQLException e) {
+            conn.rollback(); //error, rollback transaction
+            System.out.println(e.getMessage());
+            throw e;
+        }
+    }
+
+    /**
+     * insert method inserts into a table with parameters
+     * used to prevent sql injections 
+     * 
+     * @param sql
+     * @param parameters 
+     */
+    public void insert(String sql, Object... parameters) throws SQLException {
+        try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            for (int i = 0; i < parameters.length; i++) {
+                if (parameters[i] instanceof String) {
+                    preparedStatement.setString(i + 1, (String) parameters[i]);
+                } else if (parameters[i] instanceof Integer) {
+                    preparedStatement.setInt(i + 1, (Integer) parameters[i]);
+                } else if (parameters[i] instanceof Double) {
+                    preparedStatement.setDouble(i + 1, (Double) parameters[i]);
+                } // ... (you can add more types as needed)
+            }
+
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A new row was inserted successfully!");
+            }
+        } catch (SQLException e) {
+            conn.rollback();
+            System.out.println(e.getMessage());
+            throw e;
+        }
+    }
+    
 }

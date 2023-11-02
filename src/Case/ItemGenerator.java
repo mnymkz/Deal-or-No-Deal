@@ -25,7 +25,7 @@ public class ItemGenerator {
     
     public void loadItems() throws SQLException {
         //iterate through result set
-        ResultSet rs = dbManager.queryDB(SELECT_ITEMS);
+        ResultSet rs = dbManager.queryItems(SELECT_ITEMS);
         
         while (rs.next()) {
             String name = rs.getString("itemName"); //get item fields
