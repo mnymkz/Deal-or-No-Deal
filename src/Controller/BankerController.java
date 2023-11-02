@@ -1,10 +1,14 @@
 package Controller;
 
+import Login.Player;
 import Model.Model;
 import View.BankerPanel;
 import View.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,6 +29,12 @@ public class BankerController {
         this.bankerPanel.addNoDealButtonActionListener(new NoDealActionListener());
     }
 
+    public void fetchBankerOffer() {
+        //getBanker offer
+        double offer = 0.00; //model.getOffer
+        bankerPanel.setBankerOffer(offer);
+    }
+    
     /**
      * deal button action listener
      */
@@ -33,10 +43,16 @@ public class BankerController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Deal Button Clicked, accepting offer");
-            //TODO handle event 
-            //update user final earnings
-            //take user to end game screen
-            //end of game 
+            //set the earnings as highestEarnings 
+            double offer = model.getBankerOffer(); //model.getOffer
+            Player player = model.getCurrentPlayer(); //get player
+            try {
+                System.out.println("updating earnings...");
+                model.getLoginManager().updateHighestEarnings(player, offer); //update earnings 
+                mainFrame.switchPanel("GaneOverPanel"); //take user to game over screen
+            } catch (SQLException ex) {
+                Logger.getLogger(BankerController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

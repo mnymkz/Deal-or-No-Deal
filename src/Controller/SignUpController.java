@@ -57,7 +57,7 @@ public class SignUpController {
                         //create new player in model
                         try {
                             model.createPlayer(username, new String(password));
-                            mainFrame.switchPanel("HomePanel"); 
+                            mainFrame.switchPanel("GamePanel"); 
                         } catch (SQLException ex) {
                             Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
                         }
