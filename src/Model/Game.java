@@ -140,6 +140,7 @@ public class Game {
         gameManager.updateCurrentRound(user.getUsername(), currentRound + 1);
     }
     
+    //getter and setter
     public Case getFirstCase()
     {
         return firstCase;
@@ -160,7 +161,34 @@ public class Game {
     public GameManager getGameManager() {
         return gameManager;
     }
-    
+
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
+    }
+
+    public void setDbManager(DBManager dbManager) {
+        this.dbManager = dbManager;
+    }
+
+    public void setCaseLoader(CaseLoader caseLoader) {
+        this.caseLoader = caseLoader;
+    }
+
+    public void setCases(ArrayList<Case> cases) {
+        this.cases = cases;
+    }
+
+    public void setBanker(Banker banker) {
+        this.banker = banker;
+    }
+
+    public void setUser(Player user) {
+        this.user = user;
+    }
+
+    public void setFirstCase(int caseNo) {
+        this.firstCase = cases.get(caseNo+1);
+    }
     
     public void printRemainingCases()
     {
