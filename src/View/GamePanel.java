@@ -18,6 +18,8 @@ public class GamePanel extends JPanel implements viewInterface {
     private JLabel label;
     private JButton firstCaseButton;
     private JButton lastCaseButton;
+    private boolean isFirstRound = true;
+
     
     //case components 
     public GamePanel() {
@@ -99,9 +101,23 @@ public class GamePanel extends JPanel implements viewInterface {
         repaint();
     }
     
+    //First round interaction
     public void addCaseButtonListener(ActionListener listener) {
         for (JButton caseButton : briefCaseButtons) {
-            caseButton.addActionListener(listener);
+            caseButton.addActionListener(e -> {
+                if (isFirstRound) {
+                    isFirstRound = false;
+                    String command = e.getActionCommand();
+                    int caseNumber = Integer.parseInt(command);
+                    removeBriefcase(caseNumber);
+                    updateStatusLabel("You've chosen case " + caseNumber + " as your first case!");
+                    
+                    // Notify GameManager or any controlling class about this selection
+                    listener.actionPerformed(e);
+                } else {
+                    listener.actionPerformed(e);
+                }
+            });
         }
     }
     
