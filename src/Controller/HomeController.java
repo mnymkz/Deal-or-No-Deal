@@ -17,15 +17,14 @@ public class HomeController {
     //gui instances
     private HomePanel homePanel;
     private View mainFrame;
-    private Model model;
 
     //constructor
-    public HomeController(HomePanel homePanel, View mainFrame, Model model) {
+    public HomeController(HomePanel homePanel, View mainFrame) {
         this.homePanel = homePanel;
         this.mainFrame = mainFrame;
-        this.model = model;
         this.homePanel.addSignInButtonActionListener(new SignInButtonListener()); //add action listner
         this.homePanel.addSignUpButtonActionListener(new SignUpButtonListener()); //add action listener 
+        this.homePanel.addRulesButtonActionListener(new RulesButtonActionListener()); //add action listener
     }
 
     /**
@@ -51,4 +50,17 @@ public class HomeController {
             System.out.println("Sign Up Button Clicked, taking user to sign up page");
         }
     }
+    
+    /**
+     * ActionListener for rules button
+     */
+    private class RulesButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //when clicked, display sign up panel
+            mainFrame.switchPanel("RulesPanel");
+            System.out.println("Rules Button Clicked, taking user to rules page");
+        }
+    }
+    
 }
