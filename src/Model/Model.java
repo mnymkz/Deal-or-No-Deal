@@ -2,15 +2,11 @@
 package Model;
 
 import Case.CaseLoader;
-import Case.ItemGenerator;
 import Database.DBManager;
 import Database.GameDB;
 import Login.LoginManager;
 import Login.Player;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -62,6 +58,10 @@ public class Model {
             loginManager.registerLogin(currentPlayer); //add user to database 
             return true;
         }
+    }
+    
+    public double getBankerOffer() {
+        return this.game.getBanker().createOffer(caseLoader.getCases());
     }
     
     public DBManager getdBManager() {
