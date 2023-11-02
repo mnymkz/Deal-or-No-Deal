@@ -134,4 +134,24 @@ public class GamePanel extends JPanel implements viewInterface {
         label.setText(text);
     }
     
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Deal or No Deal Game");
+        GamePanel gamePanel = new GamePanel();
+
+        // Add case button listeners for testing
+        gamePanel.addCaseButtonListener(e -> {
+            System.out.println("Button " + e.getActionCommand() + " was pressed.");
+        });
+
+        // Add last round button listeners for testing
+        gamePanel.addLastRoundButtonListener(e -> {
+            System.out.println("Last round button " + ((JButton) e.getSource()).getText() + " was pressed.");
+        });
+
+        frame.add(gamePanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
 }
