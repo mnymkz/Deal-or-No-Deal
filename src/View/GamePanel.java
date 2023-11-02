@@ -106,8 +106,8 @@ public class GamePanel extends JPanel implements viewInterface {
         for (JButton caseButton : briefCaseButtons) {
             caseButton.addActionListener(e -> {
                 if (isFirstRound) {
-                    isFirstRound = false;
-                    String command = e.getActionCommand();
+                    isFirstRound = false; //setFirstRound to false 
+                    String command = e.getActionCommand(); 
                     int caseNumber = Integer.parseInt(command);
                     removeBriefcase(caseNumber);
                     updateStatusLabel("You've chosen case " + caseNumber + " as your first case!");

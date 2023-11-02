@@ -56,8 +56,9 @@ public class SignUpController {
                         System.out.println("Passwords match");
                         //create new player in model
                         try {
-                            model.createPlayer(username, new String(password));
-                            mainFrame.switchPanel("GamePanel"); 
+                            model.createPlayer(username, new String(password)); //create new player
+                            model.createGame(username); //create new game
+                            mainFrame.switchPanel("GamePanel");  //switch to game view 
                         } catch (SQLException ex) {
                             Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
                         }
