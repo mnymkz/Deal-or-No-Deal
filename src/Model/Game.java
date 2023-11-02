@@ -173,9 +173,9 @@ public class Game {
         while(!allCasesOpened()) {
             printRemainingCases();
         }
-
         // Once loop exits, only the firstCase is left
         double finalPrize = firstCase.getItem().getMoneyValue();
+        revealFirstCase();
         System.out.println("The game is over! The value of your initial briefcase is: $" + finalPrize);
     }
     
