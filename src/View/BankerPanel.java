@@ -23,7 +23,7 @@ public class BankerPanel extends JPanel implements viewInterface {
     //init components 
     @Override
     public void initComponents() {
-        this.offerLabel = new JLabel("Banker offers:");
+        this.offerLabel = new JLabel();
         this.textLabel = new JLabel("Do you accept?");
         this.dealButton = new JButton("Deal");
         this.dealButton.setFont(new Font("Roboto", Font.BOLD, 20));
@@ -68,6 +68,15 @@ public class BankerPanel extends JPanel implements viewInterface {
     public void addNoDealButtonActionListener(ActionListener listener) {
         noDealButton.addActionListener(listener);
     }
+    
+    /**
+     * setBanker offer 
+     * @param offer the offer to set the text to 
+     */
+    public void setBankerOffer(double offer) {
+        offerLabel.setText("Banker offers: " + String.format("$%,.2f", offer));
+    }
+
     
     public static void main(String[] args) {
         JFrame frame = new JFrame("Banker Panel");

@@ -60,7 +60,7 @@ public class LoginController {
                             Player currentPlayer = model.getLoginManager().getPlayer(username);
                             model.setCurrentPlayer(currentPlayer);
                             System.out.println("Login successful");
-                            mainFrame.switchPanel("HomePanel"); //switch to home for now 
+                            mainFrame.switchPanel("GamePanel"); 
                         } else {
                             System.out.println("Error - wrong details. Double check.");
                             loginPanel.setErrorMessage("Error loging in. Double check username and password.");
@@ -73,9 +73,6 @@ public class LoginController {
             } catch (SQLException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
-          
         }
     }
     
@@ -83,11 +80,9 @@ public class LoginController {
      * return button action listener
      */
     private class ReturnButtonListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Return Button Clicked, returning");
-            //TODO call create user 
             mainFrame.switchPanel("HomePanel");
         }
     }

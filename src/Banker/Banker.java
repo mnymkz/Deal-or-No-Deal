@@ -97,6 +97,11 @@ public class Banker
         System.out.println("\nBanker's offer: $" +  Math.round(getOffer()));
     }
     
+    /**
+     * Calculate offer returns an offer based on the cases left 
+     * 
+     * @return an offer
+     */
     public double calculateOffer()
     {
         System.out.println("TODO");
