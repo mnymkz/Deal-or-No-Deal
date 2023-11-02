@@ -24,10 +24,10 @@ public class Game {
     private Banker banker;
     private Player user;
     private Case firstCase;
-
-    public Game(CaseLoader caseLoader, DBManager dbManager) {
-        this.caseLoader = caseLoader;
+    
+    public Game(DBManager dbManager) {
         this.gameManager = new GameManager(dbManager);
+        this.caseLoader = new CaseLoader(dbManager);
         cases = caseLoader.getCases();
     }
    
