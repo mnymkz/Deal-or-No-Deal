@@ -101,6 +101,11 @@ public class Game {
         return user;
     }
     
+    public GameManager getGameManager() {
+        return gameManager;
+    }
+    
+    
     public void printRemainingCases()
     {
         System.out.println("User's selected case: " + firstCase.getNumber());
