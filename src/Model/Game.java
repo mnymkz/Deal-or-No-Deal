@@ -113,6 +113,26 @@ public class Game {
         }
     }
     
+//    public ArrayList<Case> getLastCases() {
+//        ArrayList<Case> lastCases = new ArrayList<>();
+//
+//        // Get the last unopened case (other than the first case chosen by the player)
+//        Case lastUnopenedCase = null;
+//        for(Case briefCase : cases) {
+//            if(briefCase != firstCase && !briefCase.isOpened()) {
+//                lastUnopenedCase = briefCase;
+//                break;
+//            }
+//        }
+//
+//        if (lastUnopenedCase != null) {
+//            lastCases.add(firstCase);
+//            lastCases.add(lastUnopenedCase);
+//        }
+//
+//        return lastCases;
+//    }
+    
     public void endRound() throws SQLException {
         int currentRound = gameManager.getCurrentRound(user.getUsername());
         gameManager.updateCurrentRound(user.getUsername(), currentRound + 1);
@@ -147,6 +167,16 @@ public class Game {
         
         
         System.out.println("Banker's offer: $" + banker.getOffer());
+    }
+    
+    public void casesOpened() {
+        while(!allCasesOpened()) {
+            printRemainingCases();
+        }
+
+        // Once loop exits, only the firstCase is left
+        double finalPrize = firstCase.getItem().getMoneyValue();
+        System.out.println("The game is over! The value of your initial briefcase is: $" + finalPrize);
     }
     
     public void revealFirstCase()

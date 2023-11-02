@@ -16,11 +16,16 @@ public class GamePanel extends JPanel implements viewInterface {
 
     private ArrayList<JButton> briefCaseButtons;
     private JLabel label;
+    private JButton firstCaseButton;
+    private JButton lastCaseButton;
     
     //case components 
     public GamePanel() {
         initComponents();
         setLayout();
+        
+        firstCaseButton = new JButton("First Case");
+        lastCaseButton = new JButton("Last Case");
     }
 
     @Override
@@ -80,10 +85,29 @@ public class GamePanel extends JPanel implements viewInterface {
         label.setBorder(new EmptyBorder(10, 0, 10, 0));
     }
     
+    //Method for last round
+    public void showLastRoundChoices(String firstCaseText, String lastCaseText) {
+        firstCaseButton.setText(firstCaseText);
+        lastCaseButton.setText(lastCaseText);
+
+        JPanel lastRoundPanel = new JPanel(new GridLayout(1, 2));
+        lastRoundPanel.add(firstCaseButton);
+        lastRoundPanel.add(lastCaseButton);
+
+        add(lastRoundPanel, BorderLayout.SOUTH);
+        revalidate();
+        repaint();
+    }
+    
     public void addCaseButtonListener(ActionListener listener) {
         for (JButton caseButton : briefCaseButtons) {
             caseButton.addActionListener(listener);
         }
+    }
+    
+    public void addLastRoundButtonListener(ActionListener listener) {
+        firstCaseButton.addActionListener(listener);
+        lastCaseButton.addActionListener(listener);
     }
     
     public void removeBriefcase(int caseNumber) {
@@ -94,15 +118,4 @@ public class GamePanel extends JPanel implements viewInterface {
         label.setText(text);
     }
     
-//    public static void main(String[] args) {
-//        JFrame frame = new JFrame("Deal or No Deal");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(800, 600);
-//        frame.setLocationRelativeTo(null);
-//        
-//        GamePanel gamePanel = new GamePanel();
-//        frame.add(gamePanel);
-//        
-//        frame.setVisible(true);
-//    }
 }

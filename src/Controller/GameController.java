@@ -1,11 +1,13 @@
 package Controller;
 
+import Case.Case;
 import View.GamePanel;
 import Model.Model;
 import Model.Game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -44,8 +46,10 @@ public class GameController implements ActionListener{
             System.out.println("Error updating round: " + ex.getMessage());
         }
         
-        if(currentRound == 10) {
-            game.lastRound();
-        }
+//        if(currentRound == 10) {
+//            ArrayList<Case> lastCases = game.lastRound();
+//            view.showLastRoundChoices("Your First Case: " + lastCases.get(0).getNumber(), "The Last Case: " + lastCases.get(1).getNumber());
+//            view.addLastRoundButtonListener(this);
+//        }
     }
 }
