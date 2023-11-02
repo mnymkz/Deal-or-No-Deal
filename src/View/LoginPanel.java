@@ -14,7 +14,7 @@ public class LoginPanel extends JPanel implements viewInterface {
     private JLabel signUpLabel;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
-    private JLabel passwordLabel2; 
+    private JLabel errorLabel; 
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
@@ -49,6 +49,10 @@ public class LoginPanel extends JPanel implements viewInterface {
 
         returnButton = new JButton("Return");
         returnButton.setFont(new Font("Roboto", Font.BOLD, 20));
+        
+        errorLabel = new JLabel();
+        errorLabel.setFont(new Font("Roboto", Font.PLAIN, 18));
+        errorLabel.setForeground(Color.RED);
     }
 
     //set layout
@@ -94,8 +98,31 @@ public class LoginPanel extends JPanel implements viewInterface {
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         add(returnButton, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy++;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        add(errorLabel, gbc);
     }
 
+    /**
+     * gets username from text field
+     * @return the username 
+     */
+    public String getUsername() {
+        return usernameField.getText();
+    }
+    
+    /**
+     * gets password from password field
+     * @return the password
+     */
+    public char[] getPassword() {
+        return passwordField.getPassword();
+    }
+    
+    
+    //getters
     public JTextField getUsernameField() {
         return usernameField;
     }
@@ -122,6 +149,9 @@ public class LoginPanel extends JPanel implements viewInterface {
         returnButton.addActionListener(listener);
     }
     
+    /**
+     * Test methods
+     */
     public void signUpButtonClick(){
         for (ActionListener e : loginButton.getActionListeners()){
             e.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
@@ -132,5 +162,14 @@ public class LoginPanel extends JPanel implements viewInterface {
         for (ActionListener e : loginButton.getActionListeners()){
             e.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
         }
+    }
+    
+    /**
+     * set error message to errorMessage - used in controller
+     * 
+     * @param errorMessage the error message to display 
+     */
+    public void setErrorMessage(String errorMessage) {
+        errorLabel.setText(errorMessage);
     }
 }

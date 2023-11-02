@@ -148,8 +148,13 @@ public class SignUpPanel extends JPanel implements viewInterface {
         returnButton.addActionListener(listener);
     }
     
-    //set error message for error label 
+    /**
+     * set error message to errorMessage - used in controller
+     * 
+     * @param errorMessage the error message to display 
+     */
     public void setErrorMessage(String errorMessage) {
         errorLabel.setText(errorMessage);
     }
 }
+
