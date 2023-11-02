@@ -43,7 +43,7 @@ public class GameOverController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Play again button clicked, creating new game");
-            mainFrame.switchPanel("LogInPanel");
+            mainFrame.switchPanel("HomePanel");
         }
     }
     

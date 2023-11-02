@@ -2,6 +2,7 @@
 package Model;
 
 import Banker.Banker;
+import Banker.RandomBanker;
 import Database.DBManager;
 import Case.Case;
 import Case.CaseLoader;
@@ -27,7 +28,7 @@ public class Game {
 
     public Game(DBManager dbManager) {
         this.dbManager = dbManager;
-        this.banker = new Banker("Banker", "conservative");
+        this.banker = new RandomBanker("Banker");
         this.gameManager = new GameManager(dbManager);
         this.caseLoader = new CaseLoader(dbManager);
         cases = caseLoader.getCases();

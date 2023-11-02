@@ -56,14 +56,11 @@ public class DBTest {
                 int gameId = rsGames.getInt("gameID");
                 int currentRound = rsGames.getInt("currentRound");
                 double currentEarnings = rsGames.getDouble("currentEarnings");
-                int numChoices = rsGames.getInt("numChoices");
                 int playerID = rsGames.getInt("playerId");
-                
                 
                 System.out.println("gameId: " + gameId
                         + ", currentRound: " + currentRound
                         + ", currentEarnings: " + currentEarnings
-                        + ", numChoices: " + numChoices
                         + ", playerID: " + playerID);
             }
         } catch (SQLException ex) {

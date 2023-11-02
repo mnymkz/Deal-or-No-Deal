@@ -58,7 +58,7 @@ public class SignUpController {
                         try {
                             model.createPlayer(username, new String(password)); //create new player
                             model.createGame(username); //create new game
-                            mainFrame.switchPanel("GamePanel");  //switch to game view 
+                            mainFrame.switchPanel("FirstRoundPanel");  //switch to game view 
                         } catch (SQLException ex) {
                             Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
                         }

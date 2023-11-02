@@ -16,7 +16,7 @@ public class Controller {
     private HomeController homeController;
     private SignUpController signUpController;
     private LoginController loginController;
-    private GameController gameController;
+    private FirstRoundController gameController;
     private BankerController bankerController;
     private GameOverController gameOverController;
     private RulesController rulesController;
@@ -28,7 +28,7 @@ public class Controller {
         this.signUpController = new SignUpController(view.getSignUpPanel(), view, model);
         this.loginController = new LoginController(view.getLoginPanel(), view, model);
         this.rulesController = new RulesController(view.getRulesPanel(), view);
-        this.gameController = new GameController(view.getGamePanel(), view,  model);
+        this.gameController = new FirstRoundController(view.getFirstRoundPanel(), view,  model);
         this.bankerController = new BankerController(view.getBankerPanel(), view, model);
         this.gameOverController = new GameOverController(view.getGameOverPanel(), view, model);
     }

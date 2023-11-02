@@ -49,7 +49,7 @@ public class BankerController {
             try {
                 System.out.println("updating earnings...");
                 model.getLoginManager().updateHighestEarnings(player, offer); //update earnings 
-                mainFrame.switchPanel("GaneOverPanel"); //take user to game over screen
+                mainFrame.switchPanel("GameOverPanel"); //take user to game over screen
             } catch (SQLException ex) {
                 Logger.getLogger(BankerController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -59,14 +59,13 @@ public class BankerController {
     /**
      * no deal button action listener
      */
-    private static class NoDealActionListener implements ActionListener {
+    private class NoDealActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("No Deal Button Clicked, rejecting offer");
             //TODO handle event 
-            //continue onto new round 
-            //user earnings stay the same
+            mainFrame.switchPanel("GamePanel");
          }
     }
 }

@@ -61,7 +61,7 @@ public class LoginController {
                             model.setCurrentPlayer(currentPlayer); //set current player to player
                             System.out.println("Login successful"); 
                             model.createGame(username); //create a new game
-                            mainFrame.switchPanel("GamePanel"); //switch to game 
+                            mainFrame.switchPanel("FirstRoundPanel"); //switch to game 
                         } else {
                             System.out.println("Error - wrong details. Double check.");
                             loginPanel.setErrorMessage("Error loging in. Double check username and password.");
