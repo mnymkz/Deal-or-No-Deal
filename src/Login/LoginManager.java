@@ -31,12 +31,12 @@ public class LoginManager {
     /**
      * playerExists method checks if a player exists in the database 
      * 
-     * @param player the player to check
+     * @param username the username of the player
      * @return true if exists, else false
      */
-    public boolean playerExists(Player player) throws SQLException {
+    public boolean playerExists(String username) throws SQLException {
         String query = "SELECT * FROM PLAYER WHERE username = ?";
-        Result result = dbManager.queryDB(query, player.getUsername()); //get the result
+        Result result = dbManager.queryDB(query, username); //get the result
         ResultSet rs = result.getResultSet(); //get the result set
         return rs.next();
     }

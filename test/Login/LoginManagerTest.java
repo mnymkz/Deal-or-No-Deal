@@ -29,16 +29,16 @@ public class LoginManagerTest {
         Player player = new Player("testUser", "testPass");
         loginManager.registerLogin(player);
 
-        assertTrue(loginManager.playerExists(player)); //player should exist 
+        assertTrue(loginManager.playerExists("testUser")); //player should exist 
     }
 
     @Test
     public void testPlayerExists() throws Exception {
         Player player = new Player("testUser", "testPass"); //create new player
-        assertFalse(loginManager.playerExists(player)); //player should not exist
+        assertFalse(loginManager.playerExists("testUser")); //player should not exist
         dbManager.update("INSERT INTO PLAYER (username, password, highestEarnings) VALUES (?, ?, ?)", 
                 player.getUsername(), player.getPassword(), player.getHighestEarnings()); //add player
-        assertTrue(loginManager.playerExists(player)); //player should exist
+        assertTrue(loginManager.playerExists("testUser")); //player should exist
     }
 
     @Test

@@ -3,8 +3,6 @@ package Main;
 
 import Model.Model;
 import Controller.Controller;
-import Database.DBManager;
-import Database.GameDB;
 import View.View;
 import java.sql.SQLException;
 

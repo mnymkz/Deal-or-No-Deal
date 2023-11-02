@@ -53,7 +53,7 @@ public class Model {
      */
     public boolean createPlayer(String username, String password) throws SQLException {
         Player player = new Player(username, password);
-        if (loginManager.playerExists(currentPlayer)) {
+        if (loginManager.playerExists(username)) {
             System.out.println("Login already exists!");
             return false;
         } else {
