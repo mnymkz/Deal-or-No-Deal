@@ -64,42 +64,6 @@ public class Model {
         }
     }
     
-    
-    
-    
-    
-//    //load game objects
-//    public void gameObjectsLoad(ArrayList<Case> cases, Banker banker)
-//    {
-//        this.game = new Game(currentPlayer, banker, cases);
-//    }
-//    
-//    //get user from the login page
-//    public Player getUserFromLogin(String username, String password)
-//    {
-//        //Validate user credentials?
-//        // -> If validation successful, create and return a new Player object
-//        this.currentPlayer = new Player(username, password);
-//        return this.currentPlayer;
-//    }
-//    
-//    public void removeCase(int caseNumber)
-//    {
-//        game.removeCase(caseNumber);
-//    }
-//    
-//    //Get the current game object
-//    public Game geCurrentGame()
-//    {
-//        return this.game;
-//    }
-//    
-//    //Set the current game object
-//    public void setCurrentGame(Game game)
-//    {
-//        this.game = game;
-//    }
-
     public DBManager getdBManager() {
         return dBManager;
     }
@@ -127,6 +91,9 @@ public class Model {
     public GameManager getGameManager() {
         return gameManager;
     }
-    
-    
+
+    //setter
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
 }

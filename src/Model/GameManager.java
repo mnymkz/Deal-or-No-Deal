@@ -80,6 +80,8 @@ public class GameManager {
         String query = "UPDATE GAME SET currentRound = ? WHERE playerID = ?";
         dBManager.update(query, round, playerID);
     }
+    
+    
 
     /**
      * getCurrent round retrieves the current round from the database
