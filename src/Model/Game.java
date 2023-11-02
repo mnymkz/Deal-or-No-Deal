@@ -27,6 +27,7 @@ public class Game {
 
     public Game(DBManager dbManager) {
         this.dbManager = dbManager;
+        this.banker = new Banker("Banker", "conservative");
         this.gameManager = new GameManager(dbManager);
         this.caseLoader = new CaseLoader(dbManager);
         cases = caseLoader.getCases();

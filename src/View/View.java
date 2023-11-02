@@ -58,8 +58,8 @@ public class View extends JFrame {
         this.loginPanel = new LoginPanel();
         this.signUpPanel = new SignUpPanel();
         this.bankerPanel = new BankerPanel();
-        this.gameOverPanel = new GameOverPanel();
         this.gamePanel = new GamePanel();
+        this.gameOverPanel = new GameOverPanel();
         this.rulesPanel = new RulesPanel();
     }
     
