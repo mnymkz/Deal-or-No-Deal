@@ -47,7 +47,7 @@ public class LoginPanelTest {
     public void testInitComponents() {
         System.out.println("initComponents");
         LoginPanel instance = new LoginPanel();
-        assertNotNull("Components should be initialized", instance.getSignUpButton());
+        assertNotNull("Components should be initialized", instance.getLoginButton());
     }
 
     /**
@@ -87,7 +87,7 @@ public class LoginPanelTest {
     public void testGetSignUpButton() {
         System.out.println("getSignUpButton");
         LoginPanel instance = new LoginPanel();
-        JButton result = instance.getSignUpButton();
+        JButton result = instance.getLoginButton();
         assertNotNull(result);
     }
 
@@ -110,7 +110,7 @@ public class LoginPanelTest {
         LoginPanel instance = new LoginPanel();
         ActionListener listener = e -> {};
         instance.addLoginButtonActionListener(listener);
-        assertTrue("Listeners should be added to Login button", instance.getSignUpButton().getActionListeners().length > 0);
+        assertTrue("Listeners should be added to Login button", instance.getLoginButton().getActionListeners().length > 0);
     }
 
     /**
@@ -133,8 +133,8 @@ public class LoginPanelTest {
     public void testSignUpButtonClick() {
         System.out.println("signUpButtonClick");
         LoginPanel instance = new LoginPanel();
-        JButton signUpButton = instance.getSignUpButton();
-        assertEquals("Default text should be 'Sign Up'", "Sign Up", signUpButton.getText());
+        JButton loginButton = instance.getLoginButton();
+        assertEquals("Default text should be 'Log In'", "Log In", loginButton.getText());
     }
 
     /**

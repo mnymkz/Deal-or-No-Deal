@@ -1,7 +1,6 @@
 
 package Controller;
 
-import Login.Player;
 import Model.Model;
 import View.SignUpPanel;
 import View.View;
@@ -9,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -41,26 +42,33 @@ public class SignUpController {
             char[] passwordConfirm = signUpPanel.getPasswordConfirmation();
             System.out.println(username + " " + password);
             
-            if (Arrays.equals(password, passwordConfirm)) {
-                try {
-                    //if username exists 
-                    if (model.getLoginManager().playerExists(new Player(username, new String(password)))) {
+            try {
+                //if player exists
+                if (model.getLoginManager().playerExists(username)) { 
+                    System.out.println("Login already exists");
+                    signUpPanel.setErrorMessage("Login already exists"); //display error message to user
+                } 
+                
+                //if player does not exist
+                if (!model.getLoginManager().playerExists(username)) { 
+                    //check if passwords match 
+                    if (Arrays.equals(password, passwordConfirm)) {
+                        System.out.println("Passwords match");
+                        //create new player in model
                         try {
-                            model.createPlayer(username, new String(password)); //create new player in model
-                            System.out.println("Player successfully created"); 
-                            mainFrame.switchPanel("GamePanel"); //switch to game panel
+                            model.createPlayer(username, new String(password));
+                            mainFrame.switchPanel("HomePanel"); 
                         } catch (SQLException ex) {
-                            System.out.println("Error creating new user: " + ex.getMessage());
-                            signUpPanel.setErrorMessage("Error creating new user");
+                            Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                    } else {
+                        //display error to user
+                        System.out.println("Passwords do not match");
+                        signUpPanel.setErrorMessage("Passwords do not match.");
                     }
-                } catch (SQLException ex) {
-                    System.out.println("Error checking if player exists");
-                    signUpPanel.setErrorMessage("Error checking if user exists");
                 }
-            } else {
-                 System.out.println("Passwords do not match.");
-                 signUpPanel.setErrorMessage("Passwords do not match.");
+            } catch (SQLException ex) {
+                Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

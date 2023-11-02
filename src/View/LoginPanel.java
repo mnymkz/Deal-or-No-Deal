@@ -14,10 +14,10 @@ public class LoginPanel extends JPanel implements viewInterface {
     private JLabel signUpLabel;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
-    private JLabel passwordLabel2; 
+    private JLabel errorLabel; 
     private JTextField usernameField;
     private JPasswordField passwordField;
-    private JButton signUpButton;
+    private JButton loginButton;
     private JButton returnButton;
     
     public LoginPanel() {
@@ -40,17 +40,19 @@ public class LoginPanel extends JPanel implements viewInterface {
 
         passwordLabel = new JLabel("Password:");
         passwordLabel.setFont(new Font("Roboto", Font.PLAIN, 18));
-        passwordLabel2 = new JLabel("Re-enter password:");
-        passwordLabel2.setFont(new Font("Roboto", Font.PLAIN, 18));
+        
         usernameField = new JTextField(15);
-
         passwordField = new JPasswordField(15);
 
-        signUpButton = new JButton("Log in");
-        signUpButton.setFont(new Font("Roboto", Font.BOLD, 20));
+        loginButton = new JButton("Log In");
+        loginButton.setFont(new Font("Roboto", Font.BOLD, 20));
 
         returnButton = new JButton("Return");
         returnButton.setFont(new Font("Roboto", Font.BOLD, 20));
+        
+        errorLabel = new JLabel();
+        errorLabel.setFont(new Font("Roboto", Font.PLAIN, 18));
+        errorLabel.setForeground(Color.RED);
     }
 
     //set layout
@@ -89,15 +91,38 @@ public class LoginPanel extends JPanel implements viewInterface {
         gbc.gridy++;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
-        add(signUpButton, gbc);
+        add(loginButton, gbc);
 
         gbc.gridx = 0;
         gbc.gridy++;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         add(returnButton, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy++;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        add(errorLabel, gbc);
     }
 
+    /**
+     * gets username from text field
+     * @return the username 
+     */
+    public String getUsername() {
+        return usernameField.getText();
+    }
+    
+    /**
+     * gets password from password field
+     * @return the password
+     */
+    public char[] getPassword() {
+        return passwordField.getPassword();
+    }
+    
+    
+    //getters
     public JTextField getUsernameField() {
         return usernameField;
     }
@@ -106,8 +131,8 @@ public class LoginPanel extends JPanel implements viewInterface {
         return passwordField;
     }
     
-    public JButton getSignUpButton() {
-        return signUpButton;
+    public JButton getLoginButton() {
+        return loginButton;
     }
     
     public JButton getReturnButton() {
@@ -116,7 +141,7 @@ public class LoginPanel extends JPanel implements viewInterface {
     
     //actionListener for the login button
     public void addLoginButtonActionListener(ActionListener listener) {
-        signUpButton.addActionListener(listener);
+        loginButton.addActionListener(listener);
     }
     
     //actionListener for the return button
@@ -124,15 +149,27 @@ public class LoginPanel extends JPanel implements viewInterface {
         returnButton.addActionListener(listener);
     }
     
+    /**
+     * Test methods
+     */
     public void signUpButtonClick(){
-        for (ActionListener e : signUpButton.getActionListeners()){
+        for (ActionListener e : loginButton.getActionListeners()){
             e.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
         }
     }
     
     public void returnButtonClick(){
-        for (ActionListener e : signUpButton.getActionListeners()){
+        for (ActionListener e : loginButton.getActionListeners()){
             e.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
         }
+    }
+    
+    /**
+     * set error message to errorMessage - used in controller
+     * 
+     * @param errorMessage the error message to display 
+     */
+    public void setErrorMessage(String errorMessage) {
+        errorLabel.setText(errorMessage);
     }
 }
