@@ -104,20 +104,21 @@ public class GamePanel extends JPanel implements viewInterface {
     //First round interaction
     public void addCaseButtonListener(ActionListener listener) {
         for (JButton caseButton : briefCaseButtons) {
-            caseButton.addActionListener(e -> {
-                if (isFirstRound) {
-                    isFirstRound = false;
-                    String command = e.getActionCommand();
-                    int caseNumber = Integer.parseInt(command);
-                    removeBriefcase(caseNumber);
-                    updateStatusLabel("You've chosen case " + caseNumber + " as your first case!");
-                    
-                    // Notify GameManager or any controlling class about this selection
-                    listener.actionPerformed(e);
-                } else {
-                    listener.actionPerformed(e);
-                }
-            });
+            caseButton.addActionListener(listener);
+//                    e -> {
+//                if (isFirstRound) {
+//                    isFirstRound = false;
+//                    String command = e.getActionCommand();
+//                    int caseNumber = Integer.parseInt(command);
+//                    removeBriefcase(caseNumber);
+//                    updateStatusLabel("You've chosen case " + caseNumber + " as your first case!");
+//                    
+//                    // Notify GameManager or any controlling class about this selection
+//                    listener.actionPerformed(e);
+//                } else {
+//                    listener.actionPerformed(e);
+//                }
+//            });
         }
     }
     
@@ -134,24 +135,32 @@ public class GamePanel extends JPanel implements viewInterface {
         label.setText(text);
     }
     
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Deal or No Deal Game");
-        GamePanel gamePanel = new GamePanel();
-
-        // Add case button listeners for testing
-        gamePanel.addCaseButtonListener(e -> {
-            System.out.println("Button " + e.getActionCommand() + " was pressed.");
-        });
-
-        // Add last round button listeners for testing
-        gamePanel.addLastRoundButtonListener(e -> {
-            System.out.println("Last round button " + ((JButton) e.getSource()).getText() + " was pressed.");
-        });
-
-        frame.add(gamePanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+    public boolean getIsFirstRound(){
+        return isFirstRound;
     }
+    
+    public void setIsFirstRound(boolean value) {
+        this.isFirstRound = value;
+    }
+    
+//    public static void main(String[] args) {
+//        JFrame frame = new JFrame("Deal or No Deal Game");
+//        GamePanel gamePanel = new GamePanel();
+//
+//        // Add case button listeners for testing
+//        gamePanel.addCaseButtonListener(e -> {
+//            System.out.println("Button " + e.getActionCommand() + " was pressed.");
+//        });
+//
+//        // Add last round button listeners for testing
+//        gamePanel.addLastRoundButtonListener(e -> {
+//            System.out.println("Last round button " + ((JButton) e.getSource()).getText() + " was pressed.");
+//        });
+//
+//        frame.add(gamePanel);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.pack();
+//        frame.setVisible(true);
+//    }
     
 }

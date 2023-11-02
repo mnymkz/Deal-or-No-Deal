@@ -29,7 +29,7 @@ public class GameController {
     }
 
     /**
-     * Action listener for game 
+     * Action listener for normal rounds 
      */
     private class CaseButtonListener implements ActionListener {
         @Override
@@ -37,8 +37,16 @@ public class GameController {
             System.out.println("Button clicked");
             String command = e.getActionCommand(); //get string from button 
             int caseNumber = Integer.parseInt(command); //get caseNumber
-            int currentRound = 0; //initialise current round 
 
+            if (gamePanel.getIsFirstRound()) {
+            gamePanel.setIsFirstRound(false);
+            gamePanel.removeBriefcase(caseNumber);
+            gamePanel.updateStatusLabel("You've chosen case " + caseNumber + " as your first case!");
+            // Here you can also perform any other game logic for the first round
+            return; // Exit since the first round logic is done
+            }
+            
+            int currentRound = 0; //initialise current round 
             try {
                 currentRound = game.getGameManager().getCurrentRound(username); //get current round
                 int numCasesToOpen = 6 - currentRound;  //get numChoices
