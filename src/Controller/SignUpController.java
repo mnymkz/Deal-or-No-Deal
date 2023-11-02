@@ -1,7 +1,6 @@
 
 package Controller;
 
-import Login.Player;
 import Model.Model;
 import View.SignUpPanel;
 import View.View;
@@ -44,29 +43,32 @@ public class SignUpController {
             System.out.println(username + " " + password);
             
             try {
-                if (model.getLoginManager().playerExists(username)) { //if player already exists
+                //if player exists
+                if (model.getLoginManager().playerExists(username)) { 
                     System.out.println("Login already exists");
                     signUpPanel.setErrorMessage("Login already exists"); //display error message to user
+                } 
+                
+                //if player does not exist
+                if (!model.getLoginManager().playerExists(username)) { 
+                    //check if passwords match 
+                    if (Arrays.equals(password, passwordConfirm)) {
+                        System.out.println("Passwords match");
+                        //create new player in model
+                        try {
+                            model.createPlayer(username, new String(password));
+                            mainFrame.switchPanel("HomePanel"); 
+                        } catch (SQLException ex) {
+                            Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        //display error to user
+                        System.out.println("Passwords do not match");
+                        signUpPanel.setErrorMessage("Passwords do not match.");
+                    }
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            
-            //check if passwords match 
-            if (Arrays.equals(password, passwordConfirm)) {
-                System.out.println("Passwords match");
-                //create new player in model
-                try {
-                    model.createPlayer(username, new String(password));
-                    mainFrame.switchPanel("HomePanel"); 
-                } catch (SQLException ex) {
-                    Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                //display error to user
-                System.out.println("Passwords do not match");
-                signUpPanel.setErrorMessage("Passwords do not match.");
             }
         }
     }
