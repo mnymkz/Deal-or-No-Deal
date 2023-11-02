@@ -26,6 +26,7 @@ public class Game {
     private Case firstCase;
 
     public Game(DBManager dbManager) {
+        this.dbManager = dbManager;
         this.gameManager = new GameManager(dbManager);
         this.caseLoader = new CaseLoader(dbManager);
         cases = caseLoader.getCases();

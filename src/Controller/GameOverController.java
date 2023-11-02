@@ -24,29 +24,26 @@ public class GameOverController {
         this.gameOverPanel.addExitGameButtonActionListener(new ExitGameButtonActionListener());
         this.gameOverPanel.addPlayAgainButtonActionListener(new PlayAgainButtonActionListener());
     }
-    
+    /**
+     * Exit game button action listener
+     */
     private class ExitGameButtonActionListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Exit button clicked, exiting game");
-            //TODO handle event 
-            //save current earnigns 
-            //disconnect db
-            //close frame
-            mainFrame.dispose();
+            model.getdBManager().closeConnections();
+            mainFrame.dispose(); //close frame 
         }
     }
 
     /**
      * no deal button action listener
      */
-    private static class PlayAgainButtonActionListener implements ActionListener {
-
+    private class PlayAgainButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Play again button clicked, creating new game");
-            //TODO create new game 
+            mainFrame.switchPanel("LogInPanel");
         }
     }
     
