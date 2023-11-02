@@ -53,6 +53,23 @@ public class GameManager {
     }
     
     /**
+     * update chosen case of the player 
+     * 
+     * @param username the username of the player
+     * @param chosenCase the new earnings
+     */
+    public void firstRound(String username, int chosenCase) throws SQLException {
+        int playerID = getPlayerID(username);
+        String query = "UPDATE GAME SET chosenCaseNumber = ? Where playerID = ?";
+        
+        try {
+            dBManager.update(query, chosenCase, playerID); 
+        } catch (SQLException ex) {
+            System.out.println("Error updating chosen case number for " + username + ": " + ex.getMessage());
+        }
+    }
+    
+    /**
      * update current earnings updates the earnings of the player 
      * 
      * @param username the username of the player
