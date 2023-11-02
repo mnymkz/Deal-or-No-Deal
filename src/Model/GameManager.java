@@ -80,4 +80,50 @@ public class GameManager {
         String query = "UPDATE GAME SET currentRound = ? WHERE playerID = ?";
         dBManager.update(query, round, playerID);
     }
+
+        /**
+     * getCurrent round retrieves the current round from the database
+     * @return the current round 
+     */
+    public int getCurrentRound() throws SQLException {
+        int currentRound = -1;
+        int playerID = getPlayerID();
+        
+        //query db
+        String query = "SELECT * FROM GAME where playerID = ?";
+        ResultSet rs = dBManager.queryDB(query, playerID).getResultSet();
+        if (rs.next()) { 
+            currentRound = rs.getInt("currentRound"); //get current round 
+        }
+        
+        if (currentRound == -1) {
+            System.out.println("Error retrieving current round");
+        }
+        
+        return currentRound;
+    }
+    
+    /**
+     * getCurrentEarnings method returns the current earnings of the player based on the player id
+     * 
+     * @return the current earnings from the game table
+     * @throws SQLException 
+     */
+    public int getCurrentEarnings() throws SQLException  {
+        int currentEarnings = -1;
+        int playerID = getPlayerID();
+        
+        //queryDB
+        String query = "SELECT * FROM GAME where playerID = ?";
+        ResultSet rs = dBManager.queryDB(query, playerID).getResultSet();
+        if (rs.next()) {
+            currentEarnings = rs.getInt("currentEarnings"); //get current earnings
+        }
+        
+        if (currentEarnings == -1) {
+            System.out.println("Error retrieving currentEarnings"); //if earnings not updated, error
+
+        }
+        return currentEarnings;
+    }
 }
