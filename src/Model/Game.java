@@ -79,6 +79,40 @@ public class Game {
         return true;
     }
     
+    public double lastRound() {
+        // Get the last unopened case (other than the first case chosen by the player)
+        Case lastUnopenedCase = null;
+        for(Case briefCase : cases) {
+            if(briefCase != firstCase && !briefCase.isOpened()) {
+                lastUnopenedCase = briefCase;
+                break;
+            }
+        }
+
+        if (lastUnopenedCase == null) {
+            System.out.println("Error: No unopened cases found.");
+            return 0; // Or handle this situation differently if required
+        }
+
+        System.out.println("You are left with two cases:");
+        System.out.println("1. Your initial case number: " + firstCase.getNumber());
+        System.out.println("2. Last unopened case number: " + lastUnopenedCase.getNumber());
+
+        // Here, you'd probably want some kind of user input mechanism to let them choose
+        // But for the sake of this example, I'll just simulate that the user always chooses their initial case:
+        int userChoice = 1; // This could be 1 for initial case or 2 for the last unopened case
+
+        if(userChoice == 1) {
+            System.out.println("You chose your initial case.");
+            firstCase.openCase();
+            return firstCase.getItem().getMoneyValue();
+        } else {
+            System.out.println("You chose the last unopened case.");
+            lastUnopenedCase.openCase();
+            return lastUnopenedCase.getItem().getMoneyValue();
+        }
+    }
+    
     public void endRound() throws SQLException {
         int currentRound = gameManager.getCurrentRound(user.getUsername());
         gameManager.updateCurrentRound(user.getUsername(), currentRound + 1);

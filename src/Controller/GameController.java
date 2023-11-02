@@ -29,9 +29,10 @@ public class GameController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         int caseNumber = Integer.parseInt(command);
+        int currentRound = 0;
         
         try {
-            int currentRound = game.getGameManager().getCurrentRound(username);
+            currentRound = game.getGameManager().getCurrentRound(username);
             int numCasesToOpen = 6 - currentRound; 
             
             if (numCasesToOpen <= 0) {
@@ -41,6 +42,10 @@ public class GameController implements ActionListener{
             }
         } catch(SQLException ex) {
             System.out.println("Error updating round: " + ex.getMessage());
-        }     
+        }
+        
+        if(currentRound == 10) {
+            game.lastRound();
+        }
     }
 }
