@@ -9,7 +9,7 @@ import org.junit.Test;
 public class LoginManagerTest {
 
     LoginManager loginManager;
-    DBManager dbManager; // You might want to mock this or prepare a test DB
+    DBManager dbManager; 
 
     @Before
     public void setUp() throws Exception {
@@ -20,8 +20,8 @@ public class LoginManagerTest {
 
     @After
     public void tearDown() throws Exception {
-        dbManager.update("DELETE FROM PLAYER");
-        dbManager.closeConnections();
+        dbManager.update("DELETE FROM PLAYER"); //clear player table
+        dbManager.closeConnections(); //close connection
     }
 
     @Test
