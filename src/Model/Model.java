@@ -35,6 +35,7 @@ public class Model {
         this.loginManager = new LoginManager(dBManager);
         this.gameManager = new GameManager(dBManager);
         this.caseLoader = new CaseLoader(dBManager);
+        caseLoader.load(); //load cases 
         this.currentPlayer = null;
         this.game = new Game(dBManager);
     }
@@ -53,12 +54,18 @@ public class Model {
             System.out.println("Login already exists!");
             return false;
         } else {
-            this.currentPlayer = player;
+            setCurrentPlayer(player);
             System.out.println("New player created");
             loginManager.registerLogin(currentPlayer); //add user to database 
             return true;
         }
     }
+    
+    public void createGame(String username) throws SQLException {
+        this.gameManager.createNewGame(username);
+        this.game = new Game(dBManager);
+    }
+    
     
     public double getBankerOffer() {
         return this.game.getBanker().createOffer(caseLoader.getCases());
@@ -96,4 +103,5 @@ public class Model {
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
+
 }

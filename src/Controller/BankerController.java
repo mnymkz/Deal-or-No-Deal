@@ -27,12 +27,12 @@ public class BankerController {
         this.model = model;
         this.bankerPanel.addDealButtonActionListener(new DealButtonActionListener());
         this.bankerPanel.addNoDealButtonActionListener(new NoDealActionListener());
+        this.bankerPanel.setBankerOffer(model.getBankerOffer()); //set banker offer text
     }
 
     public void fetchBankerOffer() {
-        //getBanker offer
-        double offer = 0.00; //model.getOffer
-        bankerPanel.setBankerOffer(offer);
+        model.getBankerOffer();
+        bankerPanel.setBankerOffer(model.getBankerOffer());
     }
     
     /**
@@ -67,6 +67,6 @@ public class BankerController {
             //TODO handle event 
             //continue onto new round 
             //user earnings stay the same
-        }
+         }
     }
 }
