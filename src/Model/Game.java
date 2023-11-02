@@ -25,8 +25,8 @@ public class Game {
     private Player user;
     private Case firstCase;
 
-    public Game(CaseLoader caseLoader, DBManager dbManager) {
-        this.caseLoader = caseLoader;
+    public Game(DBManager dbManager) {
+        this.caseLoader = new CaseLoader(dbManager);
         this.gameManager = new GameManager(dbManager);
         cases = caseLoader.getCases();
     }
