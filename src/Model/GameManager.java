@@ -25,10 +25,10 @@ public class GameManager {
      */
     public void createNewGame(String username) throws SQLException
     {
-        String sql = "INSERT INTO GAME (currentRound, currentEarnings, numChoices, playerID) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO GAME (currentRound, currentEarnings, playerID) VALUES (?, ?, ?)";
         //create a prepared statement
         int playerId = getPlayerID(username);
-        dBManager.insert(sql, 1, 0.0, 6, playerId);
+        dBManager.insert(sql, 1, 0.0, playerId);
     }
     
     /**
@@ -58,11 +58,13 @@ public class GameManager {
      * @param username the username of the player
      * @param newEarnings the new earnings
      */
-    public void updateCurrentEarnings(String username, double newEarnings)
+    public void updateCurrentEarnings(String username, double newEarnings) throws SQLException 
     {
-        String query = "UPDATE PLAYER SET highestEarnings = ? WHERE username = ?";
+        int playerID = getPlayerID(username); //get playerID
+        String query = "UPDATE GAME SET currentEarnings = ? WHERE playerID = ?";
+        
         try {
-            dBManager.update(query, username, newEarnings);
+            dBManager.update(query, newEarnings, playerID);
         } catch (SQLException ex) {
             System.out.println("Error updating earnings for " + username + ": " + ex.getMessage());
         }
@@ -81,8 +83,6 @@ public class GameManager {
         dBManager.update(query, round, playerID);
     }
     
-    
-
     /**
      * getCurrent round retrieves the current round from the database
      * 
