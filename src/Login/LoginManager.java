@@ -36,7 +36,7 @@ public class LoginManager {
      */
     public boolean playerExists(Player player) throws SQLException {
         String query = "SELECT * FROM PLAYER WHERE username = ?";
-        Result result = dbManager.queryDB(query); //get the result
+        Result result = dbManager.queryDB(query, player.getUsername()); //get the result
         ResultSet rs = result.getResultSet(); //get the result set
         return rs.next();
     }
@@ -52,7 +52,7 @@ public class LoginManager {
             double currentHighest = getHighestEarnings(player);
             if (newEarnings > currentHighest) {
                 String sql = "UPDATE PLAYER SET highestEarnings = ? WHERE username = ?";
-                dbManager.update(sql, player.getUsername());
+                dbManager.update(sql, newEarnings, player.getUsername());
             } else  {
                 System.out.println("No update. Current Earnings less than highestEarnings");
             }
@@ -82,12 +82,14 @@ public class LoginManager {
     /**
      * authenticates user login
      * 
-     * @param player the player login
+     * @param username the player's username
+     * @param password the player's password
      * @return true if username and passwords match database
+     * @throws java.sql.SQLException
      */
-    public boolean Auth(Player player) throws SQLException {
+    public boolean Auth(String username, String password) throws SQLException {
         String query = "SELECT * FROM PLAYER WHERE username = ? AND password = ?"; 
-        Result result = dbManager.queryDB(query, player.getUsername(), player.getPassword());
+        Result result = dbManager.queryDB(query, username, password);
         return result.getResultSet().next();
     }
     
@@ -98,32 +100,27 @@ public class LoginManager {
      * @return a user if found, null if not found
      * @throws SQLException 
      */
-    public Player getUserDB(String username) throws SQLException {
-        
-        //get ID
-        String idQuery = "SELECT playerID FROM PLAYER WHERE username = ?";
-        Result idResult = dbManager.queryDB(idQuery, username);
-        if (idResult.getResultSet().next()) {
-            int playerID = idResult.getResultSet().getInt("playerId");
-            String query = "SELECT * FROM PLAYER WHERE playerID = ?";
-            Result playerResult = dbManager.queryDB(query, playerID);
-            playerResult.getResultSet();
-        }
-        
-        //get Player
-        String query = "SELECT * FROM PLAYER WHERE playerID = ?";
-        Result playerResult = dbManager.queryDB(query, username);
-        ResultSet rs = playerResult.getResultSet();
+    public Player getPlayer(String username) throws SQLException {
+        String query = "SELECT * FROM PLAYER WHERE username = ?";
+
+        //get result from query
+        Result result = dbManager.queryDB(query, username);
+        ResultSet rs = result.getResultSet();
+
+        // If a result is returned, create and return a Player object
         if (rs.next()) {
-            String name = rs.getString("username");
+            //get params
+            String retrievedUsername = rs.getString("username");
             String password = rs.getString("password");
-            Double highestEarnings = rs.getDouble("highestEarnings");
-            Player newPlayer = new Player(name, password);
-            newPlayer.setHighestEarnings(highestEarnings);
-            return newPlayer;
+            double highestEarnings = rs.getDouble("highestEarnings");
+
+            Player player = new Player(retrievedUsername, password);
+            player.setHighestEarnings(highestEarnings);
+
+            return player; //return player
         }
-        
-       return null; //not found - return null
+
+        return null; // not found, return null
     }
 }
 
