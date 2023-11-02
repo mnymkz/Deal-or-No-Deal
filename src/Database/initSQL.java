@@ -19,7 +19,6 @@ public class initSQL {
             + "gameID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, "
             + "currentRound INT NOT NULL, "
             + "currentEarnings DOUBLE NOT NULL, "
-            + "numChoices INT NOT NULL, "
             + "playerID INT, "
             + "FOREIGN KEY (playerID) REFERENCES PLAYER(playerID) ON DELETE CASCADE"
             + ")";

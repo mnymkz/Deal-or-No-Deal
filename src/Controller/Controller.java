@@ -27,7 +27,6 @@ public class Controller {
         this.signUpController = new SignUpController(view.getSignUpPanel(), view, model);
         this.loginController = new LoginController(view.getLoginPanel(), view, model);
         this.bankerController = new BankerController(view.getBankerPanel(), view, model);
-        this.bankerController = new BankerController(view.getBankerPanel(), view, model);
         this.gameOverController = new GameOverController(view.getGameOverPanel(), view, model);
     }
 }
