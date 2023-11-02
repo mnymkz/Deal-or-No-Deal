@@ -32,8 +32,6 @@ public class GameController implements ActionListener{
 //        view.removeBriefcase(caseNumber);
         
         //When user reaches its final briefcase of the current round
-        //From GamePanel to BankerPanel
-        
-        
+        //From GamePanel to BankerPanel        
     }
 }

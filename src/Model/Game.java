@@ -2,9 +2,11 @@
 package Model;
 
 import Banker.Banker;
+import Database.DBManager;
 import Case.Case;
 import Case.CaseLoader;
 import Login.Player;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -15,17 +17,24 @@ import java.util.ArrayList;
 public class Game {
 
     //game objects
+    private GameManager gameManager;
+    private DBManager dbManager;
     private CaseLoader caseLoader;
     private ArrayList<Case> cases;
     private Banker banker;
     private Player user;
     private Case firstCase;
 
-    public Game(CaseLoader caseLoader) {
+    public Game(CaseLoader caseLoader, DBManager dbManager) {
         this.caseLoader = caseLoader;
+        this.gameManager = new GameManager(dbManager);
         cases = caseLoader.getCases();
     }
    
+    public void startNewGame() throws SQLException{
+        gameManager.createNewGame(user.getUsername());
+    }
+    
     public void chooseFirstCase(int caseNumber)
     {
         for (Case briefCase : cases)
@@ -68,6 +77,11 @@ public class Game {
             }
         }
         return true;
+    }
+    
+    public void endRound() throws SQLException {
+        int currentRound = gameManager.getCurrentRound(user.getUsername());
+        gameManager.updateCurrentRound(user.getUsername(), currentRound + 1);
     }
     
     public Case getFirstCase()
