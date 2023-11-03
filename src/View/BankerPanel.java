@@ -76,17 +76,4 @@ public class BankerPanel extends JPanel implements viewInterface {
     public void setBankerOffer(double offer) {
         offerLabel.setText("Banker offers: " + String.format("$%,.2f", offer));
     }
-
-    
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Banker Panel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 200);
-        frame.setLocationRelativeTo(null); // Center the frame
-        
-        BankerPanel bankerPanel = new BankerPanel();
-        frame.add(bankerPanel);
-        
-        frame.setVisible(true);
-    }
 }
