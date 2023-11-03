@@ -96,13 +96,4 @@ public class CaseLoader {
     public int getNUM_CASES() {
         return NUM_CASES;
     }
-    
-    public static void main(String[] args) {
-        DBManager dbManager = DBManager.getInstance();
-        dbManager.establishConnection();
-        System.out.println(dbManager.getConnection());
-        CaseLoader cl = new CaseLoader(dbManager);
-        cl.load();
-        System.out.println(cl.getCases().size());
-    }
 }

@@ -1,36 +1,36 @@
-
 package Database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ * testing method for db 
+ * 
  * @author Michael
  */
 public class DBTest {
-    public static void main(String[] args) throws SQLException {
+
+    public void dbTest() throws SQLException {
         DBManager dbManager = DBManager.getInstance();
         dbManager.establishConnection();
         System.out.println(dbManager.getConnection());
-        
+
         GameDB gameDb = new GameDB(dbManager);
         gameDb.initTables();
-        
+
         ResultSet rsItems = dbManager.queryItems("SELECT * FROM ITEM");
         try {
             while (rsItems.next()) {
                 int id = rsItems.getInt("itemID"); // Replace "ID" with the actual column name
                 String name = rsItems.getString("itemName"); // Replace "NAME" with the actual column name
                 // Get other columns as needed
-                
+
                 System.out.println("itemID: " + id + ", itemName: " + name); // Print the values
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        } 
-        
-        
+        }
+
         ResultSet rsPlayers = dbManager.queryItems("SELECT * FROM PLAYER");
         try {
             while (rsPlayers.next()) {
@@ -49,7 +49,7 @@ public class DBTest {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
+
         ResultSet rsGames = dbManager.queryItems("SELECT * FROM GAME");
         try {
             while (rsGames.next()) {
@@ -57,7 +57,7 @@ public class DBTest {
                 int currentRound = rsGames.getInt("currentRound");
                 double currentEarnings = rsGames.getDouble("currentEarnings");
                 int playerID = rsGames.getInt("playerId");
-                
+
                 System.out.println("gameId: " + gameId
                         + ", currentRound: " + currentRound
                         + ", currentEarnings: " + currentEarnings
@@ -66,7 +66,7 @@ public class DBTest {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-       
+
         dbManager.closeConnections();
     }
 }

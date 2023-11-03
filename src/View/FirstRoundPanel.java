@@ -1,7 +1,6 @@
 
 package View;
 
-import Model.GameManager;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
