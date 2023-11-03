@@ -9,6 +9,7 @@ import Case.CaseLoader;
 import Login.Player;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * model class contains all the game objects 
@@ -23,19 +24,21 @@ public class Game {
     private CaseLoader caseLoader;
     private ArrayList<Case> cases;
     private Banker banker;
-    private Player user;
+    private Player player;
     private Case firstCase;
 
-    public Game(DBManager dbManager) {
+    public Game(DBManager dbManager, Player player) {
         this.dbManager = dbManager;
+        this.player = player;
         this.banker = new RandomBanker("Banker");
         this.gameManager = new GameManager(dbManager);
         this.caseLoader = new CaseLoader(dbManager);
+        caseLoader.load();
         cases = caseLoader.getCases();
     }
    
     public void startNewGame() throws SQLException{
-        gameManager.createNewGame(user.getUsername());
+        gameManager.createNewGame(player.getUsername());
     }
     
     public void chooseFirstCase(int caseNumber)
@@ -101,8 +104,8 @@ public class Game {
         System.out.println("1. Your initial case number: " + firstCase.getNumber());
         System.out.println("2. Last unopened case number: " + lastUnopenedCase.getNumber());
 
-        // Here, you'd probably want some kind of user input mechanism to let them choose
-        // But for the sake of this example, I'll just simulate that the user always chooses their initial case:
+        // Here, you'd probably want some kind of player input mechanism to let them choose
+        // But for the sake of this example, I'll just simulate that the player always chooses their initial case:
         int userChoice = 1; // This could be 1 for initial case or 2 for the last unopened case
 
         if(userChoice == 1) {
@@ -116,29 +119,9 @@ public class Game {
         }
     }
     
-//    public ArrayList<Case> getLastCases() {
-//        ArrayList<Case> lastCases = new ArrayList<>();
-//
-//        // Get the last unopened case (other than the first case chosen by the player)
-//        Case lastUnopenedCase = null;
-//        for(Case briefCase : cases) {
-//            if(briefCase != firstCase && !briefCase.isOpened()) {
-//                lastUnopenedCase = briefCase;
-//                break;
-//            }
-//        }
-//
-//        if (lastUnopenedCase != null) {
-//            lastCases.add(firstCase);
-//            lastCases.add(lastUnopenedCase);
-//        }
-//
-//        return lastCases;
-//    }
-    
     public void endRound() throws SQLException {
-        int currentRound = gameManager.getCurrentRound(user.getUsername());
-        gameManager.updateCurrentRound(user.getUsername(), currentRound + 1);
+        int currentRound = gameManager.getCurrentRound(player.getUsername());
+        gameManager.updateCurrentRound(player.getUsername(), currentRound + 1);
     }
     
     //getter and setter
@@ -155,8 +138,8 @@ public class Game {
         return banker;
     }
     
-    public Player getUser() {
-        return user;
+    public Player getPlayer() {
+        return player;
     }
     
     public GameManager getGameManager() {
@@ -183,8 +166,8 @@ public class Game {
         this.banker = banker;
     }
 
-    public void setUser(Player user) {
-        this.user = user;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public void setFirstCase(int caseNo) {
@@ -215,9 +198,17 @@ public class Game {
         System.out.println("The value of your intial briefcase is: $" + firstCase.getItem().getMoneyValue());
     }
     
-    //To remove briefcase when user clicks on specific briefcase
-    public void removeCase(int caseNumber)
-    {
-        cases.remove(caseNumber - 1);
+    //To remove briefcase when player clicks on specific briefcase
+    public void removeCase(int caseNumber) {
+        Iterator<Case> iterator = cases.iterator();
+        while (iterator.hasNext()) {
+            Case c = iterator.next();
+            System.out.println(c.toString());
+            if (c.getNumber() == caseNumber) {
+                iterator.remove();
+                break; // Break if you just want to remove the first match
+            }
+        }
     }
+
 }

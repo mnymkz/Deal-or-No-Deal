@@ -16,6 +16,7 @@ public class View extends JFrame {
     private BankerPanel bankerPanel;
     private GameOverPanel gameOverPanel;
     private FirstRoundPanel firstRoundPanel;
+    private RoundPanel roundPanel;
     private RulesPanel rulesPanel;
     
     //JFrame constructor 
@@ -60,6 +61,7 @@ public class View extends JFrame {
         this.bankerPanel = new BankerPanel();
         this.firstRoundPanel = new FirstRoundPanel();
         this.gameOverPanel = new GameOverPanel();
+        this.roundPanel = new RoundPanel();
         this.rulesPanel = new RulesPanel();
     }
     
@@ -69,6 +71,7 @@ public class View extends JFrame {
         mainPanel.add(signUpPanel, "SignUpPanel");
         mainPanel.add(rulesPanel, "RulesPanel");
         mainPanel.add(firstRoundPanel, "FirstRoundPanel");
+        mainPanel.add(roundPanel, "RoundPanel");
         mainPanel.add(bankerPanel, "BankerPanel");
         mainPanel.add(gameOverPanel, "GameOverPanel");
     }
@@ -121,5 +124,8 @@ public class View extends JFrame {
     public RulesPanel getRulesPanel() {
         return rulesPanel;
     }
-    
+
+    public RoundPanel getRoundPanel() {
+        return roundPanel;
+    }
 }

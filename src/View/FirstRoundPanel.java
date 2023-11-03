@@ -79,20 +79,6 @@ public class FirstRoundPanel extends JPanel implements viewInterface {
         label.setBorder(new EmptyBorder(10, 0, 10, 0));
     }
     
-//    //Method for last round
-//    public void showLastRoundChoices(String firstCaseText, String lastCaseText) {
-//        firstCaseButton.setText(firstCaseText);
-//        lastCaseButton.setText(lastCaseText);
-//
-//        JPanel lastRoundPanel = new JPanel(new GridLayout(1, 2));
-//        lastRoundPanel.add(firstCaseButton);
-//        lastRoundPanel.add(lastCaseButton);
-//
-//        add(lastRoundPanel, BorderLayout.SOUTH);
-//        revalidate();
-//        repaint();
-//    }
-
     //add case button action listener
     public void addCaseButtonListener(ActionListener listener) {
         for (JButton caseButton : briefCaseButtons) {

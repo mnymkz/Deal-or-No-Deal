@@ -65,7 +65,7 @@ public class BankerController {
         public void actionPerformed(ActionEvent e) {
             System.out.println("No Deal Button Clicked, rejecting offer");
             //TODO handle event 
-            mainFrame.switchPanel("GamePanel");
+            mainFrame.switchPanel("RoundPanel");
          }
     }
 }

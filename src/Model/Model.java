@@ -21,7 +21,6 @@ public class Model {
     private Game game;
     private Player currentPlayer;
     private LoginManager loginManager;
-    private CaseLoader caseLoader;
     private GameManager gameManager;
     
     public Model() throws SQLException
@@ -34,10 +33,8 @@ public class Model {
         //init managers
         this.loginManager = new LoginManager(dBManager);
         this.gameManager = new GameManager(dBManager);
-        this.caseLoader = new CaseLoader(dBManager);
-        caseLoader.load(); //load cases 
         this.currentPlayer = null;
-        this.game = new Game(dBManager);
+        this.game = new Game(dBManager, currentPlayer);
     }
     
     /**
@@ -63,12 +60,11 @@ public class Model {
     
     public void createGame(String username) throws SQLException {
         this.gameManager.createNewGame(username);
-        this.game = new Game(dBManager);
+        this.game = new Game(dBManager, currentPlayer);
     }
     
-    
     public double getBankerOffer() {
-        return this.game.getBanker().createOffer(caseLoader.getCases());
+        return this.game.getBanker().createOffer(game.getCases());
     }
     
     public DBManager getdBManager() {
@@ -89,10 +85,6 @@ public class Model {
 
     public LoginManager getLoginManager() {
         return loginManager;
-    }
-
-    public CaseLoader getCaseLoader() {
-        return caseLoader;
     }
 
     public GameManager getGameManager() {
